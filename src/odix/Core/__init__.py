@@ -10,9 +10,3 @@ Public API
 Principia
     Represents a publication and its metadata.
 """
-
-from .principia import Principia
-
-__all__ = [
-    "Principia",
-]

@@ -1,0 +1,28 @@
+# Virtual environment
+.venv/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Build
+build/
+dist/
+*.egg-info/
+
+# Test
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Ruff
+.ruff_cache/
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
