@@ -59,3 +59,35 @@ Decisión de usar un número identificador con un número con puntos por cada ni
 Determinar el Hash para contenido y contexto.
 
 Hacer píldoras sobre los distintos temas para explicar posteriormente.
+
+## 29/07/2026
+
+Definición de la arquitectura base del AST de Tabula.
+
+Creación de la clase abstracta `Node` como núcleo del árbol de sintaxis abstracta, concentrando toda la funcionalidad común de los nodos.
+
+Implementación de un sistema de identificadores incrementales para cada nodo mediante un contador interno de clase.
+
+Decisión de calcular dinámicamente la posición estructural de cada nodo (`path`) en lugar de almacenarla, evitando inconsistencias al modificar el árbol.
+
+Diseño de un sistema de integridad basado en dos hashes:
+- `content_hash`, que representa únicamente el contenido semántico del nodo.
+- `context_hash`, calculado a partir del `content_hash` propio y de los `context_hash` de sus hijos, formando un árbol de Merkle.
+
+Decisión de que cada nodo defina únicamente su contenido semántico mediante el método abstracto `content()`, dejando el cálculo de hashes completamente implementado en la clase base `Node`.
+
+Definición de la jerarquía principal del AST:
+- `Node`
+- `Document`
+- `Block`
+- `Inline`
+
+Separación de los metadatos del árbol sintáctico mediante la creación de la clase `Metadata`, que no hereda de `Node`.
+
+Decisión de almacenar los metadatos como pares clave-valor cargados directamente desde `principia.yml` mediante `**kwargs`, permitiendo una estructura flexible e independiente del esquema concreto del archivo YAML.
+
+Implementación de una interfaz de acceso a metadatos similar a un diccionario (`get`, `__getitem__`, `__setitem__` y `__contains__`).
+
+Comienzo de la implementación de la clase `Document`, definiéndola como nodo raíz del AST y delegando la representación semántica de los metadatos en la clase `Metadata`.
+
+Siguiente objetivo: implementar las clases base `Block` e `Inline` y comenzar la definición de los primeros nodos del AST.
