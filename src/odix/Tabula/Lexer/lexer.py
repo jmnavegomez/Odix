@@ -29,13 +29,6 @@ class Lexer:
             "|": Reader(ReaderType.REPEATED, TokenType.PIPE),
 
             ">": Reader(ReaderType.SINGLE, TokenType.GREATER_THAN),
-            "!": Reader(ReaderType.SINGLE, TokenType.EXCLAMATION),
-
-            "[": Reader(ReaderType.SINGLE, TokenType.LBRACKET),
-            "]": Reader(ReaderType.SINGLE, TokenType.RBRACKET),
-
-            "(": Reader(ReaderType.SINGLE, TokenType.LPAREN),
-            ")": Reader(ReaderType.SINGLE, TokenType.RPAREN),
 
             "\n": Reader(ReaderType.SINGLE, TokenType.NEWLINE),
         }

@@ -1,1 +1,1 @@
-"""Tabula package."""
+"""Tabula test package."""

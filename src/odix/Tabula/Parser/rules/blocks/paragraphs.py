@@ -1,0 +1,33 @@
+from __future__ import annotations
+
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from ...parser import Parser
+
+from ....lexer.token_type import TokenType
+
+from ....nodes.paragraph import Paragraph
+
+from ..inline.sequence import parse_inline_content
+
+
+def parse_paragraph(parser: Parser) -> Paragraph:
+    """Parses a paragraph.
+
+    Args:
+        parser: Parser instance.
+
+    Returns:
+        Parsed paragraph node.
+    """
+    paragraph = parse_inline_content(
+        parser,
+        TokenType.NEWLINE,
+        TokenType.EOF,
+    )
+
+    if parser._match(TokenType.NEWLINE):
+        parser._advance()
+
+    return paragraph

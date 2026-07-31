@@ -3,6 +3,7 @@ from __future__ import annotations
 from typing import Any
 
 from .block import Block
+from .paragraph import Paragraph
 
 
 class Section(Block):
@@ -12,7 +13,7 @@ class Section(Block):
     and hierarchical level.
     """
 
-    def __init__(self, title: str, level: int) -> None:
+    def __init__(self, level: int, title: Paragraph | None = None,) -> None:
         """Initializes a section node.
 
         Args:
@@ -21,8 +22,8 @@ class Section(Block):
         """
         super().__init__()
 
-        self.title = title
         self.level = level
+        self.title = title
 
     def content(self) -> tuple[Any, ...]:
         """Returns the semantic content of the section.
@@ -31,6 +32,5 @@ class Section(Block):
             Tuple containing the section title and level.
         """
         return (
-            self.title,
             self.level,
         )

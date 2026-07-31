@@ -22,3 +22,9 @@ Impressio
 build
     High-level build function.
 """
+
+from .tabula import Tabula
+
+__all__ = [
+    "Tabula",
+]
