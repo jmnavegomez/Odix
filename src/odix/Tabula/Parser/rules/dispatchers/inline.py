@@ -15,6 +15,8 @@ from ..inline.underline import parse_underline
 from ..inline.strike import parse_strike
 from ..inline.text import parse_text
 
+from ..inline.inline_code import parse_inline_code
+
 
 def parse_inline(
     parser: Parser,
@@ -49,23 +51,33 @@ def parse_inline(
     ):
         return parse_bold(parser)
 
+    # Italic(*text*)
     if (
         parser._match(TokenType.ASTERISK)
         and len(parser._current.value) == 1
     ):
         return parse_italic(parser)
 
+    # Underline(__text__)
     if (
         parser._match(TokenType.UNDERSCORE)
         and len(parser._current.value) == 2
     ):
         return parse_underline(parser)
 
+    # Strike(--text--)
     if (
         parser._match(TokenType.HYPHEN)
         and len(parser._current.value) == 2
     ):
         return parse_strike(parser)
+
+    # Inline code (`code`)
+    if (
+        parser._match(TokenType.BACKTICK)
+        and len(parser._current.value) == 1
+    ):
+        return parse_inline_code(parser)
 
     # Plain text
     if parser._match(TokenType.TEXT):

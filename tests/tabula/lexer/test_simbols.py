@@ -9,11 +9,11 @@ from odix.tabula.lexer.token_type import TokenType
     ("symbol", "token_type", "line", "column"),
     [
         (">", TokenType.GREATER_THAN, 1, 2),
-        ("!", TokenType.EXCLAMATION, 1, 2),
-        ("[", TokenType.LBRACKET, 1, 2),
-        ("]", TokenType.RBRACKET, 1, 2),
-        ("(", TokenType.LPAREN, 1, 2),
-        (")", TokenType.RPAREN, 1, 2),
+        # ("!", TokenType.EXCLAMATION, 1, 2),
+        # ("[", TokenType.LBRACKET, 1, 2),
+        # ("]", TokenType.RBRACKET, 1, 2),
+        # ("(", TokenType.LPAREN, 1, 2),
+        # (")", TokenType.RPAREN, 1, 2),
         ("\n", TokenType.NEWLINE, 2, 1),
     ],
 )
