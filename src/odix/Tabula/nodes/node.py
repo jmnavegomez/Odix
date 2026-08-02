@@ -111,3 +111,7 @@ class Node(ABC):
 
         for child in self.children:
             yield from child.walk()
+
+    def __iter__(self) -> Iterator[Node]:
+        """Iterates over the subtree."""
+        return self.walk()

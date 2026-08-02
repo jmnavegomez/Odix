@@ -7,6 +7,7 @@ from odix.tabula.nodes.italic import Italic
 from odix.tabula.nodes.underline import Underline
 from odix.tabula.nodes.strike import Strike
 from odix.tabula.nodes.inline_code import InlineCode
+from odix.tabula.nodes.node import Node
 
 __all__ = [
     "Document",
@@ -18,4 +19,5 @@ __all__ = [
     "Underline",
     "Strike",
     "InlineCode",
+    "Node",
 ]
