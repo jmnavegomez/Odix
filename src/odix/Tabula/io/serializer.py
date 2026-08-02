@@ -4,6 +4,7 @@ from typing import Any
 
 from ..visitor import Visitor
 from ..nodes import Node
+from ..nodes import Section
 
 
 class Serializer(Visitor):
@@ -28,4 +29,21 @@ class Serializer(Visitor):
             "type": node.__class__.__name__,
             "content": node.content(),
             "children": [self.visit(child) for child in node.children],
+        }
+
+    def visit_section(self, node: Section):
+        return {
+            "type": "Section",
+            "content": {
+                "level": node.level,
+                "title": (
+                    self.visit(node.title)
+                    if node.title is not None
+                    else None
+                ),
+            },
+            "children": [
+                self.visit(child)
+                for child in node.children
+            ],
         }
