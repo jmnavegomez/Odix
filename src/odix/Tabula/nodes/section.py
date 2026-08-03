@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from typing import Any
+from typing import Any, Self
 
 from .block import Block
 from .paragraph import Paragraph
@@ -34,4 +34,15 @@ class Section(Block):
         return (
             self.level,
             self.title,
+        )
+
+    @classmethod
+    def from_content(
+        cls,
+        content: dict[str, Any],
+    ) -> Self:
+        """Creates a section from serialized content."""
+
+        return cls(
+            level=content["level"],
         )

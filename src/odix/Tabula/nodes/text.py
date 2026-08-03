@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from typing import Any
+from typing import Any, Self
 
 from .inline import Inline
 
@@ -25,3 +25,12 @@ class Text(Inline):
             Tuple containing the text.
         """
         return (self.text,)
+
+    @classmethod
+    def from_content(
+        cls,
+        content: tuple[Any, ...],
+    ) -> Self:
+        """Creates a text node from serialized content."""
+
+        return cls(content[0])

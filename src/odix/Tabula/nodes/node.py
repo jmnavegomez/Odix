@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from abc import ABC, abstractmethod
 from hashlib import sha256
-from typing import Any, Iterator
+from typing import Any, Iterator, Self
 
 
 class Node(ABC):
@@ -79,6 +79,21 @@ class Node(ABC):
 
         index = self.parent.children.index(self)
         return (*self.parent.path, index)
+
+    @classmethod
+    def from_content(
+        cls,
+        content: Any,
+    ) -> Self:
+        """Creates a node from serialized content.
+
+        Args:
+            content: Serialized semantic content.
+
+        Returns:
+            Deserialized node.
+        """
+        return cls()
 
     def add_child(self, child: Node) -> None:
         """Adds a child node.
