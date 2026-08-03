@@ -51,6 +51,9 @@ def parse_section(parser: Parser) -> Section:
         if isinstance(first, Text):
             first.text = first.text.lstrip()
 
+            if not first.text:
+                title.children.pop(0)
+
     section = Section(
         level=level,
         title=title,

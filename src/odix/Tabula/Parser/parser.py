@@ -5,6 +5,8 @@ from ..nodes.metadata import Metadata
 from ..lexer.token import Token
 from ..lexer.token_type import TokenType
 
+from ..nodes.node import Node
+from ..nodes.section import Section
 from .rules.dispatchers.blocks import parse_block
 
 class Parser:
@@ -16,6 +18,8 @@ class Parser:
         self._tokens: list[Token] = []
         self._position = 0
         self._metadata: Metadata | None = None
+        self._document: Document | None = None
+        self._parents: list[Node] = []
 
     @property
     def _current(self) -> Token:
@@ -96,7 +100,49 @@ class Parser:
         if not self._match(token_type):
             raise NotImplementedError("Parser exceptions not implemented yet.")
 
-        return self._advance()
+        return self._advance() 
+
+    def _insert_section(self, section: Section) -> None:
+        """Inserts a section into the document tree.
+
+        Args:
+            section: Section to insert.
+        """
+        while (
+            len(self._parents) > 1
+            and isinstance(self._parents[-1], Section)
+            and self._parents[-1].level >= section.level
+        ):
+            self._parents.pop()
+
+        self._parents[-1].add_child(section)
+        self._parents.append(section)
+
+    def _insert_default(self, node: Node) -> None:
+        """Inserts a node using the default strategy.
+
+        Args:
+            node: Node to insert.
+        """
+        self._parents[-1].add_child(node)
+
+    # Node insertion is dispatched according to the node type.
+    # Most nodes use the default strategy, while hierarchical nodes
+    # (such as sections) override it with a specialized handler.
+    def _insert(self, node: Node) -> None:
+        """Dispatches node insertion to the corresponding handler.
+
+        Args:
+            node: Node to insert.
+        """
+        method_name = f"_insert_{node.__class__.__name__.lower()}"
+        method = getattr(
+            self,
+            method_name,
+            self._insert_default,
+        )
+
+        method(node)
 
     def parse(
         self,
@@ -114,11 +160,16 @@ class Parser:
         """
         self._reset(tokens, metadata)
 
-        document = Document(metadata)
+        self._document = Document(metadata)
+        self._parents = [self._document]
 
         while not self._match(TokenType.EOF):
-            document.add_child(
-                parse_block(self)
-            )
 
-        return document
+            if self._match(TokenType.NEWLINE):
+                self._advance()
+                continue
+
+            node = parse_block(self)
+            self._insert(node)
+
+        return self._document

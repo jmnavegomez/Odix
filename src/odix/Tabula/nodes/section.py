@@ -17,8 +17,8 @@ class Section(Block):
         """Initializes a section node.
 
         Args:
-            title: Section title.
             level: Hierarchical section level.
+            title: Section title.
         """
         super().__init__()
 
@@ -33,4 +33,5 @@ class Section(Block):
         """
         return (
             self.level,
+            self.title,
         )
