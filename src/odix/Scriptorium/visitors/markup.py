@@ -32,15 +32,6 @@ class MarkupVisitor(Visitor):
 
         self._writer = writer
 
-        self._handlers: dict[
-            type[Node],
-            str,
-        ] = {
-            Document: "visit_document",
-            Section: "visit_section",
-            Text: "visit_text",
-        }
-
         self._commands: dict[
             type[Node],
             str,
@@ -50,31 +41,6 @@ class MarkupVisitor(Visitor):
             Italic: "Italic",
             InlineCode: "InlineCode",
         }
-
-    def visit(
-        self,
-        node: Node,
-    ) -> str:
-        """Visits a node.
-
-        Args:
-            node: Node to visit.
-
-        Returns:
-            Generated markup.
-        """
-
-        method_name = self._handlers.get(
-            type(node),
-            "generic_visit",
-        )
-
-        visitor = getattr(
-            self,
-            method_name,
-        )
-
-        return visitor(node)
 
     def generic_visit(
         self,
