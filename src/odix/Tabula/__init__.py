@@ -12,7 +12,9 @@ Tabula
 """
 
 from .tabula import Tabula
+from .io.serializer import Serializer
 
 __all__ = [
     "Tabula",
+    "Serializer",
 ]

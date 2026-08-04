@@ -96,7 +96,7 @@ class MarkupVisitor(Visitor):
         title = ""
 
         if node.title is not None:
-            title = self.visit(node.title)
+            title = self.visit_children(node.title)
 
         return (
             self._writer.command(

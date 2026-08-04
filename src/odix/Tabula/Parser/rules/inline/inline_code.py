@@ -8,6 +8,7 @@ if TYPE_CHECKING:
 from ....lexer.token_type import TokenType
 
 from ....nodes.inline_code import InlineCode
+from ....nodes.text import Text
 
 from ..inline.sequence import parse_literal_until
 
@@ -24,6 +25,7 @@ def parse_inline_code(parser: Parser) -> InlineCode:
     Returns:
         Parsed inline code node.
     """
+
     parser._expect(TokenType.BACKTICK)
 
     code = parse_literal_until(
@@ -32,4 +34,10 @@ def parse_inline_code(parser: Parser) -> InlineCode:
         1,
     )
 
-    return InlineCode(code)
+    inline_code = InlineCode()
+
+    inline_code.add_child(
+        Text(code)
+    )
+
+    return inline_code
