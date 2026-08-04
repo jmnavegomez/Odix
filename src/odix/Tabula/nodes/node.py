@@ -40,14 +40,45 @@ class Node(ABC):
             Tuple containing the semantic content of the node.
         """
 
+    def _normalize_for_hash(
+        self,
+        value: Any,
+    ) -> Any:
+        """Converts semantic content into a hashable representation."""
+
+        if isinstance(value, Node):
+            return value.content_hash
+
+        if isinstance(value, tuple):
+            return tuple(
+                self._normalize_for_hash(item)
+                for item in value
+            )
+
+        if isinstance(value, list):
+            return [
+                self._normalize_for_hash(item)
+                for item in value
+            ]
+
+        if isinstance(value, dict):
+            return {
+                key: self._normalize_for_hash(item)
+                for key, item in value.items()
+            }
+
+        return value
+
     @property
     def content_hash(self) -> str:
-        """Returns the hash of the node semantic content.
+        """Returns the hash of the node semantic content."""
 
-        Returns:
-            SHA-256 hash representing the node content.
-        """
-        serialized = repr(self.content()).encode("utf-8")
+        normalized = self._normalize_for_hash(
+            self.content()
+        )
+
+        serialized = repr(normalized).encode("utf-8")
+
         return sha256(serialized).hexdigest()
 
     @property
@@ -130,3 +161,17 @@ class Node(ABC):
     def __iter__(self) -> Iterator[Node]:
         """Iterates over the subtree."""
         return self.walk()
+
+    def __eq__(self, other: object) -> bool:
+        """Returns whether two nodes are semantically equal."""
+
+        if not isinstance(other, Node):
+            return NotImplemented
+
+        return hash(self) == hash(other)
+
+
+    def __hash__(self) -> int:
+        """Returns the hash of the subtree."""
+
+        return hash(self.context_hash)

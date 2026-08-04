@@ -33,7 +33,7 @@ class Section(Block):
         """
         return (
             self.level,
-            self.title,
+            self.title.context_hash if self.title else None,
         )
 
     @classmethod
