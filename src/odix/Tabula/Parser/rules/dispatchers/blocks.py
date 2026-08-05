@@ -13,6 +13,7 @@ from ..blocks.headings import parse_section
 from ..blocks.paragraphs import parse_paragraph
 from ..blocks.quotes import parse_quote
 from ..blocks.lists import parse_list
+from ..blocks.tables import parse_table
 
 
 def parse_block(parser: Parser) -> Block:
@@ -72,7 +73,7 @@ def parse_block(parser: Parser) -> Block:
 
     # Tables
     if parser._match(TokenType.PIPE):
-        raise NotImplementedError
+        return parse_table(parser)
 
     # Markdown treats any line that does not start with a recognized
     # block marker as a paragraph.

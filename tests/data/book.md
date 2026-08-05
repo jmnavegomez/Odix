@@ -7,3 +7,7 @@ Esto reasigna el atributo diametro con el valor entero `15`. Sin embargo, no mod
 - El día de hoy
 
 > La cita actual es una prueba
+
+|Tabla|de|Pruebas|
+|1|de 1|Pruebas 1|
+|2|de 2|Pruebas 2|

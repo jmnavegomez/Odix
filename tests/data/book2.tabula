@@ -169,6 +169,201 @@
                             ]
                         }
                     ]
+                },
+                {
+                    "type": "Table",
+                    "content": [],
+                    "children": [
+                        {
+                            "type": "Row",
+                            "content": [],
+                            "children": [
+                                {
+                                    "type": "Cell",
+                                    "content": [],
+                                    "children": [
+                                        {
+                                            "type": "Paragraph",
+                                            "content": [],
+                                            "children": [
+                                                {
+                                                    "type": "Text",
+                                                    "content": [
+                                                        "Tabla"
+                                                    ],
+                                                    "children": []
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "Cell",
+                                    "content": [],
+                                    "children": [
+                                        {
+                                            "type": "Paragraph",
+                                            "content": [],
+                                            "children": [
+                                                {
+                                                    "type": "Text",
+                                                    "content": [
+                                                        "de"
+                                                    ],
+                                                    "children": []
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "Cell",
+                                    "content": [],
+                                    "children": [
+                                        {
+                                            "type": "Paragraph",
+                                            "content": [],
+                                            "children": [
+                                                {
+                                                    "type": "Text",
+                                                    "content": [
+                                                        "Pruebas"
+                                                    ],
+                                                    "children": []
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "Row",
+                            "content": [],
+                            "children": [
+                                {
+                                    "type": "Cell",
+                                    "content": [],
+                                    "children": [
+                                        {
+                                            "type": "Paragraph",
+                                            "content": [],
+                                            "children": [
+                                                {
+                                                    "type": "Text",
+                                                    "content": [
+                                                        "1"
+                                                    ],
+                                                    "children": []
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "Cell",
+                                    "content": [],
+                                    "children": [
+                                        {
+                                            "type": "Paragraph",
+                                            "content": [],
+                                            "children": [
+                                                {
+                                                    "type": "Text",
+                                                    "content": [
+                                                        "de 1"
+                                                    ],
+                                                    "children": []
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "Cell",
+                                    "content": [],
+                                    "children": [
+                                        {
+                                            "type": "Paragraph",
+                                            "content": [],
+                                            "children": [
+                                                {
+                                                    "type": "Text",
+                                                    "content": [
+                                                        "Pruebas 1"
+                                                    ],
+                                                    "children": []
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "Row",
+                            "content": [],
+                            "children": [
+                                {
+                                    "type": "Cell",
+                                    "content": [],
+                                    "children": [
+                                        {
+                                            "type": "Paragraph",
+                                            "content": [],
+                                            "children": [
+                                                {
+                                                    "type": "Text",
+                                                    "content": [
+                                                        "2"
+                                                    ],
+                                                    "children": []
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "Cell",
+                                    "content": [],
+                                    "children": [
+                                        {
+                                            "type": "Paragraph",
+                                            "content": [],
+                                            "children": [
+                                                {
+                                                    "type": "Text",
+                                                    "content": [
+                                                        "de 2"
+                                                    ],
+                                                    "children": []
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "Cell",
+                                    "content": [],
+                                    "children": [
+                                        {
+                                            "type": "Paragraph",
+                                            "content": [],
+                                            "children": [
+                                                {
+                                                    "type": "Text",
+                                                    "content": [
+                                                        "Pruebas 2"
+                                                    ],
+                                                    "children": []
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
                 }
             ]
         }

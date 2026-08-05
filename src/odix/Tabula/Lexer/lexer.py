@@ -28,7 +28,8 @@ class Lexer:
 
             "-": Reader(ReaderType.REPEATED, TokenType.HYPHEN),
             "+": Reader(ReaderType.REPEATED, TokenType.PLUS),
-            "|": Reader(ReaderType.REPEATED, TokenType.PIPE),
+            
+            "|": Reader(ReaderType.SINGLE, TokenType.PIPE),
 
             ">": Reader(ReaderType.SINGLE, TokenType.GREATER_THAN),
 

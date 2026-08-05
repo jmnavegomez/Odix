@@ -16,6 +16,9 @@ from ..nodes import (
     List,
     ListItem,
     Quote,
+    Row,
+    Cell,
+    Table,
 )
 
 
@@ -44,9 +47,9 @@ class Deserializer:
                     # "CodeBlock": CodeBlock,
                     # "MathBlock": MathBlock,
 
-                    # "Table": Table,
-                    # "Row": Row,
-                    # "Cell": Cell,
+                    "Table": Table,
+                    "Row": Row,
+                    "Cell": Cell,
 
                     # "Image": Image,
                     # "Figure": Figure,

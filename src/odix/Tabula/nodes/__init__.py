@@ -11,6 +11,9 @@ from odix.tabula.nodes.node import Node
 from odix.tabula.nodes.list import List
 from odix.tabula.nodes.list_item import ListItem
 from odix.tabula.nodes.quote import Quote
+from odix.tabula.nodes.row import Row
+from odix.tabula.nodes.cell import Cell
+from odix.tabula.nodes.table import Table
 
 __all__ = [
     "Document",
@@ -26,4 +29,7 @@ __all__ = [
     "List",
     "ListItem",
     "Quote",
+    "Row",
+    "Cell",
+    "Table",
 ]
