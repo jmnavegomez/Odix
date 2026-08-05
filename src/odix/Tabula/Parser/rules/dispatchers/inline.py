@@ -14,6 +14,7 @@ from ..inline.italic import parse_italic
 from ..inline.underline import parse_underline
 from ..inline.strike import parse_strike
 from ..inline.text import parse_text
+from ..inline.asterisk import parse_asterisk
 
 from ..inline.inline_code import parse_inline_code
 
@@ -80,8 +81,11 @@ def parse_inline(
         return parse_inline_code(parser)
 
     # Plain text
-    if parser._match(TokenType.TEXT):
-        return parse_text(parser)
+    if parser._match(TokenType.TEXT, TokenType.ASTERISK):
+        if parser._match(TokenType.ASTERISK):
+            return parse_asterisk(parser)
+        else:
+            return parse_text(parser)
 
     raise NotImplementedError(
         f"Unsupported inline token "
