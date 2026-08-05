@@ -10,6 +10,7 @@ from odix.tabula.nodes.inline_code import InlineCode
 from odix.tabula.nodes.node import Node
 from odix.tabula.nodes.list import List
 from odix.tabula.nodes.list_item import ListItem
+from odix.tabula.nodes.quote import Quote
 
 __all__ = [
     "Document",
@@ -24,4 +25,5 @@ __all__ = [
     "Node",
     "List",
     "ListItem",
+    "Quote",
 ]

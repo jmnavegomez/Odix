@@ -150,6 +150,25 @@
                             ]
                         }
                     ]
+                },
+                {
+                    "type": "Quote",
+                    "content": [],
+                    "children": [
+                        {
+                            "type": "Paragraph",
+                            "content": [],
+                            "children": [
+                                {
+                                    "type": "Text",
+                                    "content": [
+                                        " La cita actual es una prueba"
+                                    ],
+                                    "children": []
+                                }
+                            ]
+                        }
+                    ]
                 }
             ]
         }

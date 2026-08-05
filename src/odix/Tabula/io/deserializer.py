@@ -15,6 +15,7 @@ from ..nodes import (
     Strike,
     List,
     ListItem,
+    Quote,
 )
 
 
@@ -38,7 +39,7 @@ class Deserializer:
 
                     "List": List,
                     "ListItem": ListItem,
-                    # "Quote": Quote,
+                    "Quote": Quote,
 
                     # "CodeBlock": CodeBlock,
                     # "MathBlock": MathBlock,
