@@ -53,7 +53,7 @@ def parse_inline(
 
     # Italic(*text*)
     if (
-        parser._match(TokenType.ASTERISK)
+        parser._match(TokenType.MIDDLE_DOT)
         and len(parser._current.value) == 1
     ):
         return parse_italic(parser)

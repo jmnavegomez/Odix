@@ -11,6 +11,7 @@ from ....lexer.token_type import TokenType
 
 from ..blocks.headings import parse_section
 from ..blocks.paragraphs import parse_paragraph
+from ..blocks.lists import parse_list
 
 
 def parse_block(parser: Parser) -> Block:
@@ -50,10 +51,16 @@ def parse_block(parser: Parser) -> Block:
 
     # Lists
     if (
-        parser._match(TokenType.HYPHEN, TokenType.PLUS)
+        parser._match(
+            TokenType.HYPHEN,
+            TokenType.PLUS,
+        )
         and len(parser._current.value) == 1
+        and parser._peek() is not None
+        and parser._peek().type is TokenType.TEXT
+        and parser._peek().value.startswith(" ")
     ):
-        raise NotImplementedError
+        return parse_list(parser)
 
     # Horizontal rules
     if (

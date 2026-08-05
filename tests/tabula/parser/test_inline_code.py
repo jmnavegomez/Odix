@@ -1,9 +1,12 @@
+import pytest
+
 from odix.tabula.lexer import Lexer
 from odix.tabula.parser import Parser
 
 from odix.tabula.nodes import (
     Paragraph,
     InlineCode,
+    Text,
 )
 
 
@@ -20,14 +23,17 @@ def test_inline_code() -> None:
     paragraph = document.children[0]
 
     assert isinstance(paragraph, Paragraph)
-
     assert len(paragraph.children) == 1
 
     code = paragraph.children[0]
 
     assert isinstance(code, InlineCode)
+    assert len(code.children) == 1
 
-    assert code.code == "print(x)"
+    text = code.children[0]
+
+    assert isinstance(text, Text)
+    assert text.text == "print(x)"
 
 from odix.tabula.nodes import (
     Paragraph,
@@ -56,12 +62,20 @@ def test_inline_code_inside_paragraph() -> None:
     assert paragraph.children[0].text == "Call "
 
     assert isinstance(paragraph.children[1], InlineCode)
-    assert paragraph.children[1].code == "print(x)"
+
+    code = paragraph.children[1]
+
+    assert len(code.children) == 1
+    assert isinstance(code.children[0], Text)
+    assert code.children[0].text == "print(x)"
 
     assert isinstance(paragraph.children[2], Text)
     assert paragraph.children[2].text == " now."
 
-from odix.tabula.nodes import InlineCode
+from odix.tabula.nodes import (
+    InlineCode,
+    Text,
+)
 
 
 def test_inline_code_is_literal() -> None:
@@ -80,7 +94,9 @@ def test_inline_code_is_literal() -> None:
 
     assert isinstance(code, InlineCode)
 
-    assert code.code == "**bold**"
+    assert len(code.children) == 1
+    assert isinstance(code.children[0], Text)
+    assert code.children[0].text == "**bold**"
 
 import pytest
 
@@ -95,3 +111,29 @@ def test_unterminated_inline_code() -> None:
         parser.parse(
             lexer.tokenize("`print(x)")
         )
+
+from odix.tabula.nodes import (
+    InlineCode,
+    Text,
+)
+
+
+def test_inline_code_with_markdown_symbols() -> None:
+    lexer = Lexer()
+    parser = Parser()
+
+    markdown = "`2 * radio`"
+
+    document = parser.parse(
+        lexer.tokenize(markdown)
+    )
+
+    paragraph = document.children[0]
+
+    code = paragraph.children[0]
+
+    assert isinstance(code, InlineCode)
+
+    assert len(code.children) == 1
+    assert isinstance(code.children[0], Text)
+    assert code.children[0].text == "2 * radio"

@@ -8,6 +8,8 @@ from odix.tabula.nodes.underline import Underline
 from odix.tabula.nodes.strike import Strike
 from odix.tabula.nodes.inline_code import InlineCode
 from odix.tabula.nodes.node import Node
+from odix.tabula.nodes.list import List
+from odix.tabula.nodes.list_item import ListItem
 
 __all__ = [
     "Document",
@@ -20,4 +22,6 @@ __all__ = [
     "Strike",
     "InlineCode",
     "Node",
+    "List",
+    "ListItem",
 ]

@@ -20,9 +20,11 @@ class Lexer:
         self._token_readers = {
             "#": Reader(ReaderType.REPEATED, TokenType.HASH),
             "*": Reader(ReaderType.REPEATED, TokenType.ASTERISK),
+            "·": Reader(ReaderType.REPEATED, TokenType.MIDDLE_DOT),   # Nuevo
             "_": Reader(ReaderType.REPEATED, TokenType.UNDERSCORE),
             "`": Reader(ReaderType.REPEATED, TokenType.BACKTICK),
             "$": Reader(ReaderType.REPEATED, TokenType.DOLLAR),
+            ":": Reader(ReaderType.REPEATED, TokenType.COLON),
 
             "-": Reader(ReaderType.REPEATED, TokenType.HYPHEN),
             "+": Reader(ReaderType.REPEATED, TokenType.PLUS),

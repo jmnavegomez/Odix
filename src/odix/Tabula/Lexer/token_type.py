@@ -11,9 +11,11 @@ class TokenType(Enum):
 
     HASH = auto()
     ASTERISK = auto()
+    MIDDLE_DOT = auto()      # ·Nuevo·
     UNDERSCORE = auto()
     BACKTICK = auto()
     DOLLAR = auto()
+    COLON = auto()
 
     GREATER_THAN = auto()
 
