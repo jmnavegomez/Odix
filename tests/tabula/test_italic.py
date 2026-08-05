@@ -13,7 +13,7 @@ def test_parse_italic() -> None:
     parser = Parser()
 
     document = parser.parse(
-        lexer.tokenize("*italic*")
+        lexer.tokenize("·italic·")
     )
 
     paragraph = document.children[0]

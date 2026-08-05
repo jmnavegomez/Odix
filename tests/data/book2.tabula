@@ -13,7 +13,7 @@
                         {
                             "type": "Text",
                             "content": [
-                                "Introducción"
+                                "Prueba 1"
                             ],
                             "children": []
                         }
@@ -28,281 +28,126 @@
                         {
                             "type": "Text",
                             "content": [
-                                "En programación orientada a objetos (POO) las clases se componen principalmente de atributos y métodos. Los atributos son variables asociadas a una clase o a una instancia que almacenan información sobre su estado o sus características."
+                                "Esto reasigna el atributo diametro con el valor entero "
+                            ],
+                            "children": []
+                        },
+                        {
+                            "type": "InlineCode",
+                            "content": [],
+                            "children": [
+                                {
+                                    "type": "Text",
+                                    "content": [
+                                        "15"
+                                    ],
+                                    "children": []
+                                }
+                            ]
+                        },
+                        {
+                            "type": "Text",
+                            "content": [
+                                ". Sin embargo, no modifica el valor de radio, ya que ambos atributos almacenan valores independientes. Si se desea mantener la relación diametro = 2 "
+                            ],
+                            "children": []
+                        },
+                        {
+                            "type": "Text",
+                            "content": [
+                                "*"
+                            ],
+                            "children": []
+                        },
+                        {
+                            "type": "Text",
+                            "content": [
+                                " radio, debe implementarse explícitamente, por ejemplo mediante una propiedad ("
+                            ],
+                            "children": []
+                        },
+                        {
+                            "type": "InlineCode",
+                            "content": [],
+                            "children": [
+                                {
+                                    "type": "Text",
+                                    "content": [
+                                        "@property"
+                                    ],
+                                    "children": []
+                                }
+                            ]
+                        },
+                        {
+                            "type": "Text",
+                            "content": [
+                                ") o actualizando ambos atributos."
                             ],
                             "children": []
                         }
                     ]
                 },
                 {
-                    "type": "Paragraph",
+                    "type": "List",
                     "content": [],
                     "children": [
                         {
-                            "type": "Text",
-                            "content": [
-                                "Los atributos de instancia suelen inicializarse en el método especial "
-                            ],
-                            "children": []
-                        },
-                        {
-                            "type": "InlineCode",
+                            "type": "ListItem",
                             "content": [],
                             "children": [
                                 {
-                                    "type": "Text",
-                                    "content": [
-                                        "__init__"
-                                    ],
-                                    "children": []
+                                    "type": "Paragraph",
+                                    "content": [],
+                                    "children": [
+                                        {
+                                            "type": "Text",
+                                            "content": [
+                                                " Hola Mundo"
+                                            ],
+                                            "children": []
+                                        }
+                                    ]
                                 }
                             ]
                         },
                         {
-                            "type": "Text",
-                            "content": [
-                                ", aunque también pueden añadirse posteriormente mediante asignación. "
-                            ],
-                            "children": []
-                        },
-                        {
-                            "type": "InlineCode",
+                            "type": "ListItem",
                             "content": [],
                             "children": [
                                 {
-                                    "type": "Text",
-                                    "content": [
-                                        "__init__"
-                                    ],
-                                    "children": []
+                                    "type": "Paragraph",
+                                    "content": [],
+                                    "children": [
+                                        {
+                                            "type": "Text",
+                                            "content": [
+                                                " Cómo va"
+                                            ],
+                                            "children": []
+                                        }
+                                    ]
                                 }
                             ]
                         },
                         {
-                            "type": "Text",
-                            "content": [
-                                " es el método especial encargado de inicializar una instancia recién creada, mientras que la creación del objeto corresponde a "
-                            ],
-                            "children": []
-                        },
-                        {
-                            "type": "InlineCode",
+                            "type": "ListItem",
                             "content": [],
                             "children": [
                                 {
-                                    "type": "Text",
-                                    "content": [
-                                        "__new__"
-                                    ],
-                                    "children": []
+                                    "type": "Paragraph",
+                                    "content": [],
+                                    "children": [
+                                        {
+                                            "type": "Text",
+                                            "content": [
+                                                " El día de hoy"
+                                            ],
+                                            "children": []
+                                        }
+                                    ]
                                 }
                             ]
-                        },
-                        {
-                            "type": "Text",
-                            "content": [
-                                "."
-                            ],
-                            "children": []
-                        }
-                    ]
-                },
-                {
-                    "type": "Paragraph",
-                    "content": [],
-                    "children": [
-                        {
-                            "type": "Text",
-                            "content": [
-                                "Hay dos tipos principales de atributos: atributos de instancia y atributos de clase. Los de instancia son propios de cada objeto y normalmente obtienen su valor durante la instanciación. Por su parte, los atributos de clase son los que comparten todos los objetos y que pertenecen a la clase."
-                            ],
-                            "children": []
-                        }
-                    ]
-                }
-            ]
-        },
-        {
-            "type": "Section",
-            "content": {
-                "level": 1,
-                "title": {
-                    "type": "Paragraph",
-                    "content": [],
-                    "children": [
-                        {
-                            "type": "Text",
-                            "content": [
-                                "Uso de los atributos"
-                            ],
-                            "children": []
-                        }
-                    ]
-                }
-            },
-            "children": [
-                {
-                    "type": "Paragraph",
-                    "content": [],
-                    "children": [
-                        {
-                            "type": "Text",
-                            "content": [
-                                "La definición de los atributos de instancia y de clase se realiza de forma diferente. Para los atributos de instancia se accede al propio objeto, habitualmente mediante "
-                            ],
-                            "children": []
-                        },
-                        {
-                            "type": "InlineCode",
-                            "content": [],
-                            "children": [
-                                {
-                                    "type": "Text",
-                                    "content": [
-                                        "self"
-                                    ],
-                                    "children": []
-                                }
-                            ]
-                        },
-                        {
-                            "type": "Text",
-                            "content": [
-                                ", continuado por un punto y el nombre del atributo y asignando un valor. Mientras que para los atributos de clase basta con nombrar el atributo y asignarle un valor."
-                            ],
-                            "children": []
-                        }
-                    ]
-                },
-                {
-                    "type": "Paragraph",
-                    "content": [],
-                    "children": [
-                        {
-                            "type": "Text",
-                            "content": [
-                                "Una vez que tienen un valor asignado se pueden modificar accediendo a la propiedad y asignando el nuevo valor de la forma: "
-                            ],
-                            "children": []
-                        },
-                        {
-                            "type": "InlineCode",
-                            "content": [],
-                            "children": [
-                                {
-                                    "type": "Text",
-                                    "content": [
-                                        "objeto.atributo = valor_asignado"
-                                    ],
-                                    "children": []
-                                }
-                            ]
-                        },
-                        {
-                            "type": "Text",
-                            "content": [
-                                "."
-                            ],
-                            "children": []
-                        }
-                    ]
-                },
-                {
-                    "type": "Paragraph",
-                    "content": [],
-                    "children": [
-                        {
-                            "type": "Text",
-                            "content": [
-                                "Tanto las clases como las instancias disponen del atributo especial "
-                            ],
-                            "children": []
-                        },
-                        {
-                            "type": "InlineCode",
-                            "content": [],
-                            "children": [
-                                {
-                                    "type": "Text",
-                                    "content": [
-                                        "__dict__"
-                                    ],
-                                    "children": []
-                                }
-                            ]
-                        },
-                        {
-                            "type": "Text",
-                            "content": [
-                                ", que almacena sus atributos en forma de diccionario. Python utiliza estos diccionarios durante la búsqueda de atributos."
-                            ],
-                            "children": []
-                        }
-                    ]
-                },
-                {
-                    "type": "Paragraph",
-                    "content": [],
-                    "children": [
-                        {
-                            "type": "Text",
-                            "content": [
-                                "Python busca primero un atributo en el "
-                            ],
-                            "children": []
-                        },
-                        {
-                            "type": "InlineCode",
-                            "content": [],
-                            "children": [
-                                {
-                                    "type": "Text",
-                                    "content": [
-                                        "__dict__"
-                                    ],
-                                    "children": []
-                                }
-                            ]
-                        },
-                        {
-                            "type": "Text",
-                            "content": [
-                                " de la instancia. Si no lo encuentra, continúa la búsqueda en el "
-                            ],
-                            "children": []
-                        },
-                        {
-                            "type": "InlineCode",
-                            "content": [],
-                            "children": [
-                                {
-                                    "type": "Text",
-                                    "content": [
-                                        "__dict__"
-                                    ],
-                                    "children": []
-                                }
-                            ]
-                        },
-                        {
-                            "type": "Text",
-                            "content": [
-                                " de la clase y, posteriormente, en las clases padre si existen."
-                            ],
-                            "children": []
-                        }
-                    ]
-                },
-                {
-                    "type": "Paragraph",
-                    "content": [],
-                    "children": [
-                        {
-                            "type": "Text",
-                            "content": [
-                                "El shadowing consiste en crear un atributo de instancia con el mismo nombre que un atributo de clase. De este modo, al acceder al atributo desde esa instancia, Python utiliza el atributo de instancia y oculta el de clase."
-                            ],
-                            "children": []
                         }
                     ]
                 }

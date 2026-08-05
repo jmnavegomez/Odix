@@ -17,14 +17,14 @@ from .emphasis import parse_inline_emphasis
 def parse_italic(parser: Parser) -> Italic:
     """Parses italic text."""
 
-    parser._expect(TokenType.ASTERISK)
+    parser._expect(TokenType.MIDDLE_DOT)
 
     italic = Italic()
 
     parse_inline_emphasis(
         parser,
         italic,
-        TokenType.ASTERISK,
+        TokenType.MIDDLE_DOT,
         1,
     )
 

@@ -11,6 +11,10 @@ from ..nodes import (
     Bold,
     Italic,
     InlineCode,
+    Underline,
+    Strike,
+    List,
+    ListItem,
 )
 
 
@@ -21,13 +25,40 @@ class Deserializer:
         """Initializes the deserializer."""
 
         self._node_types: dict[str, type[Node]] = {
-            "Document": Document,
-            "Paragraph": Paragraph,
-            "Section": Section,
-            "Text": Text,
-            "Bold": Bold,
-            "Italic": Italic,
-            "InlineCode": InlineCode,
+                    "Document": Document,
+                    "Paragraph": Paragraph,
+                    "Section": Section,
+
+                    "Text": Text,
+                    "Bold": Bold,
+                    "Italic": Italic,
+                    "Underline": Underline,
+                    "Strike": Strike,
+                    "InlineCode": InlineCode,
+
+                    "List": List,
+                    "ListItem": ListItem,
+                    # "Quote": Quote,
+
+                    # "CodeBlock": CodeBlock,
+                    # "MathBlock": MathBlock,
+
+                    # "Table": Table,
+                    # "Row": Row,
+                    # "Cell": Cell,
+
+                    # "Image": Image,
+                    # "Figure": Figure,
+                    # "Caption": Caption,
+
+                    # "Link": Link,
+                    # "Citation": Citation,
+                    # "Reference": Reference,
+                    # "Footnote": Footnote,
+                    # "Bibliography": Bibliography,
+
+                    # "HorizontalRule": HorizontalRule,
+                    # "PageBreak": PageBreak,
         }
 
         self._special_deserializers = {
