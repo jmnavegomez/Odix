@@ -415,7 +415,9 @@
                 },
                 {
                     "type": "MathBlock",
-                    "content": [],
+                    "content": {
+                        "expression": "x^2 + y^2 = z^2"
+                    },
                     "children": []
                 },
                 {
@@ -442,24 +444,32 @@
                     "children": [
                         {
                             "type": "Reference",
-                            "content": [],
+                            "content": {
+                                "key": "smith2025"
+                            },
                             "children": []
                         },
                         {
                             "type": "Reference",
-                            "content": [],
+                            "content": {
+                                "key": "doe2024"
+                            },
                             "children": []
                         },
                         {
                             "type": "Reference",
-                            "content": [],
+                            "content": {
+                                "key": "miller2021"
+                            },
                             "children": []
                         }
                     ]
                 },
                 {
                     "type": "Reference",
-                    "content": [],
+                    "content": {
+                        "key": "smith2025"
+                    },
                     "children": []
                 }
             ]

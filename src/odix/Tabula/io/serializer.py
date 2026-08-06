@@ -63,7 +63,7 @@ class Serializer(Visitor):
                 ],
             }
 
-    def visit_math_block(self, node: MathBlock):
+    def visit_mathblock(self, node: MathBlock):
                 return {
                     "type": "MathBlock",
                     "content": {
@@ -77,7 +77,7 @@ class Serializer(Visitor):
 
     def visit_reference(self, node: Reference):
                     return {
-                        "type": "MathBlock",
+                        "type": "Reference",
                         "content": {
                             "key": node.key,
                         },

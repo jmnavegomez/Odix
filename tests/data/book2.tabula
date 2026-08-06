@@ -416,6 +416,75 @@
                             ]
                         }
                     ]
+                },
+                {
+                    "type": "MathBlock",
+                    "content": {
+                        "expression": {
+                            "expression": "x^2 + y^2 = z^2"
+                        }
+                    },
+                    "children": []
+                },
+                {
+                    "type": "PageBreak",
+                    "content": [],
+                    "children": []
+                },
+                {
+                    "type": "Caption",
+                    "content": [],
+                    "children": [
+                        {
+                            "type": "Text",
+                            "content": [
+                                "Figure caption."
+                            ],
+                            "children": []
+                        }
+                    ]
+                },
+                {
+                    "type": "Bibliography",
+                    "content": [],
+                    "children": [
+                        {
+                            "type": "Reference",
+                            "content": {
+                                "key": {
+                                    "key": "smith2025"
+                                }
+                            },
+                            "children": []
+                        },
+                        {
+                            "type": "Reference",
+                            "content": {
+                                "key": {
+                                    "key": "doe2024"
+                                }
+                            },
+                            "children": []
+                        },
+                        {
+                            "type": "Reference",
+                            "content": {
+                                "key": {
+                                    "key": "miller2021"
+                                }
+                            },
+                            "children": []
+                        }
+                    ]
+                },
+                {
+                    "type": "Reference",
+                    "content": {
+                        "key": {
+                            "key": "smith2025"
+                        }
+                    },
+                    "children": []
                 }
             ]
         }

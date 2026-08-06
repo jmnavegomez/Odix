@@ -167,7 +167,7 @@ class Deserializer:
 
             return Image("")
 
-    def _deserialize_math_block(
+    def _deserialize_mathblock(
                 self,
                 data: dict[str, Any],
             ) -> MathBlock:
