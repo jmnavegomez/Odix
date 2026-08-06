@@ -7,6 +7,7 @@ from ..nodes import Node
 from ..nodes import Section
 from ..nodes import Image
 from ..nodes import MathBlock
+from ..nodes import Reference
 
 
 class Serializer(Visitor):
@@ -73,3 +74,15 @@ class Serializer(Visitor):
                         for child in node.children
                     ],
                 }
+
+    def visit_reference(self, node: Reference):
+                    return {
+                        "type": "MathBlock",
+                        "content": {
+                            "key": node.key,
+                        },
+                        "children": [
+                            self.visit(child)
+                            for child in node.children
+                        ],
+                    }

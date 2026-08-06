@@ -188,3 +188,25 @@ class Deserializer:
                     return math_block
     
                 return MathBlock("")
+
+    def _deserialize_reference(
+                    self,
+                    data: dict[str, Any],
+                ) -> Reference:
+                    """Deserializes a math block node.
+            
+                    Args:
+                        data: Serialized section.
+            
+                    Returns:
+                        Deserialized section.
+                    """
+            
+                    content = data["content"]
+            
+                    if content["key"] is not None:
+                        reference = Reference.from_content(content["key"])
+            
+                        return reference
+        
+                    return Reference("")

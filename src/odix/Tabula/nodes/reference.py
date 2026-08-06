@@ -2,6 +2,7 @@ from __future__ import annotations
 
 from .block import Block
 
+from typing import Any, Self
 
 class Reference(Block):
     """Represents a bibliography entry."""
@@ -15,3 +16,8 @@ class Reference(Block):
         """
         super().__init__()
         self.key = key
+
+    
+    @classmethod
+    def from_content(cls, content: Any) -> Self:
+        return cls(content)
