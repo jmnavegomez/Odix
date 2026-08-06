@@ -14,6 +14,7 @@ from ..blocks.paragraphs import parse_paragraph
 from ..blocks.quotes import parse_quote
 from ..blocks.lists import parse_list
 from ..blocks.tables import parse_table
+from ..blocks.code_block import parse_code_block
 
 
 def parse_block(parser: Parser) -> Block:
@@ -33,19 +34,19 @@ def parse_block(parser: Parser) -> Block:
     if parser._match(TokenType.HASH):
         return parse_section(parser)
 
-    # Code blocks
-    if (
-        parser._match(TokenType.BACKTICK)
-        and len(parser._current.value) >= 3
-    ):
-        raise NotImplementedError
-
     # Math blocks
     if (
         parser._match(TokenType.DOLLAR)
         and len(parser._current.value) >= 2
     ):
         raise NotImplementedError
+    
+    # Code blocks
+    if (
+        parser._match(TokenType.BACKTICK)
+        and len(parser._current.value) >= 3
+    ):
+        return parse_code_block(parser)
 
     # Quotes
     if parser._match(TokenType.GREATER_THAN):

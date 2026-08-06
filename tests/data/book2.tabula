@@ -364,6 +364,21 @@
                             ]
                         }
                     ]
+                },
+                {
+                    "type": "CodeBlock",
+                    "content": [
+                        "python"
+                    ],
+                    "children": [
+                        {
+                            "type": "Text",
+                            "content": [
+                                "def inicio(a,b):\n    c = a + b\n    return c\n"
+                            ],
+                            "children": []
+                        }
+                    ]
                 }
             ]
         }

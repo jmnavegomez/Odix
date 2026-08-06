@@ -14,6 +14,7 @@ from odix.tabula.nodes.quote import Quote
 from odix.tabula.nodes.row import Row
 from odix.tabula.nodes.cell import Cell
 from odix.tabula.nodes.table import Table
+from odix.tabula.nodes.code_block import CodeBlock
 
 __all__ = [
     "Document",
@@ -32,4 +33,5 @@ __all__ = [
     "Row",
     "Cell",
     "Table",
+    "CodeBlock",
 ]

@@ -11,3 +11,9 @@ Esto reasigna el atributo diametro con el valor entero `15`. Sin embargo, no mod
 |Tabla|de|Pruebas|
 |1|de 1|Pruebas 1|
 |2|de 2|Pruebas 2|
+
+```python
+def inicio(a,b):
+    c = a + b
+    return c
+```
