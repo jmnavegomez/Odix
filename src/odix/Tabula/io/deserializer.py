@@ -166,3 +166,25 @@ class Deserializer:
                 return image
 
             return Image("")
+
+    def _deserialize_math_block(
+                self,
+                data: dict[str, Any],
+            ) -> MathBlock:
+                """Deserializes a math block node.
+        
+                Args:
+                    data: Serialized section.
+        
+                Returns:
+                    Deserialized section.
+                """
+        
+                content = data["content"]
+        
+                if content["expression"] is not None:
+                    math_block = MathBlock.from_content(content["expression"])
+        
+                    return math_block
+    
+                return MathBlock("")

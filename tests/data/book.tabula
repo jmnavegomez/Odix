@@ -412,6 +412,55 @@
                             ]
                         }
                     ]
+                },
+                {
+                    "type": "MathBlock",
+                    "content": [],
+                    "children": []
+                },
+                {
+                    "type": "PageBreak",
+                    "content": [],
+                    "children": []
+                },
+                {
+                    "type": "Caption",
+                    "content": [],
+                    "children": [
+                        {
+                            "type": "Text",
+                            "content": [
+                                "Figure caption."
+                            ],
+                            "children": []
+                        }
+                    ]
+                },
+                {
+                    "type": "Bibliography",
+                    "content": [],
+                    "children": [
+                        {
+                            "type": "Reference",
+                            "content": [],
+                            "children": []
+                        },
+                        {
+                            "type": "Reference",
+                            "content": [],
+                            "children": []
+                        },
+                        {
+                            "type": "Reference",
+                            "content": [],
+                            "children": []
+                        }
+                    ]
+                },
+                {
+                    "type": "Reference",
+                    "content": [],
+                    "children": []
                 }
             ]
         }

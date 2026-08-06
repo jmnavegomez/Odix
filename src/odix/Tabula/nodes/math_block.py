@@ -2,6 +2,7 @@ from __future__ import annotations
 
 from .block import Block
 
+from typing import Any, Self
 
 class MathBlock(Block):
     """Represents a block mathematical expression."""
@@ -15,3 +16,7 @@ class MathBlock(Block):
         """
         super().__init__()
         self.expression = expression
+
+    @classmethod
+    def from_content(cls, content: Any) -> Self:
+        return cls(content)

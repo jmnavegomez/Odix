@@ -26,3 +26,24 @@ figure.png
 figura.png
 Figura Prueba.
 ::
+
+::math
+x^2 + y^2 = z^2
+::
+
+::pagebreak
+::
+
+::caption
+Figure caption.
+::
+
+::bibliography
+smith2025
+doe2024
+miller2021
+::
+
+::reference
+smith2025
+::
