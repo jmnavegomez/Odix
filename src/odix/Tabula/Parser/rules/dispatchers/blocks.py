@@ -15,6 +15,7 @@ from ..blocks.quotes import parse_quote
 from ..blocks.lists import parse_list
 from ..blocks.tables import parse_table
 from ..blocks.code_block import parse_code_block
+from ..blocks.directive import parse_directive
 
 
 def parse_block(parser: Parser) -> Block:
@@ -33,6 +34,13 @@ def parse_block(parser: Parser) -> Block:
     # Headings
     if parser._match(TokenType.HASH):
         return parse_section(parser)
+
+    # Directives
+    if (
+        parser._match(TokenType.COLON)
+        and parser._current.value == "::"
+    ):
+        return parse_directive(parser)
 
     # Math blocks
     if (

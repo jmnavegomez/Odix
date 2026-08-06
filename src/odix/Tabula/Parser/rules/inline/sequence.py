@@ -83,7 +83,32 @@ def parse_literal_until(
         raise ParserError(
             "Unterminated literal block."
         )
+    
+    if len(parser._current.value) != closing_length:
+        raise ParserError("Invalid closing delimiter.")
 
-    parser._expect(closing_type)
+    parser._advance()
+
+    return value
+
+def parse_literal_content(
+    parser: Parser,
+    *terminators: TokenType,
+) -> str:
+    """Parses a sequence of literal tokens.
+
+    Unlike ``parse_inline_content()``, no inline parsing is performed.
+
+    Args:
+        parser: Parser instance.
+        *terminators: Token types that terminate the sequence.
+
+    Returns:
+        Literal text.
+    """
+    value = ""
+
+    while not parser._match(*terminators):
+        value += parser._advance().value
 
     return value
