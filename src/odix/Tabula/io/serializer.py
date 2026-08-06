@@ -5,6 +5,7 @@ from typing import Any
 from ..visitor import Visitor
 from ..nodes import Node
 from ..nodes import Section
+from ..nodes import Image
 
 
 class Serializer(Visitor):
@@ -47,3 +48,15 @@ class Serializer(Visitor):
                 for child in node.children
             ],
         }
+
+    def visit_image(self, node: Image):
+            return {
+                "type": "Image",
+                "content": {
+                    "source": node.source,
+                },
+                "children": [
+                    self.visit(child)
+                    for child in node.children
+                ],
+            }

@@ -15,6 +15,7 @@ from .caption import parse_caption
 from .footnote import parse_footnote
 from .reference import parse_reference
 from .bibliography import parse_bibliography
+from .figure import parse_figure
 
 
 _DIRECTIVE_PARSERS: dict[str, Callable[[Parser], Block]] = {
@@ -25,6 +26,7 @@ _DIRECTIVE_PARSERS: dict[str, Callable[[Parser], Block]] = {
     "footnote": parse_footnote,
     "reference": parse_reference,
     "bibliography": parse_bibliography,
+    "figure": parse_figure,
 }
 
 

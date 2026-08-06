@@ -379,6 +379,39 @@
                             "children": []
                         }
                     ]
+                },
+                {
+                    "type": "Image",
+                    "content": {
+                        "source": "figure.png"
+                    },
+                    "children": []
+                },
+                {
+                    "type": "Figure",
+                    "content": [],
+                    "children": [
+                        {
+                            "type": "Image",
+                            "content": {
+                                "source": "figura.png"
+                            },
+                            "children": []
+                        },
+                        {
+                            "type": "Caption",
+                            "content": [],
+                            "children": [
+                                {
+                                    "type": "Text",
+                                    "content": [
+                                        "Figura Prueba."
+                                    ],
+                                    "children": []
+                                }
+                            ]
+                        }
+                    ]
                 }
             ]
         }

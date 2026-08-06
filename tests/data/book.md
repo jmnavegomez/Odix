@@ -17,3 +17,12 @@ def inicio(a,b):
     c = a + b
     return c
 ```
+
+::image
+figure.png
+::
+
+::figure
+figura.png
+Figura Prueba.
+::

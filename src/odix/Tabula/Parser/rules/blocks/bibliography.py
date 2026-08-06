@@ -6,10 +6,10 @@ if TYPE_CHECKING:
     from ...parser import Parser
 
 from ....lexer.token_type import TokenType
+from ..inline.sequence import parse_literal_until
 
 from ....nodes.bibliography import Bibliography
-
-from ..dispatchers.blocks import parse_block
+from ....nodes.reference import Reference
 
 def parse_bibliography(parser: Parser) -> Bibliography:
     """Parses a bibliography block.
@@ -36,7 +36,7 @@ def parse_bibliography(parser: Parser) -> Bibliography:
         parser._match(TokenType.COLON)
         and len(parser._current.value) == 2
     ):
-        bibliography.add_child(parse_block(parser))
+        bibliography.add_child(Reference(parse_literal_until(parser,TokenType.NEWLINE,1)))
 
     parser._expect(TokenType.COLON)
 

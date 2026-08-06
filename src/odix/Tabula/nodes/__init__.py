@@ -16,6 +16,18 @@ from odix.tabula.nodes.cell import Cell
 from odix.tabula.nodes.table import Table
 from odix.tabula.nodes.code_block import CodeBlock
 
+from odix.tabula.nodes.math_block import MathBlock
+from odix.tabula.nodes.page_break import PageBreak
+from odix.tabula.nodes.image import Image
+from odix.tabula.nodes.caption import Caption
+from odix.tabula.nodes.reference import Reference
+from odix.tabula.nodes.bibliography import Bibliography
+from odix.tabula.nodes.figure import Figure
+from odix.tabula.nodes.link import Link
+from odix.tabula.nodes.footnote import Footnote
+from odix.tabula.nodes.citation import Citation
+
+
 __all__ = [
     "Document",
     "Section",
@@ -34,4 +46,14 @@ __all__ = [
     "Cell",
     "Table",
     "CodeBlock",
+    "MathBlock",
+    "PageBreak",
+    "Image",
+    "Caption",
+    "Reference",
+    "Bibliography",
+    "Figure",
+    "Link",
+    "Footnote",
+    "Citation",
 ]

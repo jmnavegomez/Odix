@@ -8,8 +8,12 @@ if TYPE_CHECKING:
 from ....lexer.token_type import TokenType
 
 from ....nodes.figure import Figure
+from ....nodes.image import Image
+from ....nodes.text import Text
 
-from ..dispatchers.blocks import parse_block
+from ..inline.sequence import parse_literal_until
+from ..blocks.caption import parse_inline_caption
+
 
 
 def parse_figure(parser: Parser) -> Figure:
@@ -18,7 +22,8 @@ def parse_figure(parser: Parser) -> Figure:
     Expected syntax::
 
         ::figure
-        ...
+        file_path
+        caption
         ::
 
     Args:
@@ -37,7 +42,8 @@ def parse_figure(parser: Parser) -> Figure:
         parser._match(TokenType.COLON)
         and len(parser._current.value) == 2
     ):
-        figure.add_child(parse_block(parser))
+        figure.add_child(Image(parse_literal_until(parser,TokenType.NEWLINE,1)))
+        figure.add_child(parse_inline_caption(parser))
 
     parser._expect(TokenType.COLON)
 

@@ -2,6 +2,8 @@ from __future__ import annotations
 
 from .block import Block
 
+from typing import Any, Self
+
 
 class Image(Block):
     """Represents an image."""
@@ -15,3 +17,7 @@ class Image(Block):
         """
         super().__init__()
         self.source = source
+
+    @classmethod
+    def from_content(cls, content: Any) -> Self:
+        return cls(content)

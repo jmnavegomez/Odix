@@ -20,6 +20,16 @@ from ..nodes import (
     Cell,
     Table,
     CodeBlock,
+    Image,
+    MathBlock,
+    Figure,
+    Caption,
+    Link,
+    Citation,
+    Reference,
+    Footnote,
+    Bibliography,
+    PageBreak,
 )
 
 
@@ -46,24 +56,24 @@ class Deserializer:
                     "Quote": Quote,
 
                     "CodeBlock": CodeBlock,
-                    # "MathBlock": MathBlock,
+                    "MathBlock": MathBlock,
 
                     "Table": Table,
                     "Row": Row,
                     "Cell": Cell,
 
-                    # "Image": Image,
-                    # "Figure": Figure,
-                    # "Caption": Caption,
+                    "Image": Image,
+                    "Figure": Figure,
+                    "Caption": Caption,
 
-                    # "Link": Link,
-                    # "Citation": Citation,
-                    # "Reference": Reference,
-                    # "Footnote": Footnote,
-                    # "Bibliography": Bibliography,
+                    "Link": Link,
+                    "Citation": Citation,
+                    "Reference": Reference,
+                    "Footnote": Footnote,
+                    "Bibliography": Bibliography,
 
                     # "HorizontalRule": HorizontalRule,
-                    # "PageBreak": PageBreak,
+                    "PageBreak": PageBreak,
         }
 
         self._special_deserializers = {
@@ -134,3 +144,25 @@ class Deserializer:
             )
 
         return section
+
+    def _deserialize_image(
+            self,
+            data: dict[str, Any],
+        ) -> Image:
+            """Deserializes a section node.
+    
+            Args:
+                data: Serialized section.
+    
+            Returns:
+                Deserialized section.
+            """
+    
+            content = data["content"]
+    
+            if content["source"] is not None:
+                image = Image.from_content(content["source"])
+    
+                return image
+
+            return Image("")

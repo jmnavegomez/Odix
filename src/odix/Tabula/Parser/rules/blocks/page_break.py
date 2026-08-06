@@ -16,6 +16,7 @@ def parse_page_break(parser: Parser) -> PageBreak:
     Expected syntax::
 
         ::pagebreak
+        ::
 
     Args:
         parser: Parser instance.
@@ -23,6 +24,11 @@ def parse_page_break(parser: Parser) -> PageBreak:
     Returns:
         Parsed page break.
     """
+
+    if parser._match(TokenType.NEWLINE):
+        parser._advance()
+
+    parser._expect(TokenType.COLON)
 
     if parser._match(TokenType.NEWLINE):
         parser._advance()

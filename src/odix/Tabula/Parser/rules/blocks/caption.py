@@ -33,10 +33,49 @@ def parse_caption(parser: Parser) -> Caption:
 
     paragraph = parse_inline_content(
         parser,
-        TokenType.COLON,
+        TokenType.NEWLINE,
+        TokenType.EOF,
     )
 
+    if parser._match(TokenType.NEWLINE):
+        parser._advance()
+
     parser._expect(TokenType.COLON)
+
+    if parser._match(TokenType.NEWLINE):
+        parser._advance()
+
+    caption = Caption()
+
+    caption.children = paragraph.children
+
+    for child in caption.children:
+        child.parent = caption
+
+    return caption
+
+def parse_inline_caption(parser: Parser) -> Caption:
+    """Parses a figure caption.
+
+    Expected syntax::
+
+        Caption text
+
+    Args:
+        parser: Parser instance.
+
+    Returns:
+        Parsed caption.
+    """
+
+    if parser._match(TokenType.NEWLINE):
+        parser._advance()
+        
+    paragraph = parse_inline_content(
+        parser,
+        TokenType.NEWLINE,
+        TokenType.EOF,
+    )
 
     if parser._match(TokenType.NEWLINE):
         parser._advance()
