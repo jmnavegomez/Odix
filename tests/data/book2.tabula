@@ -28,7 +28,27 @@
                         {
                             "type": "Text",
                             "content": [
-                                "Esto reasigna el atributo diametro con el "
+                                "Esto reasigna el atributo "
+                            ],
+                            "children": []
+                        },
+                        {
+                            "type": "Underline",
+                            "content": [],
+                            "children": [
+                                {
+                                    "type": "Text",
+                                    "content": [
+                                        "diametro"
+                                    ],
+                                    "children": []
+                                }
+                            ]
+                        },
+                        {
+                            "type": "Text",
+                            "content": [
+                                " con el "
                             ],
                             "children": []
                         },
