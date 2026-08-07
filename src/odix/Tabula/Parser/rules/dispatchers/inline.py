@@ -18,6 +18,7 @@ from ..inline.asterisk import parse_asterisk
 from ..inline.citation import parse_citation
 
 from ..inline.inline_code import parse_inline_code
+from ..inline.math import parse_math_inline
 
 
 def parse_inline(
@@ -87,6 +88,13 @@ def parse_inline(
         and len(parser._current.value) == 1
     ):
         return parse_inline_code(parser)
+
+    # Inline math ($...$)
+    if (
+        parser._match(TokenType.DOLLAR)
+        and len(parser._current.value) == 1
+    ):
+        return parse_math_inline(parser)
 
     # Plain text
     if parser._match(TokenType.TEXT):

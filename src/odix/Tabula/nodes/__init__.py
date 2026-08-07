@@ -26,6 +26,7 @@ from odix.tabula.nodes.figure import Figure
 from odix.tabula.nodes.link import Link
 from odix.tabula.nodes.footnote import Footnote
 from odix.tabula.nodes.citation import Citation
+from odix.tabula.nodes.math_inline import MathInline
 
 
 __all__ = [
@@ -56,4 +57,5 @@ __all__ = [
     "Link",
     "Footnote",
     "Citation",
+    "MathInline",
 ]

@@ -28,7 +28,23 @@
                         {
                             "type": "Text",
                             "content": [
-                                "Esto reasigna el atributo diametro con el valor entero "
+                                "Esto reasigna el atributo diametro con el "
+                            ],
+                            "children": []
+                        },
+                        {
+                            "type": "MathInline",
+                            "content": {
+                                "expression": {
+                                    "expression": "E = m*c^2"
+                                }
+                            },
+                            "children": []
+                        },
+                        {
+                            "type": "Text",
+                            "content": [
+                                " valor entero "
                             ],
                             "children": []
                         },
@@ -48,21 +64,23 @@
                         {
                             "type": "Text",
                             "content": [
-                                ". Sin embargo, no modifica el valor de radio, ya que ambos atributos almacenan valores independientes. Si se desea mantener la relación diametro = 2 "
+                                ". Sin embargo, no modifica el valor de radio, ya que ambos atributos almacenan valores independientes. Si se desea mantener la relación "
                             ],
+                            "children": []
+                        },
+                        {
+                            "type": "MathInline",
+                            "content": {
+                                "expression": {
+                                    "expression": "diametro = 2 * radio"
+                                }
+                            },
                             "children": []
                         },
                         {
                             "type": "Text",
                             "content": [
-                                "*"
-                            ],
-                            "children": []
-                        },
-                        {
-                            "type": "Text",
-                            "content": [
-                                " radio, debe implementarse explícitamente, por ejemplo mediante una propiedad ("
+                                ", debe implementarse explícitamente, por ejemplo mediante una propiedad ("
                             ],
                             "children": []
                         },

@@ -7,6 +7,7 @@ from ..nodes import Node
 from ..nodes import Section
 from ..nodes import Image
 from ..nodes import MathBlock
+from ..nodes import MathInline
 from ..nodes import Reference
 
 
@@ -74,6 +75,19 @@ class Serializer(Visitor):
                         for child in node.children
                     ],
                 }
+
+    def visit_mathinline(self, node: MathInline):
+                    return {
+                        "type": "MathInline",
+                        "content": {
+                            "expression": node.expression,
+                        },
+                        "children": [
+                            self.visit(child)
+                            for child in node.children
+                        ],
+                    }
+
 
     def visit_reference(self, node: Reference):
                     return {

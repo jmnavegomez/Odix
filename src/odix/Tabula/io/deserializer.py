@@ -30,6 +30,7 @@ from ..nodes import (
     Footnote,
     Bibliography,
     PageBreak,
+    MathInline,
 )
 
 
@@ -57,6 +58,7 @@ class Deserializer:
 
                     "CodeBlock": CodeBlock,
                     "MathBlock": MathBlock,
+                    "MathInline":MathInline,
 
                     "Table": Table,
                     "Row": Row,
@@ -188,6 +190,28 @@ class Deserializer:
                     return math_block
     
                 return MathBlock("")
+
+    def _deserialize_mathinline(
+                    self,
+                    data: dict[str, Any],
+                ) -> MathInline:
+                    """Deserializes a math inline node.
+            
+                    Args:
+                        data: Serialized math inline.
+            
+                    Returns:
+                        Deserialized math inline.
+                    """
+            
+                    content = data["content"]
+            
+                    if content["expression"] is not None:
+                        math_inline = MathInline.from_content(content["expression"])
+            
+                        return math_inline
+        
+                    return MathInline("")
 
     def _deserialize_reference(
                     self,
