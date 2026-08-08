@@ -95,3 +95,78 @@ class Writer:
             )
 
         return f"Section{level}"
+
+    def command_table(
+        self,
+        content: str = "",
+        **kwargs,
+    ) -> str:
+        """Resolves a table command.
+
+        Args:
+            columns: Number of table columns.
+
+        Returns:
+            Concrete table command.
+        """
+
+        try:
+            syntax = SYNTAX[
+                "Table"
+            ][
+                self._language
+            ]
+
+        except KeyError as error:
+            raise ValueError(
+                f"for language '{self._language.value}'."
+            ) from error
+
+        opening = syntax.opening
+
+        structure = kwargs.get("structure")
+
+        if structure is not None:
+            opening = opening.replace(
+                "{{structure}}",
+                structure,
+            )
+
+        return (
+            opening
+            + content
+            + syntax.closing
+        )
+
+    def command_figure(
+            self,
+            content: str = "",
+        ) -> str:
+            """Resolves a figure command.
+    
+            Args:
+                content: content of the figure.
+    
+            Returns:
+                Concrete figure command.
+            """
+    
+            try:
+                syntax = SYNTAX[
+                    "Figure"
+                ][
+                    self._language
+                ]
+    
+            except KeyError as error:
+                raise ValueError(
+                    f"for language '{self._language.value}'."
+                ) from error
+    
+            opening = syntax.opening
+    
+            return (
+                opening
+                + content
+                + syntax.closing
+            )

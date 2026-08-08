@@ -63,7 +63,7 @@ SYNTAX: dict[str, dict[Language, Syntax]] = {
     "Paragraph": {
         Language.LATEX: Syntax(
             "",
-            "\n\n",
+            "\n",
         ),
         Language.HTML: Syntax(
             "<p>",
@@ -71,14 +71,14 @@ SYNTAX: dict[str, dict[Language, Syntax]] = {
         ),
         Language.MARKDOWN: Syntax(
             "",
-            "\n\n",
+            "\n",
         ),
     },
 
     "Section1": {
         Language.LATEX: Syntax(
             r"\section{",
-            "}\n\n",
+            "}\n",
         ),
         Language.HTML: Syntax(
             "<h1>",
@@ -86,14 +86,14 @@ SYNTAX: dict[str, dict[Language, Syntax]] = {
         ),
         Language.MARKDOWN: Syntax(
             "# ",
-            "\n\n",
+            "\n",
         ),
     },
 
     "Section2": {
         Language.LATEX: Syntax(
             r"\subsection{",
-            "}\n\n",
+            "}\n",
         ),
         Language.HTML: Syntax(
             "<h2>",
@@ -101,14 +101,14 @@ SYNTAX: dict[str, dict[Language, Syntax]] = {
         ),
         Language.MARKDOWN: Syntax(
             "## ",
-            "\n\n",
+            "\n",
         ),
     },
 
     "Section3": {
         Language.LATEX: Syntax(
             r"\subsubsection{",
-            "}\n\n",
+            "}\n",
         ),
         Language.HTML: Syntax(
             "<h3>",
@@ -116,7 +116,7 @@ SYNTAX: dict[str, dict[Language, Syntax]] = {
         ),
         Language.MARKDOWN: Syntax(
             "### ",
-            "\n\n",
+            "\n",
         ),
     },
 
@@ -131,7 +131,7 @@ SYNTAX: dict[str, dict[Language, Syntax]] = {
         ),
         Language.MARKDOWN: Syntax(
             "#### ",
-            "\n\n",
+            "\n",
         ),
     },
 
@@ -146,7 +146,7 @@ SYNTAX: dict[str, dict[Language, Syntax]] = {
         ),
         Language.MARKDOWN: Syntax(
             "##### ",
-            "\n\n",
+            "\n",
         ),
     },
     "Section6": {
@@ -160,13 +160,13 @@ SYNTAX: dict[str, dict[Language, Syntax]] = {
         ),
         Language.MARKDOWN: Syntax(
             "###### ",
-            "\n\n",
+            "\n",
         ),  
     },
     "MathInline": {
         Language.LATEX: Syntax(
             "$",
-            "$\n",
+            "$",
         ),
         Language.HTML: Syntax(
             r"\(",
@@ -209,8 +209,8 @@ SYNTAX: dict[str, dict[Language, Syntax]] = {
 
     "MathBlock": {
         Language.LATEX: Syntax(
-            "$$\n",
-            "$$\n",
+            "\n" "$$\n",
+            "\n$$""\n",
         ),
         Language.HTML: Syntax(
             r"\[",
@@ -224,8 +224,8 @@ SYNTAX: dict[str, dict[Language, Syntax]] = {
 
     "CodeBlock": {
         Language.LATEX: Syntax(
-            r"\begin{verbatim}" "\n",
-            "\n" r"\end{verbatim}",
+            "\n" r"\begin{verbatim}" "\n",
+            r"\end{verbatim}" "\n",
         ),
         Language.HTML: Syntax(
             "<pre><code>",
@@ -239,8 +239,8 @@ SYNTAX: dict[str, dict[Language, Syntax]] = {
 
     "Quote": {
         Language.LATEX: Syntax(
-            r"\begin{quote}" "\n",
-            "\n" r"\end{quote}",
+            "\n" r"\begin{quote}" "\n",
+            r"\end{quote}" "\n",
         ),
         Language.HTML: Syntax(
             "<blockquote>",
@@ -254,8 +254,8 @@ SYNTAX: dict[str, dict[Language, Syntax]] = {
 
     "List": {
         Language.LATEX: Syntax(
-            r"\begin{itemize}" "\n",
-            "\n" r"\end{itemize}",
+            "\n" r"\begin{itemize}" "\n",
+            r"\end{itemize}" "\n",
         ),
         Language.HTML: Syntax(
             "<ul>",
@@ -281,20 +281,23 @@ SYNTAX: dict[str, dict[Language, Syntax]] = {
 
     "Table": {
         Language.LATEX: Syntax(
-            r"\begin{tabular}",
-            r"\end{tabular}",
+            "\n"r"\begin{tabular}{{{structure}}}" "\n",
+            "\n" r"\end{tabular}""\n",
         ),
         Language.HTML: Syntax(
             "<table>",
             "</table>",
         ),
-        Language.MARKDOWN: Syntax("",""),
+        Language.MARKDOWN: Syntax(
+            "",
+            "",
+        ),
     },
 
     "Row": {
         Language.LATEX: Syntax(
             "",
-            r" \\",
+            r"\\",
         ),
         Language.HTML: Syntax(
             "<tr>",
@@ -305,20 +308,23 @@ SYNTAX: dict[str, dict[Language, Syntax]] = {
 
     "Cell": {
         Language.LATEX: Syntax(
-            "",
             " & ",
+            "",
         ),
         Language.HTML: Syntax(
             "<td>",
             "</td>",
         ),
-        Language.MARKDOWN: Syntax("|",""),
+        Language.MARKDOWN: Syntax(
+            "|",
+            "",
+        ),
     },
 
     "Figure": {
         Language.LATEX: Syntax(
-            "\\begin{figure}\n",
-            "\n\\end{figure}\n",
+            "\n" "\\begin{figure}\n",
+            "\n" "\\end{figure}" "\n" ,
         ),
         Language.HTML: Syntax(
             "<figure>",
@@ -329,8 +335,8 @@ SYNTAX: dict[str, dict[Language, Syntax]] = {
 
     "Caption": {
         Language.LATEX: Syntax(
-            r"\caption{",
-            "}",
+             "\n"r"\caption{",
+            "}" "\n",
         ),
         Language.HTML: Syntax(
             "<figcaption>",
@@ -341,8 +347,8 @@ SYNTAX: dict[str, dict[Language, Syntax]] = {
 
     "Image": {
         Language.LATEX: Syntax(
-            r"\includegraphics{",
-            "}",
+             "\n" r"\includegraphics{",
+            "}" "\n",
         ),
         Language.HTML: Syntax(
             "<img src=\"",
@@ -356,7 +362,7 @@ SYNTAX: dict[str, dict[Language, Syntax]] = {
 
     "Link": {
         Language.LATEX: Syntax(
-            r"\url{",
+            "\n" r"\url{",
             "}",
         ),
         Language.HTML: Syntax(
@@ -386,7 +392,7 @@ SYNTAX: dict[str, dict[Language, Syntax]] = {
 
     "Reference": {
         Language.LATEX: Syntax(
-            r"\bibitem{",
+            "\n" r"\bibitem{",
             "}",
         ),
         Language.HTML: Syntax(
@@ -398,8 +404,8 @@ SYNTAX: dict[str, dict[Language, Syntax]] = {
 
     "Bibliography": {
         Language.LATEX: Syntax(
-            "\\begin{thebibliography}{}\n",
-            "\n\\end{thebibliography}\n",
+            "\n" "\\begin{thebibliography}{}",
+            "\n" "\\end{thebibliography}" "\n",
         ),
         Language.HTML: Syntax(
             "<section class=\"bibliography\">",
@@ -425,7 +431,7 @@ SYNTAX: dict[str, dict[Language, Syntax]] = {
 
     "PageBreak": {
         Language.LATEX: Syntax(
-            r"\newpage",
+            "\n" r"\newpage" "\n",
         ),
         Language.HTML: Syntax(
             "<hr class=\"page-break\">",

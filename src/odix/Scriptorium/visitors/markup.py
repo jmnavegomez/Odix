@@ -225,3 +225,56 @@ class MarkupVisitor(Visitor):
         return self._writer.command(
             "PageBreak",
         )
+
+    def visit_table(
+        self,
+        node: Table,
+    ) -> str:
+        """Visits a table."""
+
+        if not node.children:
+            return ""
+
+        columns = len(
+            node.children[0].children
+        )
+
+        structure = "l" * columns
+
+        rows = []
+
+        for row in node.children:
+            cells = [
+                self.visit(cell).replace("\n","")
+                for cell in row.children
+            ]
+
+            cells[0] = cells[0][3:]
+
+            rows.append(
+                "".join(cells)
+                + r" \\"
+            )
+
+
+        return self._writer.command_table(
+            "\n".join(rows),
+            structure=structure,
+        )
+
+    def visit_figure(
+            self,
+            node: Figure,
+        ) -> str:
+            """Visits a Figure."""
+    
+            if not node.children:
+                return ""
+    
+            image = self.visit(node.children[0])
+
+            caption = self.visit(node.children[1])
+
+            return self._writer.command_figure(
+                "".join(image+"\n"+caption),
+            )
