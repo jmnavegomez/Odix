@@ -1,0 +1,29 @@
+document:
+  page:
+    size: a5paper
+    orientation: portrait
+
+  margins:
+    top: 2cm
+    bottom: 2cm
+    left: 2cm
+    right: 2cm
+
+  typography:
+    font_size: 12pt
+    line_spacing: 1.0
+
+  layout:
+    twoside: false
+    chapters_start_on_odd_page: false
+
+  numbering:
+    pages: true
+    position: top
+
+  packages:
+    - inputenc
+    - fontenc
+    - babel
+    - graphicx
+    - amsmath
