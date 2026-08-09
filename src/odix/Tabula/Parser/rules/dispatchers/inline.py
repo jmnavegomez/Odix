@@ -8,14 +8,20 @@ if TYPE_CHECKING:
 from ....lexer.token_type import TokenType
 
 from ....nodes.inline import Inline
+from ....nodes.text import Text
 
 from ..inline.bold import parse_bold
 from ..inline.italic import parse_italic
 from ..inline.underline import parse_underline
 from ..inline.strike import parse_strike
 from ..inline.text import parse_text
-from ..inline.asterisk import parse_asterisk
 from ..inline.citation import parse_citation
+
+from ..inline.asterisk import parse_asterisk
+from ..inline.colon import parse_colon
+from ..inline.underscore import parse_underscore
+from ..inline.plus import parse_plus
+from ..inline.module import parse_module
 
 from ..inline.inline_code import parse_inline_code
 from ..inline.math import parse_math_inline
@@ -68,10 +74,10 @@ def parse_inline(
     ):
         return parse_italic(parser)
 
-    # Underline(__text__)
+    # Underline(___text___)
     if (
         parser._match(TokenType.UNDERSCORE)
-        and len(parser._current.value) == 2
+        and len(parser._current.value) == 3
     ):
         return parse_underline(parser)
 
@@ -103,6 +109,35 @@ def parse_inline(
     if parser._match(TokenType.ASTERISK):
         return parse_asterisk(parser)
 
+    # Inline colon
+    if (
+        parser._match(TokenType.COLON)
+        and parser._current.value == ":"
+    ):
+        return parse_colon(parser)
+
+    # Inline underscore
+    if (
+        parser._match(TokenType.UNDERSCORE)
+        and parser._current.value == "_"
+    ):
+        return parse_underscore(parser)
+
+    # Inline plus
+    if (
+        parser._match(TokenType.PLUS)
+        and parser._current.value == "+"
+    ):
+        return parse_plus(parser)
+
+    # Inline module
+    if (
+        parser._match(TokenType.MODULE)
+        and parser._current.value == "%"
+    ):  
+        value = parse_module(parser)
+        return value
+    
     raise NotImplementedError(
         f"Unsupported inline token "
         f"{parser._current.type.name}."

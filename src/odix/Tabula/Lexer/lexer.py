@@ -30,8 +30,13 @@ class Lexer:
             "+": Reader(ReaderType.REPEATED, TokenType.PLUS),
             
             "|": Reader(ReaderType.SINGLE, TokenType.PIPE),
+            "%": Reader(ReaderType.SINGLE, TokenType.MODULE),   # Nuevo
+            "&": Reader(ReaderType.SINGLE, TokenType.AMPERSAND),   # Nuevo
+            "^": Reader(ReaderType.SINGLE, TokenType.CARET),   # Nuevo
+            "~": Reader(ReaderType.SINGLE, TokenType.TILDE),   # Nuevo
 
             ">": Reader(ReaderType.SINGLE, TokenType.GREATER_THAN),
+            "<": Reader(ReaderType.SINGLE, TokenType.LESS_THAN),
 
             "\n": Reader(ReaderType.SINGLE, TokenType.NEWLINE),
         }

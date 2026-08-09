@@ -1,49 +1,107 @@
-\section{Prueba 1}
-Esto reasigna el atributo \underline{diametro} con el $E = m*c^2$ valor entero \texttt{15}. Sin embargo, no modifica el valor de radio, ya que ambos atributos almacenan valores independientes. Si se desea mantener la relación $diametro = 2 * radio$, \cite{smith2025}; debe implementarse explícitamente, por ejemplo mediante una propiedad (\texttt{@property}) o actualizando ambos atributos.
 
-\begin{itemize}
-\item  Hola Mundo
-\item  Cómo va
-\item  El día de hoy
-\end{itemize}
-
-\begin{quote}
- La cita actual es una prueba
-\end{quote}
-
-\begin{tabular}{lll}
-Tabla & de & Pruebas \\
-1 & de 1 & Pruebas 1 \\
-2 & de 2 & Pruebas 2 \\
+\begin{tabular}{ll}
+ Categoría               &  Métodos habituales                                                                    \\
+ Construcción            &  \texttt{\_\_new\_\_}, \texttt{\_\_init\_\_}, \texttt{\_\_del\_\_}                                                      \\
+ Representación          &  \texttt{\_\_str\_\_}, \texttt{\_\_repr\_\_}, \texttt{\_\_format\_\_}, \texttt{\_\_bytes\_\_}                                      \\
+ Comparación             &  \texttt{\_\_eq\_\_}, \texttt{\_\_ne\_\_}, \texttt{\_\_lt\_\_}, \texttt{\_\_le\_\_}, \texttt{\_\_gt\_\_}, \texttt{\_\_ge\_\_}                            \\
+ Operadores aritméticos  &  \texttt{\_\_add\_\_}, \texttt{\_\_sub\_\_}, \texttt{\_\_mul\_\_}, \texttt{\_\_truediv\_\_}, \texttt{\_\_floordiv\_\_}, \texttt{\_\_mod\_\_}, \texttt{\_\_pow\_\_}  \\
+ Operadores lógicos      &  \texttt{\_\_and\_\_}, \texttt{\_\_or\_\_}, \texttt{\_\_xor\_\_}, \texttt{\_\_invert\_\_}                                          \\
+ Conversión de tipos     &  \texttt{\_\_int\_\_}, \texttt{\_\_float\_\_}, \texttt{\_\_bool\_\_}, \texttt{\_\_complex\_\_}, \texttt{\_\_index\_\_}                        \\
+ Colecciones             &  \texttt{\_\_len\_\_}, \texttt{\_\_getitem\_\_}, \texttt{\_\_setitem\_\_}, \texttt{\_\_delitem\_\_}, \texttt{\_\_contains\_\_}                \\
+ Iteración               &  \texttt{\_\_iter\_\_}, \texttt{\_\_next\_\_}, \texttt{\_\_reversed\_\_}                                                \\
+ Objetos invocables      &  \texttt{\_\_call\_\_}                                                                            \\
+ Gestión de atributos    &  \texttt{\_\_getattr\_\_}, \texttt{\_\_getattribute\_\_}, \texttt{\_\_setattr\_\_}, \texttt{\_\_delattr\_\_}                       \\
+ Gestores de contexto    &  \texttt{\_\_enter\_\_}, \texttt{\_\_exit\_\_}                                                               \\
+ Copias                  &  \texttt{\_\_copy\_\_}, \texttt{\_\_deepcopy\_\_}                                                            \\
+ Hash                    &  \texttt{\_\_hash\_\_}                                                                            \\
 \end{tabular}
 
-\begin{verbatim}
-def inicio(a,b):
-    c = a + b
-    return c
-\end{verbatim}
+\subsection{Anexo II: Relación entre operaciones de Python y métodos especiales}
 
-\includegraphics{figure.png}
+\begin{tabular}{ll}
+ Operación en Python    &  Método especial invocado              \\
+ \texttt{str(obj)}             &  \texttt{obj.\_\_str\_\_()}                       \\
+ \texttt{repr(obj)}            &  \texttt{obj.\_\_repr\_\_()}                      \\
+ \texttt{format(obj)}          &  \texttt{obj.\_\_format\_\_()}                    \\
+ \texttt{bytes(obj)}           &  \texttt{obj.\_\_bytes\_\_()}                     \\
+ \texttt{len(obj)}             &  \texttt{obj.\_\_len\_\_()}                       \\
+ \texttt{bool(obj)}            &  \texttt{obj.\_\_bool\_\_()}                      \\
+ \texttt{int(obj)}             &  \texttt{obj.\_\_int\_\_()}                       \\
+ \texttt{float(obj)}           &  \texttt{obj.\_\_float\_\_()}                     \\
+ \texttt{complex(obj)}         &  \texttt{obj.\_\_complex\_\_()}                   \\
+ \texttt{hash(obj)}            &  \texttt{obj.\_\_hash\_\_()}                      \\
+ \texttt{iter(obj)}            &  \texttt{obj.\_\_iter\_\_()}                      \\
+ \texttt{next(iterador)}       &  \texttt{iterador.\_\_next\_\_()}                 \\
+ \texttt{reversed(obj)}        &  \texttt{obj.\_\_reversed\_\_()}                  \\
+ \texttt{obj[indice]}          &  \texttt{obj.\_\_getitem\_\_(indice)}             \\
+ \texttt{obj[indice] = valor}  &  \texttt{obj.\_\_setitem\_\_(indice, valor)}      \\
+ \texttt{del obj[indice]}      &  \texttt{obj.\_\_delitem\_\_(indice)}             \\
+ \texttt{valor in obj}         &  \texttt{obj.\_\_contains\_\_(valor)}             \\
+ \texttt{obj()}                &  \texttt{obj.\_\_call\_\_()}                      \\
+ \texttt{with obj:}            &  \texttt{obj.\_\_enter\_\_()} y \texttt{obj.\_\_exit\_\_()}  \\
+\end{tabular}
 
-\begin{figure}
+Comparaciones:
 
-\includegraphics{figura.png}
+\begin{tabular}{ll}
+ Operación  &  Método especial  \\
+ \texttt{a == b}   &  \texttt{a.\_\_eq\_\_(b)}    \\
+ \texttt{a != b}   &  \texttt{a.\_\_ne\_\_(b)}    \\
+ \texttt{a \textless{} b}    &  \texttt{a.\_\_lt\_\_(b)}    \\
+ \texttt{a \textless{}= b}   &  \texttt{a.\_\_le\_\_(b)}    \\
+ \texttt{a \textgreater{} b}    &  \texttt{a.\_\_gt\_\_(b)}    \\
+ \texttt{a \textgreater{}= b}   &  \texttt{a.\_\_ge\_\_(b)}    \\
+\end{tabular}
 
+Operadores aritméticos:
 
-\caption{Figura Prueba.}
+\begin{tabular}{ll}
+ Operación  &  Método especial      \\
+ \texttt{a + b}    &  \texttt{a.\_\_add\_\_(b)}       \\
+ \texttt{a - b}    &  \texttt{a.\_\_sub\_\_(b)}       \\
+ \texttt{a * b}    &  \texttt{a.\_\_mul\_\_(b)}       \\
+ \texttt{a / b}    &  \texttt{a.\_\_truediv\_\_(b)}   \\
+ \texttt{a // b}   &  \texttt{a.\_\_floordiv\_\_(b)}  \\
+ \texttt{a \% b}    &  \texttt{a.\_\_mod\_\_(b)}       \\
+ \texttt{a ** b}   &  \texttt{a.\_\_pow\_\_(b)}       \\
+\end{tabular}
 
-\end{figure}
+Operaciones bit a bit:
 
-$$
-x^2 + y^2 = z^2
-$$
+\begin{tabular}{ll}
+ Operación  &  Método especial    \\
+ \texttt{a \& b}    &  \texttt{a.\_\_and\_\_(b)}     \\
+ \texttt{a \\textbar{} b}   &  \texttt{a.\_\_or\_\_(b)}      \\
+ \texttt{a \string^ b}    &  \texttt{a.\_\_xor\_\_(b)}     \\
+ \texttt{\string~a}       &  \texttt{a.\_\_invert\_\_()}   \\
+ \texttt{a \textless{}\textless{} b}   &  \texttt{a.\_\_lshift\_\_(b)}  \\
+ \texttt{a \textgreater{}\textgreater{} b}   &  \texttt{a.\_\_rshift\_\_(b)}  \\
+\end{tabular}
+
+Gestión de atributos:
+
+\begin{tabular}{ll}
+ Operación                      &  Método especial                   \\
+ \texttt{obj.atributo} (si no existe)  &  \texttt{obj.\_\_getattr\_\_(nombre)}         \\
+ \texttt{obj.atributo}                 &  \texttt{obj.\_\_getattribute\_\_(nombre)}    \\
+ \texttt{obj.atributo = valor}         &  \texttt{obj.\_\_setattr\_\_(nombre, valor)}  \\
+ \texttt{del obj.atributo}             &  \texttt{obj.\_\_delattr\_\_(nombre)}         \\
+\end{tabular}
+
 
 \newpage
+\section{Atributos}
+\subsection{Introducción}
+En programación orientada a objetos (POO) las clases se componen principalmente de atributos y métodos. Los atributos son variables asociadas a una clase o a una instancia que almacenan información sobre su estado o sus características.
+Los atributos de instancia suelen inicializarse en el método especial \texttt{\_\_init\_\_}, aunque también pueden añadirse posteriormente mediante asignación. \texttt{\_\_init\_\_} es el método especial encargado de inicializar una instancia recién creada, mientras que la creación del objeto corresponde a \texttt{\_\_new\_\_}.
 
-\caption{Figure caption.}
-
-\begin{thebibliography}{}
-\bibitem{smith2025}
-\bibitem{doe2024}
-\bibitem{miller2021}
-\end{thebibliography}
+\begin{itemize}
+\item  Personalizar la representación textual de un objeto.
+\item  Comparar objetos entre sí.
+\item  Sobrecargar operadores como \texttt{+}, \texttt{-} o \texttt{*}.
+\item  Hacer que un objeto sea iterable.
+\item  Permitir que pueda utilizarse con \texttt{len()}.
+\item  Convertir un objeto en una función invocable.
+\item  Gestionar el acceso a atributos.
+\item  Implementar gestores de contexto (\texttt{with}).
+\end{itemize}

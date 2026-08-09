@@ -77,7 +77,41 @@ def parse_literal_until(
         ):
             break
 
-        value += parser._advance().value
+        if(
+            parser._match(TokenType.UNDERSCORE) or
+            parser._match(TokenType.AMPERSAND) or
+            parser._match(TokenType.MODULE)
+        ):
+            aux = parser._advance().value
+            for _ in aux:
+                value += "\\" + _
+        elif(
+            parser._match(TokenType.PIPE)
+        ):
+            aux = parser._advance().value
+            value += "\\textbar{}"
+        elif(
+            parser._match(TokenType.LESS_THAN)
+        ):
+            aux = parser._advance().value
+            value += "\\textless{}"
+        elif(
+            parser._match(TokenType.GREATER_THAN)
+        ):
+            aux = parser._advance().value
+            value += "\\textgreater{}"
+        elif(
+            parser._match(TokenType.TILDE)
+        ):
+            aux = parser._advance().value
+            value += "\\string~"
+        elif(
+            parser._match(TokenType.CARET)
+        ):
+            aux = parser._advance().value
+            value += "\\string^"
+        else:
+            value += parser._advance().value
 
     if parser._match(TokenType.EOF):
         raise ParserError(

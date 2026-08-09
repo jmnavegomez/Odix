@@ -282,7 +282,7 @@ SYNTAX: dict[str, dict[Language, Syntax]] = {
     "Table": {
         Language.LATEX: Syntax(
             "\n"r"\begin{tabular}{{{structure}}}" "\n",
-            "\n" r"\end{tabular}""\n",
+            "\n" r"\end{tabular}""\n""\n",
         ),
         Language.HTML: Syntax(
             "<table>",

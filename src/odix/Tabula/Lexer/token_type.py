@@ -18,10 +18,15 @@ class TokenType(Enum):
     COLON = auto()
 
     GREATER_THAN = auto()
+    LESS_THAN = auto()
 
     HYPHEN = auto()
     PLUS = auto()
     PIPE = auto()
+    MODULE = auto()      # %Nuevo%
+    AMPERSAND = auto()   # &Nuevo&
+    CARET = auto()   # ^Nuevo^
+    TILDE = auto()   # ~Nuevo~
 
     LBRACKET = auto()
     RBRACKET = auto()
