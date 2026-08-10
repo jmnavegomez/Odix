@@ -25,7 +25,8 @@ The **Scriptorium** compiles the **Tabula** into a **Codex**.
 Finally, **Impressio** publishes the finished work.
 
 ```text
-Markdown
+ Enriched 
+ Markdown
     │
     ▼
  Tabula
@@ -80,21 +81,19 @@ pip install odix
 ## Quick Start
 
 ```bash
-odix build book.md
+odix build book.yml
 ```
 
 ```python
 from odix import build
 
-build("book.md")
+build("book.yml")
 ```
 
 ## Documentation
 
 The complete documentation can be found in the `docs/` directory.
 
-- Philosophy
-- Manifesto
 - Architecture
 - Roadmap
 - Journal
