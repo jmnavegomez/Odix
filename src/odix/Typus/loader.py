@@ -32,7 +32,12 @@ class Loader:
             )
 
         document_data = data["document"]
-
+        if "class" not in document_data:
+            raise ValueError(
+                "The document class is missing "
+                "'document class'."
+            )
+        
         if "page" not in document_data:
             raise ValueError(
                 "The document configuration is missing "
@@ -63,17 +68,25 @@ class Loader:
                 "'numbering'."
             )
 
+        if "language" not in document_data:
+            raise ValueError(
+                "The document language is missing "
+                "'document language'."
+            )
+
         if "packages" not in document_data:
             raise ValueError(
                 "The document configuration is missing "
                 "'packages'."
             )
 
+        document_class = document_data["class"]
         page = document_data["page"]
         margins_data = document_data["margins"]
         typography = document_data["typography"]
         layout = document_data["layout"]
         numbering = document_data["numbering"]
+        language = document_data["language"]
 
         margins = Margins(
             top=margins_data["top"],
@@ -83,19 +96,25 @@ class Loader:
         )
 
         document = DocumentStyle(
+            document_class= document_class,
             page_size=page["size"],
             orientation=page["orientation"],
             margins=margins,
             font_size=typography["font_size"],
             line_spacing=typography["line_spacing"],
+            font=typography["font"],
             twoside=layout["twoside"],
             chapters_start_on_odd_page=(
                 layout["chapters_start_on_odd_page"]
+            ),
+            table_of_contents=(
+                layout["table_of_contents"]
             ),
             page_numbering=numbering["pages"],
             page_numbering_position=(
                 numbering["position"]
             ),
+            language = language,
             packages=list(document_data["packages"]),
         )
 

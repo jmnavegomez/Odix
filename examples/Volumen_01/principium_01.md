@@ -1,1 +1,0 @@
-# Instalación de Python

@@ -8,31 +8,46 @@ class DocumentStyle:
 
     def __init__(
         self,
+        document_class: str,
         page_size: str,
         orientation: str,
         margins: Margins,
+        font:str,
         font_size: str,
         line_spacing: float,
         twoside: bool,
         chapters_start_on_odd_page: bool,
+        table_of_contents: bool,
         page_numbering: bool,
         page_numbering_position: str,
+        language: str,
         packages: list[str],
     ) -> None:
+        self._document_class = document_class
         self._page_size = page_size
         self._orientation = orientation
         self._margins = margins
+        self._font = font
         self._font_size = font_size
         self._line_spacing = line_spacing
         self._twoside = twoside
         self._chapters_start_on_odd_page = (
             chapters_start_on_odd_page
         )
+        self._table_of_contents = (
+            table_of_contents
+        )
         self._page_numbering = page_numbering
         self._page_numbering_position = (
             page_numbering_position
         )
+        self._language = language
         self._packages = list(packages)
+
+    @property
+    def document_class(self) -> str:
+        """Returns the LaTeX document class."""
+        return self._document_class
 
     @property
     def page_size(self) -> str:
@@ -48,6 +63,11 @@ class DocumentStyle:
     def margins(self) -> Margins:
         """Returns the document margins."""
         return self._margins
+    
+    @property
+    def font(self) -> str:
+        """Returns the line spacing."""
+        return self._font
 
     @property
     def font_size(self) -> str:
@@ -68,6 +88,11 @@ class DocumentStyle:
     def chapters_start_on_odd_page(self) -> bool:
         """Returns whether chapters start on odd pages."""
         return self._chapters_start_on_odd_page
+    
+    @property
+    def chapters_table_of_contents(self) -> bool:
+        """Returns whether the document has table of contents."""
+        return self._table_of_contents
 
     @property
     def page_numbering(self) -> bool:
@@ -78,6 +103,11 @@ class DocumentStyle:
     def page_numbering_position(self) -> str:
         """Returns the page numbering position."""
         return self._page_numbering_position
+
+    @property
+    def language(self) -> str:
+        """Returns the page numbering position."""
+        return self._language
 
     @property
     def packages(self) -> list[str]:

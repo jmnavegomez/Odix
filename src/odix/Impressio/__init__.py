@@ -10,3 +10,9 @@ Public API
 Impressio
     Renders a styled publication.
 """
+
+from .impressio import Impressio
+
+__all__ = [
+    "Impressio",
+]

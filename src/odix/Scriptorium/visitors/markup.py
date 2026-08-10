@@ -120,8 +120,19 @@ class MarkupVisitor(Visitor):
         node: Text,
     ) -> str:
         """Visits a text node."""
+        result = node.text
 
-        return node.text
+        if (not isinstance(node.parent,CodeBlock)): 
+            result = result.replace("_","\\_")
+            result = result.replace("&","\\&")
+            result = result.replace("%","\\%")
+            result = result.replace("|","\\textbar{}")
+            result = result.replace("<","\\textless{}")
+            result = result.replace(">","\\textgreater{}")
+            result = result.replace("~","\\string~")
+            result = result.replace("^","\\string^")
+
+        return result
 
     def visit_mathinline(
         self,

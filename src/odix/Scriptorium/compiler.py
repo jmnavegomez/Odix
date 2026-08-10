@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from ..tabula.nodes import Document
+from ..tabula.nodes import Node
 
 from .language import Language
 from .writer import Writer
@@ -27,7 +27,7 @@ class Compiler:
 
     def compile(
         self,
-        document: Document,
+        document: Node,
     ) -> str:
         """Compiles a document.
 

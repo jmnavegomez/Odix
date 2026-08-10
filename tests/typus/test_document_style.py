@@ -11,6 +11,7 @@ def test_document_style():
     )
 
     style = DocumentStyle(
+        document_class="book",
         page_size="a5paper",
         orientation="portrait",
         margins=margins,
@@ -20,6 +21,7 @@ def test_document_style():
         chapters_start_on_odd_page=False,
         page_numbering=True,
         page_numbering_position="top",
+        language = "spanish",
         packages=[
             "inputenc",
             "fontenc",
@@ -62,6 +64,7 @@ def test_document_style_copies_packages():
     packages = ["graphicx"]
 
     style = DocumentStyle(
+        document_class= "book",
         page_size="a5paper",
         orientation="portrait",
         margins=margins,
@@ -71,6 +74,7 @@ def test_document_style_copies_packages():
         chapters_start_on_odd_page=False,
         page_numbering=True,
         page_numbering_position="top",
+        language = "english",
         packages=packages,
     )
 

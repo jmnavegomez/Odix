@@ -12,6 +12,7 @@ def test_typus():
     )
 
     document = DocumentStyle(
+        document_class="book",
         page_size="a5paper",
         orientation="portrait",
         margins=margins,
@@ -21,6 +22,7 @@ def test_typus():
         chapters_start_on_odd_page=False,
         page_numbering=True,
         page_numbering_position="top",
+        language= "spanish",
         packages=["graphicx"],
     )
 
@@ -70,11 +72,10 @@ def test_load_default_typus():
     assert document.packages == [
         "inputenc",
         "fontenc",
-        "babel",
         "graphicx",
         "amsmath",
     ]
-    
+
 from pathlib import Path
 
 from odix.typus import Typus

@@ -14,7 +14,6 @@ class Syntax:
 
 
 SYNTAX: dict[str, dict[Language, Syntax]] = {
-
     "Bold": {
         Language.LATEX: Syntax(
             r"\textbf{",
@@ -47,8 +46,8 @@ SYNTAX: dict[str, dict[Language, Syntax]] = {
 
     "InlineCode": {
         Language.LATEX: Syntax(
-            r"\texttt{",
-            "}",
+            r"{\scriptsize \texttt{",
+            "}}",
         ),
         Language.HTML: Syntax(
             "<code>",
@@ -224,8 +223,8 @@ SYNTAX: dict[str, dict[Language, Syntax]] = {
 
     "CodeBlock": {
         Language.LATEX: Syntax(
-            "\n" r"\begin{verbatim}" "\n",
-            r"\end{verbatim}" "\n",
+            "\n" r"{\scriptsize \begin{verbatim}" "\n",
+            r"\end{verbatim}}" "\n",
         ),
         Language.HTML: Syntax(
             "<pre><code>",

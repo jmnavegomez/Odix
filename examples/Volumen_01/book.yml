@@ -1,18 +1,26 @@
 title: Volumen 01
 
 chapters:
-  - title: Capítulo 1
+  - title: Fundamentos
     principia:
-      - principium_01.md
-      - principium_02.md
+      - POO.md
+      - clases.md
+      - atributos.md
+      - metodos.md
 
-  - title: Capítulo 2
+  - title: Diseño orientado a objetos
     principia:
-      - principium_03.md
-      - principium_04.md
+      - abstraccion.md
+      - herencia.md
+      - composicion.md
+      - encapsulacion.md
+      - polimorfismo.md
 
-  - title: Capítulo 3
+  - title: Herramientas de Python
     principia:
-      - principium_05.md
-      - principium_06.md
-      - principium_07.md
+      - clases_abstractas.md
+      - dunder_methods.md
+
+  - title: Anexos
+    principia:
+      - anexos.md

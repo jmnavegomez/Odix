@@ -1,4 +1,6 @@
 document:
+  class: book
+  
   page:
     size: a5paper
     orientation: portrait
@@ -12,18 +14,22 @@ document:
   typography:
     font_size: 12pt
     line_spacing: 1.0
+    font: "helvetica"
 
   layout:
-    twoside: false
-    chapters_start_on_odd_page: false
+    twoside: true
+    chapters_start_on_odd_page: true
+    table_of_contents: true
 
   numbering:
     pages: true
     position: top
 
+  language: spanish
+
   packages:
     - inputenc
     - fontenc
-    - babel
     - graphicx
     - amsmath
+    - listings
