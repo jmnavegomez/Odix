@@ -132,10 +132,66 @@ class Writer:
                 structure,
             )
 
+        caption = kwargs.get("caption", "")
+        label = kwargs.get("label", "")
+
+        closing = syntax.closing
+
+        closing = closing.replace(
+            "{caption}",
+            caption,
+        ).replace(
+            "{label}",
+            label,
+        )
+
         return (
             opening
             + content
-            + syntax.closing
+            + closing
+        )
+
+    def command_mathblock(
+        self,
+        content: str = "",
+        **kwargs,
+    ) -> str:
+        """Resolves a table command.
+
+        Args:
+            columns: Number of table columns.
+
+        Returns:
+            Concrete table command.
+        """
+
+        try:
+            syntax = SYNTAX[
+                "MathBlock"
+            ][
+                self._language
+            ]
+
+        except KeyError as error:
+            raise ValueError(
+                f"for language '{self._language.value}'."
+            ) from error
+
+        opening = syntax.opening
+
+        label = kwargs.get("label", "")
+
+        closing = syntax.closing
+
+        closing = closing.replace(
+            "{label}",
+            label,
+        )
+
+        return (
+            opening
+            + content
+            + closing
         )
 
     def command_figure(

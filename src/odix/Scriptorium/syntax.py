@@ -208,8 +208,10 @@ SYNTAX: dict[str, dict[Language, Syntax]] = {
 
     "MathBlock": {
         Language.LATEX: Syntax(
-            "\n" "$$\n",
-            "\n$$""\n",
+            "\n" r"\begin{equation}""\n",
+            "\n"
+            "{label}" 
+            r"\end{equation}""\n",
         ),
         Language.HTML: Syntax(
             r"\[",
@@ -281,7 +283,10 @@ SYNTAX: dict[str, dict[Language, Syntax]] = {
     "Table": {
         Language.LATEX: Syntax(
             "\n" r"\begin{tcolorbox}" "\n" r"\begin{tabular}{{{structure}}}" "\n",
-            "\n" r"\end{tabular}""\n" r"\end{tcolorbox}" "\n",
+            "\n" r"\end{tabular}""\n"
+            "{caption}"
+            "{label}" 
+            r"\end{tcolorbox}" "\n",
         ),
         Language.HTML: Syntax(
             "<table>",
@@ -290,6 +295,27 @@ SYNTAX: dict[str, dict[Language, Syntax]] = {
         Language.MARKDOWN: Syntax(
             "",
             "",
+        ),
+    },
+
+    "Label": {
+        Language.LATEX: Syntax(
+            r"\label{",
+            "}\n",
+        ),
+        Language.HTML: Syntax("", ""),
+        Language.MARKDOWN: Syntax("", ""),
+    },
+
+    "CrossReference": {
+        Language.LATEX: Syntax(
+            r"\ref{",
+            r"}",
+        ),
+        Language.HTML: Syntax("", ""),
+        Language.MARKDOWN: Syntax(
+            "$$",
+            "$$",
         ),
     },
 
@@ -334,8 +360,8 @@ SYNTAX: dict[str, dict[Language, Syntax]] = {
 
     "Caption": {
         Language.LATEX: Syntax(
-             "\n"r"\caption{",
-            "}" "\n",
+            "\n"r"\caption{",
+            r"}" "\n",
         ),
         Language.HTML: Syntax(
             "<figcaption>",

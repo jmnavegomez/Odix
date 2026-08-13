@@ -29,6 +29,8 @@ from ...tabula.nodes import (
     Link,
     Footnote,
     Citation,
+    CrossReference,
+    Label,
 )
 
 from ..visitor import Visitor
@@ -144,18 +146,7 @@ class MarkupVisitor(Visitor):
                 "MathInline",
                 node.expression,
             )
-
-    def visit_mathblock(
-        self,
-        node: MathBlock,
-    ) -> str:
-        """Visits a math block."""
-
-        return self._writer.command(
-                "MathBlock",
-                node.expression,
-            )
-
+    
     def visit_codeblock(
         self,
         node: CodeBlock,
@@ -203,6 +194,28 @@ class MarkupVisitor(Visitor):
             + self.visit_children(node)
         )
 
+    def visit_crossreference(
+        self,
+        node: CrossReference,
+    ) -> str:
+        """Visits a cross reference."""
+
+        return self._writer.command(
+            "CrossReference",
+            node.key,
+        )
+
+    def visit_label(
+        self,
+        node: Label,
+    ) -> str:
+        """Visits a label."""
+
+        return self._writer.command(
+            "Label",
+            node.key,
+        )
+
     def visit_footnote(
         self,
         node: Footnote,
@@ -215,6 +228,31 @@ class MarkupVisitor(Visitor):
                     )
                     + self.visit_children(node)
                 )
+
+    def visit_mathblock(
+        self,
+        node: MathBlock,
+    ) -> str:
+        label = next(
+                        (
+                            child
+                            for child in node.children
+                            if isinstance(child, Label)
+                        ),
+                        None,
+                    )
+        label_markup = (
+                    self.visit(label)
+                    if label is not None
+                    else ""
+                )
+        
+        return (
+            self._writer.command_mathblock(
+                node.expression,
+                label = label_markup,
+            )
+        )
 
     def visit_citation(
         self,
@@ -243,49 +281,80 @@ class MarkupVisitor(Visitor):
     ) -> str:
         """Visits a table."""
 
-        if not node.children:
+        rows = [
+            child
+            for child in node.children
+            if isinstance(child, Row)
+        ]
+
+        if not rows:
             return ""
 
-        columns = len(
-            node.children[0].children
+        caption = next(
+            (
+                child
+                for child in node.children
+                if isinstance(child, Caption)
+            ),
+            None,
         )
 
+        label = next(
+            (
+                child
+                for child in node.children
+                if isinstance(child, Label)
+            ),
+            None,
+        )
+        caption_markup = (
+            self.visit(caption)
+            if caption is not None
+            else ""
+        )
+
+        label_markup = (
+            self.visit(label)
+            if label is not None
+            else ""
+        )
+        columns = len(rows[0].children)
         structure = "l" * columns
 
-        rows = []
+        content = []
 
-        for row in node.children:
+        for row in rows:
             cells = [
-                self.visit(cell).replace("\n","")
+                self.visit(cell).replace("\n", "")
                 for cell in row.children
             ]
 
             cells[0] = cells[0][3:]
 
-            rows.append(
-                "".join(cells)
-                + r" \\"
+            content.append(
+                "".join(cells) + r" \\"
             )
-
-
-        return self._writer.command_table(
-            "\n".join(rows),
+        
+        table = self._writer.command_table(
+            "\n".join(content),
             structure=structure,
+            caption = caption_markup,
+            label = label_markup,
         )
 
+        return table
+
     def visit_figure(
-            self,
-            node: Figure,
-        ) -> str:
-            """Visits a Figure."""
-    
-            if not node.children:
-                return ""
-    
-            image = self.visit(node.children[0])
+        self,
+        node: Figure,
+    ) -> str:
+        """Visits a figure."""
 
-            caption = self.visit(node.children[1])
+        if not node.children:
+            return ""
 
-            return self._writer.command_figure(
-                "".join(image+"\n"+caption),
-            )
+        content = self.visit_children(node)
+
+        return self._writer.command_figure(
+            content,
+        )

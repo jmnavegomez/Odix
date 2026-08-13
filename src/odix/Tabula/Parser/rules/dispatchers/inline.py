@@ -16,6 +16,7 @@ from ..inline.underline import parse_underline
 from ..inline.strike import parse_strike
 from ..inline.text import parse_text
 from ..inline.citation import parse_citation
+from ..inline.cross_reference import parse_cross_reference
 
 from ..inline.asterisk import parse_asterisk
 from ..inline.colon import parse_colon
@@ -96,6 +97,13 @@ def parse_inline(
     ):
         return parse_inline_code(parser)
 
+    # Inline math ($...$)
+    if (
+        parser._match(TokenType.DOLLAR)
+        and len(parser._current.value) == 2
+    ):
+        return parse_cross_reference(parser)
+    
     # Inline math ($...$)
     if (
         parser._match(TokenType.DOLLAR)
