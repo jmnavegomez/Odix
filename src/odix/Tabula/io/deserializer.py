@@ -31,6 +31,8 @@ from ..nodes import (
     Bibliography,
     PageBreak,
     MathInline,
+    Label,
+    CrossReference,
 )
 
 
@@ -73,6 +75,8 @@ class Deserializer:
                     "Reference": Reference,
                     "Footnote": Footnote,
                     "Bibliography": Bibliography,
+                    "Label": Label,
+                    "CrossReference": CrossReference,
 
                     # "HorizontalRule": HorizontalRule,
                     "PageBreak": PageBreak,

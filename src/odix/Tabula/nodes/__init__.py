@@ -27,6 +27,8 @@ from odix.tabula.nodes.link import Link
 from odix.tabula.nodes.footnote import Footnote
 from odix.tabula.nodes.citation import Citation
 from odix.tabula.nodes.math_inline import MathInline
+from odix.tabula.nodes.label import Label
+from odix.tabula.nodes.cross_reference import CrossReference
 
 
 __all__ = [
@@ -58,4 +60,6 @@ __all__ = [
     "Footnote",
     "Citation",
     "MathInline",
+    "Label",
+    "CrossReference",
 ]

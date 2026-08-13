@@ -3,131 +3,15 @@
     "content": [],
     "children": [
         {
-            "type": "Section",
-            "content": {
-                "level": 1,
-                "title": {
-                    "type": "Paragraph",
-                    "content": [],
-                    "children": [
-                        {
-                            "type": "Text",
-                            "content": [
-                                "Prueba 1"
-                            ],
-                            "children": []
-                        }
-                    ]
-                }
-            },
+            "type": "Table",
+            "content": [],
             "children": [
                 {
-                    "type": "Paragraph",
+                    "type": "Row",
                     "content": [],
                     "children": [
                         {
-                            "type": "Text",
-                            "content": [
-                                "Esto reasigna el atributo "
-                            ],
-                            "children": []
-                        },
-                        {
-                            "type": "Underline",
-                            "content": [],
-                            "children": [
-                                {
-                                    "type": "Text",
-                                    "content": [
-                                        "diametro"
-                                    ],
-                                    "children": []
-                                }
-                            ]
-                        },
-                        {
-                            "type": "Text",
-                            "content": [
-                                " con el "
-                            ],
-                            "children": []
-                        },
-                        {
-                            "type": "MathInline",
-                            "content": {
-                                "expression": "E = m*c^2"
-                            },
-                            "children": []
-                        },
-                        {
-                            "type": "Text",
-                            "content": [
-                                " valor entero "
-                            ],
-                            "children": []
-                        },
-                        {
-                            "type": "InlineCode",
-                            "content": [],
-                            "children": [
-                                {
-                                    "type": "Text",
-                                    "content": [
-                                        "15"
-                                    ],
-                                    "children": []
-                                }
-                            ]
-                        },
-                        {
-                            "type": "Text",
-                            "content": [
-                                ". Sin embargo, no modifica el valor de radio, ya que ambos atributos almacenan valores independientes. Si se desea mantener la relación "
-                            ],
-                            "children": []
-                        },
-                        {
-                            "type": "MathInline",
-                            "content": {
-                                "expression": "diametro = 2 * radio"
-                            },
-                            "children": []
-                        },
-                        {
-                            "type": "Text",
-                            "content": [
-                                ", debe implementarse explícitamente, por ejemplo mediante una propiedad ("
-                            ],
-                            "children": []
-                        },
-                        {
-                            "type": "InlineCode",
-                            "content": [],
-                            "children": [
-                                {
-                                    "type": "Text",
-                                    "content": [
-                                        "@property"
-                                    ],
-                                    "children": []
-                                }
-                            ]
-                        },
-                        {
-                            "type": "Text",
-                            "content": [
-                                ") o actualizando ambos atributos."
-                            ],
-                            "children": []
-                        }
-                    ]
-                },
-                {
-                    "type": "List",
-                    "content": [],
-                    "children": [
-                        {
-                            "type": "ListItem",
+                            "type": "Cell",
                             "content": [],
                             "children": [
                                 {
@@ -137,7 +21,7 @@
                                         {
                                             "type": "Text",
                                             "content": [
-                                                " Hola Mundo"
+                                                "Colu1"
                                             ],
                                             "children": []
                                         }
@@ -146,7 +30,7 @@
                             ]
                         },
                         {
-                            "type": "ListItem",
+                            "type": "Cell",
                             "content": [],
                             "children": [
                                 {
@@ -156,26 +40,7 @@
                                         {
                                             "type": "Text",
                                             "content": [
-                                                " Cómo va"
-                                            ],
-                                            "children": []
-                                        }
-                                    ]
-                                }
-                            ]
-                        },
-                        {
-                            "type": "ListItem",
-                            "content": [],
-                            "children": [
-                                {
-                                    "type": "Paragraph",
-                                    "content": [],
-                                    "children": [
-                                        {
-                                            "type": "Text",
-                                            "content": [
-                                                " El día de hoy"
+                                                "Colu2"
                                             ],
                                             "children": []
                                         }
@@ -186,7 +51,95 @@
                     ]
                 },
                 {
-                    "type": "Quote",
+                    "type": "Row",
+                    "content": [],
+                    "children": [
+                        {
+                            "type": "Cell",
+                            "content": [],
+                            "children": [
+                                {
+                                    "type": "Paragraph",
+                                    "content": [],
+                                    "children": [
+                                        {
+                                            "type": "Text",
+                                            "content": [
+                                                "r1"
+                                            ],
+                                            "children": []
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "Cell",
+                            "content": [],
+                            "children": [
+                                {
+                                    "type": "Paragraph",
+                                    "content": [],
+                                    "children": [
+                                        {
+                                            "type": "Text",
+                                            "content": [
+                                                "r1"
+                                            ],
+                                            "children": []
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "Row",
+                    "content": [],
+                    "children": [
+                        {
+                            "type": "Cell",
+                            "content": [],
+                            "children": [
+                                {
+                                    "type": "Paragraph",
+                                    "content": [],
+                                    "children": [
+                                        {
+                                            "type": "Text",
+                                            "content": [
+                                                "r2"
+                                            ],
+                                            "children": []
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "Cell",
+                            "content": [],
+                            "children": [
+                                {
+                                    "type": "Paragraph",
+                                    "content": [],
+                                    "children": [
+                                        {
+                                            "type": "Text",
+                                            "content": [
+                                                "r2"
+                                            ],
+                                            "children": []
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "Caption",
                     "content": [],
                     "children": [
                         {
@@ -196,202 +149,20 @@
                                 {
                                     "type": "Text",
                                     "content": [
-                                        " La cita actual es una prueba"
+                                        " Resultados "
                                     ],
                                     "children": []
-                                }
-                            ]
-                        }
-                    ]
-                },
-                {
-                    "type": "Table",
-                    "content": [],
-                    "children": [
-                        {
-                            "type": "Row",
-                            "content": [],
-                            "children": [
-                                {
-                                    "type": "Cell",
-                                    "content": [],
-                                    "children": [
-                                        {
-                                            "type": "Paragraph",
-                                            "content": [],
-                                            "children": [
-                                                {
-                                                    "type": "Text",
-                                                    "content": [
-                                                        "Tabla"
-                                                    ],
-                                                    "children": []
-                                                }
-                                            ]
-                                        }
-                                    ]
                                 },
                                 {
-                                    "type": "Cell",
+                                    "type": "Bold",
                                     "content": [],
                                     "children": [
                                         {
-                                            "type": "Paragraph",
-                                            "content": [],
-                                            "children": [
-                                                {
-                                                    "type": "Text",
-                                                    "content": [
-                                                        "de"
-                                                    ],
-                                                    "children": []
-                                                }
-                                            ]
-                                        }
-                                    ]
-                                },
-                                {
-                                    "type": "Cell",
-                                    "content": [],
-                                    "children": [
-                                        {
-                                            "type": "Paragraph",
-                                            "content": [],
-                                            "children": [
-                                                {
-                                                    "type": "Text",
-                                                    "content": [
-                                                        "Pruebas"
-                                                    ],
-                                                    "children": []
-                                                }
-                                            ]
-                                        }
-                                    ]
-                                }
-                            ]
-                        },
-                        {
-                            "type": "Row",
-                            "content": [],
-                            "children": [
-                                {
-                                    "type": "Cell",
-                                    "content": [],
-                                    "children": [
-                                        {
-                                            "type": "Paragraph",
-                                            "content": [],
-                                            "children": [
-                                                {
-                                                    "type": "Text",
-                                                    "content": [
-                                                        "1"
-                                                    ],
-                                                    "children": []
-                                                }
-                                            ]
-                                        }
-                                    ]
-                                },
-                                {
-                                    "type": "Cell",
-                                    "content": [],
-                                    "children": [
-                                        {
-                                            "type": "Paragraph",
-                                            "content": [],
-                                            "children": [
-                                                {
-                                                    "type": "Text",
-                                                    "content": [
-                                                        "de 1"
-                                                    ],
-                                                    "children": []
-                                                }
-                                            ]
-                                        }
-                                    ]
-                                },
-                                {
-                                    "type": "Cell",
-                                    "content": [],
-                                    "children": [
-                                        {
-                                            "type": "Paragraph",
-                                            "content": [],
-                                            "children": [
-                                                {
-                                                    "type": "Text",
-                                                    "content": [
-                                                        "Pruebas 1"
-                                                    ],
-                                                    "children": []
-                                                }
-                                            ]
-                                        }
-                                    ]
-                                }
-                            ]
-                        },
-                        {
-                            "type": "Row",
-                            "content": [],
-                            "children": [
-                                {
-                                    "type": "Cell",
-                                    "content": [],
-                                    "children": [
-                                        {
-                                            "type": "Paragraph",
-                                            "content": [],
-                                            "children": [
-                                                {
-                                                    "type": "Text",
-                                                    "content": [
-                                                        "2"
-                                                    ],
-                                                    "children": []
-                                                }
-                                            ]
-                                        }
-                                    ]
-                                },
-                                {
-                                    "type": "Cell",
-                                    "content": [],
-                                    "children": [
-                                        {
-                                            "type": "Paragraph",
-                                            "content": [],
-                                            "children": [
-                                                {
-                                                    "type": "Text",
-                                                    "content": [
-                                                        "de 2"
-                                                    ],
-                                                    "children": []
-                                                }
-                                            ]
-                                        }
-                                    ]
-                                },
-                                {
-                                    "type": "Cell",
-                                    "content": [],
-                                    "children": [
-                                        {
-                                            "type": "Paragraph",
-                                            "content": [],
-                                            "children": [
-                                                {
-                                                    "type": "Text",
-                                                    "content": [
-                                                        "Pruebas 2"
-                                                    ],
-                                                    "children": []
-                                                }
-                                            ]
+                                            "type": "Text",
+                                            "content": [
+                                                "importantes"
+                                            ],
+                                            "children": []
                                         }
                                     ]
                                 }
@@ -400,110 +171,10 @@
                     ]
                 },
                 {
-                    "type": "CodeBlock",
+                    "type": "Label",
                     "content": [
-                        "python"
+                        " tab:resultados"
                     ],
-                    "children": [
-                        {
-                            "type": "Text",
-                            "content": [
-                                "def inicio(a,b):\n    c = a + b\n    return c\n"
-                            ],
-                            "children": []
-                        }
-                    ]
-                },
-                {
-                    "type": "Image",
-                    "content": {
-                        "source": "figure.png"
-                    },
-                    "children": []
-                },
-                {
-                    "type": "Figure",
-                    "content": [],
-                    "children": [
-                        {
-                            "type": "Image",
-                            "content": {
-                                "source": "figura.png"
-                            },
-                            "children": []
-                        },
-                        {
-                            "type": "Caption",
-                            "content": [],
-                            "children": [
-                                {
-                                    "type": "Text",
-                                    "content": [
-                                        "Figura Prueba."
-                                    ],
-                                    "children": []
-                                }
-                            ]
-                        }
-                    ]
-                },
-                {
-                    "type": "MathBlock",
-                    "content": {
-                        "expression": "x^2 + y^2 = z^2"
-                    },
-                    "children": []
-                },
-                {
-                    "type": "PageBreak",
-                    "content": [],
-                    "children": []
-                },
-                {
-                    "type": "Caption",
-                    "content": [],
-                    "children": [
-                        {
-                            "type": "Text",
-                            "content": [
-                                "Figure caption."
-                            ],
-                            "children": []
-                        }
-                    ]
-                },
-                {
-                    "type": "Bibliography",
-                    "content": [],
-                    "children": [
-                        {
-                            "type": "Reference",
-                            "content": {
-                                "key": "smith2025"
-                            },
-                            "children": []
-                        },
-                        {
-                            "type": "Reference",
-                            "content": {
-                                "key": "doe2024"
-                            },
-                            "children": []
-                        },
-                        {
-                            "type": "Reference",
-                            "content": {
-                                "key": "miller2021"
-                            },
-                            "children": []
-                        }
-                    ]
-                },
-                {
-                    "type": "Reference",
-                    "content": {
-                        "key": "smith2025"
-                    },
                     "children": []
                 }
             ]

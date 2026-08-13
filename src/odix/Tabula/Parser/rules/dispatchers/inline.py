@@ -107,41 +107,37 @@ def parse_inline(
     if parser._match(TokenType.TEXT):
         return parse_text(parser)
 
+    # Inline asterisk
     if parser._match(TokenType.ASTERISK):
         return parse_asterisk(parser)
-
+    
     # Inline colon
     if (
         parser._match(TokenType.COLON)
-        and parser._current.value == ":"
     ):
         return parse_colon(parser)
 
     # Inline underscore
     if (
         parser._match(TokenType.UNDERSCORE)
-        and parser._current.value == "_"
     ):
         return parse_underscore(parser)
 
     # Inline underscore
     if (
         parser._match(TokenType.HYPHEN)
-        and parser._current.value == "-"
     ):
         return parse_hyphen(parser)
     
     # Inline plus
     if (
         parser._match(TokenType.PLUS)
-        and parser._current.value == "+"
     ):
         return parse_plus(parser)
 
     # Inline module
     if (
         parser._match(TokenType.MODULE)
-        and parser._current.value == "%"
     ):  
         value = parse_module(parser)
         return value

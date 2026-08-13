@@ -24,7 +24,11 @@ build
 """
 
 from .tabula import Tabula
+from .scriptorium.compiler import Compiler
+from .impressio import Impressio
 
 __all__ = [
     "Tabula",
+    "Compiler",
+    "Impressio",
 ]

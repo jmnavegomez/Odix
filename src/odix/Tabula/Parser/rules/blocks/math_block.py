@@ -8,6 +8,7 @@ if TYPE_CHECKING:
 from ....lexer.token_type import TokenType
 
 from ....nodes.math_block import MathBlock
+from ....nodes.label import Label
 
 from ..inline.sequence import parse_literal_until
 
@@ -19,6 +20,7 @@ def parse_math_block(parser: Parser) -> MathBlock:
 
         ::math
         E = mc^2
+        label
         ::
 
     Args:
@@ -33,11 +35,23 @@ def parse_math_block(parser: Parser) -> MathBlock:
 
     expression = parse_literal_until(
         parser,
-        TokenType.COLON,
-        2,
+        TokenType.NEWLINE,
+        1,
     ).strip()
+
+    math_block = MathBlock(expression)
+
+    if not parser._match(TokenType.COLON):
+        label = parse_literal_until(
+            parser,
+            TokenType.NEWLINE,
+            1,
+        ).strip()
+        math_block.add_child(Label(label))
+
+    parser._expect(TokenType.COLON)
 
     if parser._match(TokenType.NEWLINE):
         parser._advance()
 
-    return MathBlock(expression)
+    return math_block
