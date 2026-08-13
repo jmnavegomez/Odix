@@ -8,7 +8,7 @@ Su responsabilidad es exclusivamente interpretar la estructura semántica del do
 
 No realiza tareas relacionadas con la representación visual, el estilo o la generación de documentos.
 
----
+
 
 # Filosofía
 
@@ -18,15 +18,15 @@ Cada regla del lenguaje se implementa mediante una función independiente.
 
 Cada función tiene una única responsabilidad:
 
-* consumir los tokens correspondientes;
-* construir un nodo del AST;
-* devolver dicho nodo.
++ consumir los tokens correspondientes;
++ construir un nodo del AST;
++ devolver dicho nodo.
 
 No existen clases para las reglas del parser, ya que las reglas no mantienen estado propio.
 
 Todo el estado del análisis reside en la clase `Parser`.
 
----
+
 
 # Separación entre Parser y reglas
 
@@ -34,18 +34,18 @@ La clase `Parser` contiene únicamente la infraestructura necesaria para recorre
 
 Entre sus responsabilidades se encuentran:
 
-* almacenar la lista de tokens;
-* mantener la posición actual;
-* avanzar por los tokens;
-* comprobar el token actual;
-* consumir tokens esperados;
-* iniciar el proceso de análisis.
++ almacenar la lista de tokens;
++ mantener la posición actual;
++ avanzar por los tokens;
++ comprobar el token actual;
++ consumir tokens esperados;
++ iniciar el proceso de análisis.
 
 Las reglas del lenguaje se implementan fuera de `Parser`.
 
 Esta separación permite que la clase permanezca pequeña y que cada regla pueda evolucionar de forma independiente.
 
----
+
 
 # Organización de las reglas
 
@@ -58,8 +58,8 @@ parser/
 
 Actualmente existen dos niveles de análisis:
 
-* bloques;
-* elementos inline.
++ bloques;
++ elementos inline.
 
 Cada nivel dispone de un *dispatcher* encargado de decidir qué regla ejecutar.
 
@@ -79,7 +79,7 @@ parse_inline()
 
 decide qué elemento inline comienza en la posición actual.
 
----
+
 
 # Dispatchers
 
@@ -120,7 +120,7 @@ parse_text()
 
 Esta separación mantiene los *dispatchers* extremadamente sencillos y facilita añadir nuevas reglas sin modificar las existentes.
 
----
+
 
 # Constructores del AST
 
@@ -144,7 +144,7 @@ Existe una correspondencia prácticamente uno a uno entre los nodos del AST y la
 
 Esta simetría simplifica tanto el mantenimiento como la ampliación del lenguaje.
 
----
+
 
 # Separación entre bloques e inline
 
@@ -189,7 +189,7 @@ En su lugar delega esta responsabilidad en `parse_inline()`.
 
 Esta decisión mantiene una clara separación de responsabilidades y evita el acoplamiento entre niveles del árbol.
 
----
+
 
 # Funciones frente a clases
 
@@ -197,14 +197,14 @@ Las reglas del parser se implementan mediante funciones y no mediante clases.
 
 Las razones son:
 
-* no mantienen estado;
-* reciben toda la información necesaria mediante la instancia de `Parser`;
-* resultan más sencillas de leer;
-* facilitan la extensión del parser mediante nuevas reglas.
++ no mantienen estado;
++ reciben toda la información necesaria mediante la instancia de `Parser`;
++ resultan más sencillas de leer;
++ facilitan la extensión del parser mediante nuevas reglas.
 
 De este modo, la inteligencia del parser reside en la colaboración entre la clase `Parser` y un conjunto de funciones especializadas.
 
----
+
 
 # Evolución incremental
 
@@ -226,14 +226,13 @@ Por ejemplo:
 
 Cada paso dispondrá de sus propios tests antes de continuar con la siguiente funcionalidad.
 
----
+
 
 # Responsabilidades
 
 La distribución de responsabilidades queda resumida de la siguiente forma:
 
 | Componente       | Responsabilidad                                           |
-| ---------------- | --------------------------------------------------------- |
 | `Lexer`          | Transformar caracteres en tokens.                         |
 | `Parser`         | Gestionar el recorrido de los tokens.                     |
 | `parse_block()`  | Seleccionar la regla de bloque adecuada.                  |
@@ -241,7 +240,7 @@ La distribución de responsabilidades queda resumida de la siguiente forma:
 | `parse_*()`      | Construir un nodo concreto del AST.                       |
 | `Node`           | Gestionar la estructura del árbol y el cálculo de hashes. |
 
----
+
 
 # Evolución futura
 

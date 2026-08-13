@@ -112,28 +112,46 @@ class Impressio:
         font_package = self._FONTS[document.font]
 
         if font_package is not None:
-            packages = packages+ "\n" + rf"\usepackage{{{font_package}}}"
+            packages += "\n" + rf"\usepackage{{{font_package}}}"
 
         geometry = (
-            r"\usepackage["
+            f"\\usepackage["
             f"top={margins.top},"
             f"bottom={margins.bottom},"
             f"left={margins.left},"
             f"right={margins.right}"
-            r"]{geometry}"
+            f"]{{geometry}}"
         )
-        babel = (
-            r"\usepackage["
-            f"{language}"
-            r"]{babel}"
+
+        babel = rf"\usepackage[{language}]{{babel}}"
+
+        style = "\n".join(
+            [
+                r"\setcounter{secnumdepth}{1}",
+                r"\setstretch{1.25}",
+                "",
+                r"\definecolor{chaptercolor}{HTML}{24527A}",
+                r"\definecolor{primary}{HTML}{24527A}",
+                r"\definecolor{secondary}{HTML}{4F81A1}",
+                r"\definecolor{codebg}{HTML}{F4F6F8}",
+                "",
+                r"\titleformat{\chapter}",
+                r"  {\Huge\bfseries\color{chaptercolor}}",
+                r"  {\thechapter}",
+                r"  {1em}",
+                r"  {}",
+            ]
         )
 
         return "\n".join(
             [
                 document_class,
+                "",
                 packages,
                 geometry,
                 babel,
+                "",
+                style,
             ]
         )
 
@@ -145,7 +163,8 @@ class Impressio:
         preamble = self._render_preamble()
         
         if document.chapters_table_of_contents:
-            table_of_contents = "\n" + rf"\tableofcontents"
+            table_of_contents = "\n" + "\\setcounter{tocdepth}{1}"
+            table_of_contents += "\n" + rf"\tableofcontents"
         else:
             table_of_contents = ""
 

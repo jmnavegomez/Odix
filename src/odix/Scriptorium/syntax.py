@@ -223,8 +223,8 @@ SYNTAX: dict[str, dict[Language, Syntax]] = {
 
     "CodeBlock": {
         Language.LATEX: Syntax(
-            "\n" r"{\scriptsize \begin{verbatim}" "\n",
-            r"\end{verbatim}}" "\n",
+            "\n" "\n" r"\begin{tcolorbox}" "\n" r"\scriptsize" "\n" r" \begin{verbatim}" "\n",
+            r"\end{verbatim}" "\n" r"\end{tcolorbox}" "\n",
         ),
         Language.HTML: Syntax(
             "<pre><code>",
@@ -280,8 +280,8 @@ SYNTAX: dict[str, dict[Language, Syntax]] = {
 
     "Table": {
         Language.LATEX: Syntax(
-            "\n"r"\begin{tabular}{{{structure}}}" "\n",
-            "\n" r"\end{tabular}""\n""\n",
+            "\n" r"\begin{tcolorbox}" "\n" r"\begin{tabular}{{{structure}}}" "\n",
+            "\n" r"\end{tabular}""\n" r"\end{tcolorbox}" "\n",
         ),
         Language.HTML: Syntax(
             "<table>",

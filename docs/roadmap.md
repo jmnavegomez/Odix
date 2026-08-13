@@ -19,7 +19,7 @@ A research document summarizing the publishing ecosystem,
 design alternatives, architectural decisions and the rationale
 behind the Odix compiler.
 
----
+
 
 ## I. Foundations
 
@@ -32,7 +32,7 @@ Establish the philosophical and technical foundations of the project.
 - [ ] Coding standards (Ruff, formatting, typing)
 - [ ] Contribution guidelines
 
----
+
 
 ## II. Language Definition
 
@@ -50,7 +50,7 @@ Define the language used to express a Principia.
 
 A complete specification document describing the Principia language and its semantics.
 
----
+
 
 ## III. Tabula Core
 
@@ -69,7 +69,7 @@ Design and implement the central representation of the book.
 
 A stable `Tabula` API independent from any renderer.
 
----
+
 
 ## IV. Principia Analysis
 
@@ -87,7 +87,7 @@ Transform a Principia into a validated Tabula.
 
 `principia -> tabula`
 
----
+
 
 ## V. Scriptorium
 
@@ -105,7 +105,7 @@ Compile the Tabula into a Codex representation.
 
 `tabula -> codex`
 
----
+
 
 ## VI. Typus
 
@@ -123,7 +123,7 @@ Apply the visual identity of the book.
 
 A fully styled Codex ready for publication.
 
----
+
 
 ## VII. Impressio
 
@@ -142,7 +142,7 @@ Publish the final work.
 
 `codex -> LaTeX/pdf/html/epub`
 
----
+
 
 ## VIII. First Book
 
@@ -161,7 +161,7 @@ Validate the complete workflow with a real project.
 
 The first complete book published with Odix.
 
----
+
 
 ## IX. Stabilization
 
@@ -179,25 +179,24 @@ Prepare the project for external users.
 - [ ] Release v0.1.0
 - [ ] Release v1.0.0
 
----
+
 
 ## Compiler Pipeline
 
 Principia → Tabula → Scriptorium → Codex → Typus → Impressio → LaTeX / PDF / HTML / EPUB
 
----
+
 
 ## Success Criteria for v0.1.0
 
 - Parse a non-trivial Principia
 - Generate a valid Tabula
 
----
+
 
 ## Release Roadmap
 
 | Version | Main milestone               |
-| ------- | ---------------------------- |
 | v0.1.0  | Principia → Tabula           |
 | v0.2.0  | Tabula → Codex               |
 | v0.3.0  | Codex → Styled Codex (Typus) |
@@ -209,7 +208,7 @@ Principia → Tabula → Scriptorium → Codex → Typus → Impressio → LaTeX
 | v0.9.0  | Feature complete             |
 | v1.0.0  | Stable production release    |
 
----
+
 
 ## Long-term Vision
 
@@ -221,7 +220,7 @@ Principia → Tabula → Scriptorium → Codex → Typus → Impressio → LaTeX
 - Collaborative editorial features
 - Digital preservation tooling
 
----
+
 
 > May every Principia become a worthy Codex.
 

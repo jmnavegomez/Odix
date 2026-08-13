@@ -20,6 +20,7 @@ from ..inline.citation import parse_citation
 from ..inline.asterisk import parse_asterisk
 from ..inline.colon import parse_colon
 from ..inline.underscore import parse_underscore
+from ..inline.hyphen import parse_hyphen
 from ..inline.plus import parse_plus
 from ..inline.module import parse_module
 
@@ -123,6 +124,13 @@ def parse_inline(
     ):
         return parse_underscore(parser)
 
+    # Inline underscore
+    if (
+        parser._match(TokenType.HYPHEN)
+        and parser._current.value == "-"
+    ):
+        return parse_hyphen(parser)
+    
     # Inline plus
     if (
         parser._match(TokenType.PLUS)

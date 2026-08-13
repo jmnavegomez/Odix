@@ -16,7 +16,7 @@ Redacción del README.md con las principales características del software, inst
 
 Cambio del nombre del proyecto de PyBook a Principia.
 
-El nombre fue elegido por ser la palabra que identifica la obra *Philosophiæ Naturalis Principia Mathematica*, conocida simplemente como los *Principia*.
+El nombre fue elegido por ser la palabra que identifica la obra ·Philosophiæ Naturalis Principia Mathematica·, conocida simplemente como los ·Principia·.
 
 Además de hacer referencia a las ideas y los principios, el proyecto adopta la terminología latina tradicional de las distintas fases de creación de un libro.
 

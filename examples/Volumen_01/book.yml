@@ -1,7 +1,30 @@
-title: Volumen 01
+title: Python. Programación básica
 
 chapters:
-  - title: Fundamentos
+  - title: Fundamentos de Python
+    principia:
+      - intro_python.md
+      - variables.md
+      - tipos_datos.md
+
+  - title: Tipos de datos
+    principia:
+      - numeros.md
+      - cadenas_texto.md
+      - booleanos.md
+      - listas.md
+      - tuplas.md
+      - conjuntos.md
+      - diccionarios.md
+      
+  - title: Operadores y conversiones
+    principia:
+      - aritmeticos.md
+      - comparaciones.md
+      - logica.md
+      - conversion_tipos.md
+
+  - title: Programación Orientada a Objetos
     principia:
       - POO.md
       - clases.md

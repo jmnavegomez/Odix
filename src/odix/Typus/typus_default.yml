@@ -6,13 +6,13 @@ document:
     orientation: portrait
 
   margins:
-    top: 2cm
-    bottom: 2cm
-    left: 2cm
-    right: 2cm
+    top: 1.5cm
+    bottom: 1.5cm
+    left: 1.5cm
+    right: 1.5cm
 
   typography:
-    font_size: 12pt
+    font_size: 11pt
     line_spacing: 1.0
     font: "helvetica"
 
@@ -32,4 +32,8 @@ document:
     - fontenc
     - graphicx
     - amsmath
-    - listings
+    - xcolor
+    - setspace
+    - titlesec
+    - tcolorbox
+    - colortbl
