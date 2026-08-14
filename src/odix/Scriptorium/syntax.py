@@ -372,8 +372,12 @@ SYNTAX: dict[str, dict[Language, Syntax]] = {
 
     "Image": {
         Language.LATEX: Syntax(
-             "\n" r"\includegraphics{",
-            "}" "\n",
+             "\n" r"\includegraphics["
+            r"width=\textwidth,"
+            r"height=\textheight,"
+            r"keepaspectratio"
+            r"]{",
+            r"}" "\n",
         ),
         Language.HTML: Syntax(
             "<img src=\"",

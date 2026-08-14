@@ -4,7 +4,7 @@ from pathlib import Path
 
 import yaml
 
-from .book import Book
+from .book import Bibliography, Book, Metadata
 from .chapter import Chapter
 from .principium import Principium
 
@@ -26,14 +26,44 @@ class Loader:
                 "The YAML file is empty."
             )
 
-        if "title" not in data:
+        if "metadata" not in data:
             raise ValueError(
-                "The book configuration is missing 'title'."
+                "The book configuration is missing 'metadata'."
+            )
+
+        metadata_data = data["metadata"]
+
+        if "title" not in metadata_data:
+            raise ValueError(
+                "The metadata configuration is missing 'title'."
             )
 
         if "chapters" not in data:
             raise ValueError(
                 "The book configuration is missing 'chapters'."
+            )
+
+        metadata = Metadata(
+            title=metadata_data["title"],
+            author=metadata_data.get("author"),
+            subtitle=metadata_data.get("subtitle"),
+            date=metadata_data.get("date"),
+            edition=metadata_data.get("edition"),
+        )
+
+        bibliography = None
+
+        if "bibliography" in data:
+            bibliography_data = data["bibliography"]
+
+            if "file" not in bibliography_data:
+                raise ValueError(
+                    "The bibliography configuration is missing 'file'."
+                )
+
+            bibliography = Bibliography(
+                file=bibliography_data["file"],
+                style=bibliography_data.get("style", "plain"),
             )
 
         chapters = []
@@ -70,6 +100,7 @@ class Loader:
             )
 
         return Book(
-            title=data["title"],
+            metadata=metadata,
+            bibliography=bibliography,
             chapters=chapters,
         )

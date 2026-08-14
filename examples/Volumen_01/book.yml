@@ -1,4 +1,13 @@
-title: Python. Programación básica
+metadata:
+  title: "Desarrollo Real de Python"
+  subtitle: "Programación orientada a objetos"
+  author: "José Manuel Naveiro"
+  date: "2026"
+  edition: "1ª edición"
+
+bibliography:
+  file: "references.bib"
+  style: "plain"
 
 chapters:
   - title: Fundamentos de Python

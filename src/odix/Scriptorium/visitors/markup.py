@@ -128,7 +128,7 @@ class MarkupVisitor(Visitor):
             result = result.replace("_","\\_")
             result = result.replace("&","\\&")
             result = result.replace("%","\\%")
-            result = result.replace("|","\\textbar{}")
+            result = result.replace("|",r"\textbar{}")
             result = result.replace("<","\\textless{}")
             result = result.replace(">","\\textgreater{}")
             result = result.replace("~","\\string~")

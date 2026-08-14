@@ -71,6 +71,85 @@ class Impressio:
 
         return "\n".join(parts)
 
+    def _render_titlepage(self) -> str:
+        """Renders the book metadata as a LaTeX title page."""
+
+        metadata = self._book.metadata
+
+        parts = [
+            r"\begin{titlepage}",
+            r"\centering",
+            "",
+            r"\vspace*{3cm}",
+            "",
+            rf"{{\Huge\bfseries {metadata.title}\par}}",
+        ]
+
+        if metadata.subtitle:
+            parts.extend(
+                [
+                    "",
+                    r"\vspace{1cm}",
+                    rf"{{\Large {metadata.subtitle}\par}}",
+                ]
+            )
+
+        parts.extend(
+            [
+                "",
+                r"\vfill",
+            ]
+        )
+
+        if metadata.author:
+            parts.append(
+                rf"{{\Large {metadata.author}\par}}"
+            )
+
+        if metadata.edition:
+            parts.extend(
+                [
+                    "",
+                    r"\vspace{0.5cm}",
+                    rf"{{\large {metadata.edition}\par}}",
+                ]
+            )
+
+        if metadata.date:
+            parts.extend(
+                [
+                    "",
+                    r"\vspace{0.5cm}",
+                    rf"{{\large {metadata.date}\par}}",
+                ]
+            )
+
+        parts.extend(
+            [
+                "",
+                r"\end{titlepage}",
+            ]
+        )
+
+        return "\n".join(parts)
+
+    def _render_bibliography(self) -> str:
+        """Renders the bibliography as LaTeX."""
+
+        bibliography = self._book.bibliography
+
+        if bibliography is None:
+            return ""
+
+        file = Path(bibliography.file).stem
+
+        return "\n".join(
+            [
+                rf"\bibliographystyle{{{bibliography.style}}}",
+                rf"\bibliography{{{file}}}",
+            ]
+        )
+
     def _render_body(self) -> str:
         """Renders the complete body of the book."""
 
@@ -158,31 +237,48 @@ class Impressio:
     def _render_document(self) -> str:
         """Renders the complete LaTeX document."""
 
-        document = self._typus.document
-
         preamble = self._render_preamble()
-        
-        if document.chapters_table_of_contents:
-            table_of_contents = "\n" + "\\setcounter{tocdepth}{1}"
-            table_of_contents += "\n" + rf"\tableofcontents"
-        else:
-            table_of_contents = ""
-
+        metadata = self._render_titlepage()
         body = self._render_body()
+        bibliography = self._render_bibliography()
 
-        return "\n".join(
+        document = [
+            preamble,
+            "",
+            r"\begin{document}",
+            "",
+            metadata,
+            "",
+        ]
+
+        if self._typus.document.chapters_table_of_contents:
+            document.extend(
+                [
+                    r"\setcounter{tocdepth}{1}",
+                    r"\tableofcontents",
+                    "",
+                ]
+            )
+
+        document.append(body)
+
+        if bibliography:
+            document.extend(
+                [
+                    "",
+                    bibliography,
+                ]
+            )
+
+        document.extend(
             [
-                preamble,
-                "",
-                r"\begin{document}",
-                "",
-                table_of_contents,
-                body,
                 "",
                 r"\end{document}",
                 "",
             ]
         )
+
+        return "\n".join(document)
 
     def publish(
         self,
