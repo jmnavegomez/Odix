@@ -23,6 +23,7 @@ def parse_colon(parser: Parser) -> Text:
 
     return Text(token.value)
 
+
 # def parse_double_colon(parser: Parser) -> Text:
 #     """Parses a text node.
 

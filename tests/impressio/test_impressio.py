@@ -8,24 +8,12 @@ from odix.typus import Typus
 def test_impressio():
     root = Path(__file__).parents[3]
 
-    volume = (
-        root
-        / "Odix"
-        / "examples"
-        / "Volumen_01"
-    )
+    volume = root / "Odix" / "examples" / "Volumen_01"
 
-    book = Ordinatio.from_file(
-        volume / "book.yml"
-    )
+    book = Ordinatio.from_file(volume / "book.yml")
 
-    volume = (
-        root
-        / "Odix"
-        / "examples"
-        / "Volumen_01"
-    )
-    
+    volume = root / "Odix" / "examples" / "Volumen_01"
+
     typus_file = volume / "typus.yml"
 
     typus = Typus.from_file(typus_file)
@@ -41,7 +29,4 @@ def test_impressio():
     assert book.title == "Desarrollo Real de Python"
     assert len(book.chapters) == 7
 
-    assert sum(
-        len(chapter.principia)
-        for chapter in book.chapters
-    ) == 26
+    assert sum(len(chapter.principia) for chapter in book.chapters) == 26

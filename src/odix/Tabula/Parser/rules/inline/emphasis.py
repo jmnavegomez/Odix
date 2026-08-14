@@ -50,9 +50,7 @@ def parse_inline_emphasis(
 
     # Reaching EOF means that the emphasis was never closed.
     if parser._match(TokenType.EOF):
-        raise ParserError(
-            "Unterminated inline element."
-        )
+        raise ParserError("Unterminated inline element.")
 
     # Consume the closing delimiter.
     parser._expect(closing_type)

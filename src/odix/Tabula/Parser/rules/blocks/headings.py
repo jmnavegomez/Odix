@@ -55,7 +55,7 @@ def parse_section(parser: Parser) -> Section:
         level=level,
         title=title,
     )
-    
+
     if parser._match(TokenType.NEWLINE):
         parser._advance()
 

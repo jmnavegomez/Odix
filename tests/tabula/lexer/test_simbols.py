@@ -30,6 +30,7 @@ def test_single_symbols(
         Token(TokenType.EOF, "", line, column),
     ]
 
+
 @pytest.mark.parametrize(
     ("text", "token_type"),
     [

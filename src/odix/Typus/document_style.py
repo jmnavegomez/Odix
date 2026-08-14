@@ -12,7 +12,7 @@ class DocumentStyle:
         page_size: str,
         orientation: str,
         margins: Margins,
-        font:str,
+        font: str,
         font_size: str,
         line_spacing: float,
         twoside: bool,
@@ -31,16 +31,10 @@ class DocumentStyle:
         self._font_size = font_size
         self._line_spacing = line_spacing
         self._twoside = twoside
-        self._chapters_start_on_odd_page = (
-            chapters_start_on_odd_page
-        )
-        self._table_of_contents = (
-            table_of_contents
-        )
+        self._chapters_start_on_odd_page = chapters_start_on_odd_page
+        self._table_of_contents = table_of_contents
         self._page_numbering = page_numbering
-        self._page_numbering_position = (
-            page_numbering_position
-        )
+        self._page_numbering_position = page_numbering_position
         self._language = language
         self._packages = list(packages)
 
@@ -63,7 +57,7 @@ class DocumentStyle:
     def margins(self) -> Margins:
         """Returns the document margins."""
         return self._margins
-    
+
     @property
     def font(self) -> str:
         """Returns the line spacing."""
@@ -88,7 +82,7 @@ class DocumentStyle:
     def chapters_start_on_odd_page(self) -> bool:
         """Returns whether chapters start on odd pages."""
         return self._chapters_start_on_odd_page
-    
+
     @property
     def chapters_table_of_contents(self) -> bool:
         """Returns whether the document has table of contents."""

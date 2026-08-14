@@ -8,6 +8,7 @@ def test_empty_document() -> None:
         Token(TokenType.EOF, "", 1, 1),
     ]
 
+
 def test_text() -> None:
     lexer = Lexer()
 
@@ -15,6 +16,7 @@ def test_text() -> None:
         Token(TokenType.TEXT, "Hello", 1, 1),
         Token(TokenType.EOF, "", 1, 6),
     ]
+
 
 def test_newline() -> None:
     lexer = Lexer()
@@ -24,6 +26,7 @@ def test_newline() -> None:
         Token(TokenType.EOF, "", 2, 1),
     ]
 
+
 def test_heading() -> None:
     lexer = Lexer()
 
@@ -31,6 +34,7 @@ def test_heading() -> None:
         Token(TokenType.HASH, "#", 1, 1),
         Token(TokenType.EOF, "", 1, 2),
     ]
+
 
 def test_heading_and_text() -> None:
     lexer = Lexer()
@@ -41,6 +45,7 @@ def test_heading_and_text() -> None:
         Token(TokenType.EOF, "", 1, 8),
     ]
 
+
 def test_heading_level_2() -> None:
     lexer = Lexer()
 
@@ -50,6 +55,7 @@ def test_heading_level_2() -> None:
         Token(TokenType.EOF, "", 1, 9),
     ]
 
+
 def test_heading_level_6() -> None:
     lexer = Lexer()
 
@@ -58,6 +64,7 @@ def test_heading_level_6() -> None:
         Token(TokenType.TEXT, " Title", 1, 7),
         Token(TokenType.EOF, "", 1, 13),
     ]
+
 
 def test_multiple_headings() -> None:
     lexer = Lexer()

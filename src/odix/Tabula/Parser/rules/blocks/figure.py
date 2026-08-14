@@ -35,12 +35,12 @@ def parse_figure(parser: Parser) -> Figure:
         parser._advance()
 
     figure = Figure()
-    
-    figure.add_child(Image(parse_literal_until(parser,TokenType.NEWLINE,1)))
+
+    figure.add_child(Image(parse_literal_until(parser, TokenType.NEWLINE, 1)))
     figure.add_child(parse_inline_caption(parser))
 
     if not parser._match(TokenType.COLON):
-        figure.add_child(Label(parse_literal_until(parser,TokenType.NEWLINE,1)))
+        figure.add_child(Label(parse_literal_until(parser, TokenType.NEWLINE, 1)))
 
     parser._expect(TokenType.COLON)
 

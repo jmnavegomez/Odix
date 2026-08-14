@@ -1,4 +1,3 @@
-
 from odix.tabula.lexer import Lexer
 from odix.tabula.nodes import (
     Bibliography,
@@ -23,11 +22,9 @@ def parse(markdown: str):
 
 def test_math_block() -> None:
 
-    document = parse(
-        """::math
+    document = parse("""::math
 x^2 + y^2 = z^2
-::"""
-    )
+::""")
 
     assert len(document.children) == 1
 
@@ -39,10 +36,8 @@ x^2 + y^2 = z^2
 
 def test_page_break() -> None:
 
-    document = parse(
-        """::pagebreak
-::"""
-    )
+    document = parse("""::pagebreak
+::""")
 
     assert len(document.children) == 1
 
@@ -54,11 +49,9 @@ def test_page_break() -> None:
 
 def test_image() -> None:
 
-    document = parse(
-        """::image
+    document = parse("""::image
 figure.png
-::"""
-    )
+::""")
 
     assert len(document.children) == 1
 
@@ -70,11 +63,9 @@ figure.png
 
 def test_caption() -> None:
 
-    document = parse(
-        """::caption
+    document = parse("""::caption
 Figure caption.
-::"""
-    )
+::""")
 
     assert len(document.children) == 1
 
@@ -88,11 +79,9 @@ Figure caption.
 
 def test_reference() -> None:
 
-    document = parse(
-        """::reference
+    document = parse("""::reference
 smith2025
-::"""
-    )
+::""")
 
     assert len(document.children) == 1
 
@@ -104,13 +93,11 @@ smith2025
 
 def test_bibliography() -> None:
 
-    document = parse(
-        """::bibliography
+    document = parse("""::bibliography
 smith2025
 doe2024
 miller2021
-::"""
-    )
+::""")
 
     assert len(document.children) == 1
 
@@ -131,12 +118,10 @@ miller2021
 
 def test_figure() -> None:
 
-    document = parse(
-        """::figure
+    document = parse("""::figure
 figure.png
 Example figure
-::"""
-    )
+::""")
 
     assert len(document.children) == 1
 

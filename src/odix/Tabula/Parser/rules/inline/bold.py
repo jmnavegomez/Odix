@@ -26,9 +26,7 @@ def parse_bold(parser: Parser) -> Bold:
     delimiter = parser._expect(TokenType.ASTERISK)
 
     if len(delimiter.value) != 2:
-        raise ParserError(
-            "Bold text must start with '**'."
-        )
+        raise ParserError("Bold text must start with '**'.")
 
     bold = Bold()
 

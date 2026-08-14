@@ -26,8 +26,6 @@ def parse_list(parser: Parser) -> List:
         TokenType.HYPHEN,
         TokenType.PLUS,
     ):
-        lst.add_child(
-            parse_list_item(parser)
-        )
+        lst.add_child(parse_list_item(parser))
 
     return lst

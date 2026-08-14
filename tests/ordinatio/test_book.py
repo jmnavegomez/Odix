@@ -81,15 +81,14 @@ def test_book_structure(tmp_path: Path) -> None:
     assert book.title == "Desarrollo Real Python"
     assert len(book.chapters) == 1
 
-    assert book.chapters[0].title == (
-        "Programación Orientada a Objetos"
-    )
+    assert book.chapters[0].title == ("Programación Orientada a Objetos")
 
     assert len(book.chapters[0].principia) == 3
 
     assert book.chapters[0].principia[0].source == pill_1
     assert book.chapters[0].principia[1].source == pill_2
     assert book.chapters[0].principia[2].source == pill_3
+
 
 def test_book_stores_bibliography() -> None:
     metadata = Metadata(

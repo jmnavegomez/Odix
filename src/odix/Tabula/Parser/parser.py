@@ -100,7 +100,7 @@ class Parser:
         if not self._match(token_type):
             raise NotImplementedError("Parser exceptions not implemented yet.")
 
-        return self._advance() 
+        return self._advance()
 
     def _insert_section(self, section: Section) -> None:
         """Inserts a section into the document tree.

@@ -20,24 +20,20 @@ class Lexer:
         self._token_readers = {
             "#": Reader(ReaderType.REPEATED, TokenType.HASH),
             "*": Reader(ReaderType.REPEATED, TokenType.ASTERISK),
-            "·": Reader(ReaderType.REPEATED, TokenType.MIDDLE_DOT),   # Nuevo
+            "·": Reader(ReaderType.REPEATED, TokenType.MIDDLE_DOT),  # Nuevo
             "_": Reader(ReaderType.REPEATED, TokenType.UNDERSCORE),
             "`": Reader(ReaderType.REPEATED, TokenType.BACKTICK),
             "$": Reader(ReaderType.REPEATED, TokenType.DOLLAR),
             ":": Reader(ReaderType.REPEATED, TokenType.COLON),
-
             "-": Reader(ReaderType.REPEATED, TokenType.HYPHEN),
             "+": Reader(ReaderType.REPEATED, TokenType.PLUS),
-            
             "|": Reader(ReaderType.SINGLE, TokenType.PIPE),
-            "%": Reader(ReaderType.SINGLE, TokenType.MODULE),   # Nuevo
-            "&": Reader(ReaderType.SINGLE, TokenType.AMPERSAND),   # Nuevo
-            "^": Reader(ReaderType.SINGLE, TokenType.CARET),   # Nuevo
-            "~": Reader(ReaderType.SINGLE, TokenType.TILDE),   # Nuevo
-
+            "%": Reader(ReaderType.SINGLE, TokenType.MODULE),  # Nuevo
+            "&": Reader(ReaderType.SINGLE, TokenType.AMPERSAND),  # Nuevo
+            "^": Reader(ReaderType.SINGLE, TokenType.CARET),  # Nuevo
+            "~": Reader(ReaderType.SINGLE, TokenType.TILDE),  # Nuevo
             ">": Reader(ReaderType.SINGLE, TokenType.GREATER_THAN),
             "<": Reader(ReaderType.SINGLE, TokenType.LESS_THAN),
-
             "\n": Reader(ReaderType.SINGLE, TokenType.NEWLINE),
         }
 
@@ -87,7 +83,7 @@ class Lexer:
         Returns:
             A token representing the current symbol.
         """
-        
+
         assert self._current is not None
 
         token = Token(
@@ -142,10 +138,7 @@ class Lexer:
 
         value = ""
 
-        while (
-            self._current is not None
-            and self._current not in self._token_readers
-        ):
+        while self._current is not None and self._current not in self._token_readers:
             value += self._current
             self._advance()
 
@@ -176,9 +169,7 @@ class Lexer:
                 reader = self._token_readers[self._current]
 
                 if reader.reader_type is ReaderType.SINGLE:
-                    tokens.append(
-                        self._read_single_symbol(reader.token_type)
-                    )
+                    tokens.append(self._read_single_symbol(reader.token_type))
                 else:
                     tokens.append(
                         self._read_repeated_symbol(

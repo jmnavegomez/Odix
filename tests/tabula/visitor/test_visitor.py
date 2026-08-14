@@ -61,6 +61,7 @@ def test_visit_returns_specific_result():
 
     assert visitor.visit(node) == 42
 
+
 class TestVisitorName(Visitor):
 
     def visit_paragraph(self, node):

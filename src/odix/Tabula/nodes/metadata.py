@@ -40,10 +40,7 @@ class Metadata:
         Returns:
             Tuple containing the metadata values.
         """
-        return tuple(
-            self._data[key]
-            for key in sorted(self._data)
-        )
+        return tuple(self._data[key] for key in sorted(self._data))
 
     def __getitem__(self, key: str) -> Any:
         """Returns the value associated with a metadata key.
@@ -105,7 +102,7 @@ class Metadata:
 
     def keys(self):
         """Returns the metadata items.
-        
+
         Returns:
             Dictionary keys view.
         """
@@ -113,7 +110,7 @@ class Metadata:
 
     def values(self):
         """Returns the metadata items.
-        
+
         Returns:
             Dictionary values view.
         """

@@ -60,7 +60,6 @@ class MarkupVisitor(Visitor):
             Underline: "Underline",
             Strike: "Strike",
             InlineCode: "InlineCode",
-
             Quote: "Quote",
             List: "List",
             ListItem: "ListItem",
@@ -107,14 +106,11 @@ class MarkupVisitor(Visitor):
         if node.title is not None:
             title = self.visit_children(node.title)
 
-        return (
-            self._writer.command(
-                "Section",
-                title,
-                level=node.level,
-            )
-            + self.visit_children(node)
-        )
+        return self._writer.command(
+            "Section",
+            title,
+            level=node.level,
+        ) + self.visit_children(node)
 
     @staticmethod
     def visit_text(
@@ -123,15 +119,15 @@ class MarkupVisitor(Visitor):
         """Visits a text node."""
         result = node.text
 
-        if (not isinstance(node.parent,CodeBlock)): 
-            result = result.replace("_","\\_")
-            result = result.replace("&","\\&")
-            result = result.replace("%","\\%")
-            result = result.replace("|",r"\textbar{}")
-            result = result.replace("<","\\textless{}")
-            result = result.replace(">","\\textgreater{}")
-            result = result.replace("~","\\string~")
-            result = result.replace("^","\\string^")
+        if not isinstance(node.parent, CodeBlock):
+            result = result.replace("_", "\\_")
+            result = result.replace("&", "\\&")
+            result = result.replace("%", "\\%")
+            result = result.replace("|", r"\textbar{}")
+            result = result.replace("<", "\\textless{}")
+            result = result.replace(">", "\\textgreater{}")
+            result = result.replace("~", "\\string~")
+            result = result.replace("^", "\\string^")
 
         return result
 
@@ -142,10 +138,10 @@ class MarkupVisitor(Visitor):
         """Visits an inline math node."""
 
         return self._writer.command(
-                "MathInline",
-                node.expression,
-            )
-    
+            "MathInline",
+            node.expression,
+        )
+
     def visit_codeblock(
         self,
         node: CodeBlock,
@@ -185,13 +181,10 @@ class MarkupVisitor(Visitor):
     ) -> str:
         """Visits a bibliography reference."""
 
-        return (
-            self._writer.command(
-                "Reference",
-                node.key,
-            )
-            + self.visit_children(node)
-        )
+        return self._writer.command(
+            "Reference",
+            node.key,
+        ) + self.visit_children(node)
 
     def visit_crossreference(
         self,
@@ -221,36 +214,24 @@ class MarkupVisitor(Visitor):
     ) -> str:
         """Visits a footnote."""
 
-        return (self._writer.command(
-                    "Reference",
-                    node.key,
-                    )
-                    + self.visit_children(node)
-                )
+        return self._writer.command(
+            "Reference",
+            node.key,
+        ) + self.visit_children(node)
 
     def visit_mathblock(
         self,
         node: MathBlock,
     ) -> str:
         label = next(
-                        (
-                            child
-                            for child in node.children
-                            if isinstance(child, Label)
-                        ),
-                        None,
-                    )
-        label_markup = (
-                    self.visit(label)
-                    if label is not None
-                    else ""
-                )
-        
-        return (
-            self._writer.command_mathblock(
-                node.expression,
-                label = label_markup,
-            )
+            (child for child in node.children if isinstance(child, Label)),
+            None,
+        )
+        label_markup = self.visit(label) if label is not None else ""
+
+        return self._writer.command_mathblock(
+            node.expression,
+            label=label_markup,
         )
 
     def visit_citation(
@@ -280,65 +261,40 @@ class MarkupVisitor(Visitor):
     ) -> str:
         """Visits a table."""
 
-        rows = [
-            child
-            for child in node.children
-            if isinstance(child, Row)
-        ]
+        rows = [child for child in node.children if isinstance(child, Row)]
 
         if not rows:
             return ""
 
         caption = next(
-            (
-                child
-                for child in node.children
-                if isinstance(child, Caption)
-            ),
+            (child for child in node.children if isinstance(child, Caption)),
             None,
         )
 
         label = next(
-            (
-                child
-                for child in node.children
-                if isinstance(child, Label)
-            ),
+            (child for child in node.children if isinstance(child, Label)),
             None,
         )
-        caption_markup = (
-            self.visit(caption)
-            if caption is not None
-            else ""
-        )
+        caption_markup = self.visit(caption) if caption is not None else ""
 
-        label_markup = (
-            self.visit(label)
-            if label is not None
-            else ""
-        )
+        label_markup = self.visit(label) if label is not None else ""
         columns = len(rows[0].children)
         structure = "l" * columns
 
         content = []
 
         for row in rows:
-            cells = [
-                self.visit(cell).replace("\n", "")
-                for cell in row.children
-            ]
+            cells = [self.visit(cell).replace("\n", "") for cell in row.children]
 
             cells[0] = cells[0][3:]
 
-            content.append(
-                "".join(cells) + r" \\"
-            )
-        
+            content.append("".join(cells) + r" \\")
+
         table = self._writer.command_table(
             "\n".join(content),
             structure=structure,
-            caption = caption_markup,
-            label = label_markup,
+            caption=caption_markup,
+            label=label_markup,
         )
 
         return table

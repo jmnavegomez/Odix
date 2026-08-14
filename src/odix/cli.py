@@ -41,10 +41,7 @@ def main() -> None:
 
     parser = argparse.ArgumentParser(
         prog="odix",
-        description=(
-            "An open-source publishing system "
-            "for technical books."
-        ),
+        description=("An open-source publishing system " "for technical books."),
     )
 
     subparsers = parser.add_subparsers(

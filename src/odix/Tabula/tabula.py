@@ -46,9 +46,7 @@ class Tabula:
         self._ast = parser.parse(tokens)
 
         if not isinstance(self._ast, Document):
-            raise TypeError(
-                "The root node must be a Document."
-            )
+            raise TypeError("The root node must be a Document.")
 
     @property
     def ast(self) -> Node:
@@ -99,9 +97,7 @@ class Tabula:
         document = Deserializer().deserialize(data)
 
         if not isinstance(document, Document):
-            raise TypeError(
-                "The root node must be a Document."
-            )
+            raise TypeError("The root node must be a Document.")
 
         return cls(
             path=path,

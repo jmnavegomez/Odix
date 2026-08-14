@@ -34,15 +34,11 @@ def parse_directive(parser: Parser) -> Block:
 
     parser._expect(TokenType.COLON)
 
-    name = parser._expect(
-        TokenType.TEXT
-    ).value.strip().lower()
+    name = parser._expect(TokenType.TEXT).value.strip().lower()
 
     method = _DIRECTIVE_PARSERS.get(name)
 
     if method is None:
-        raise NotImplementedError(
-            f"Unknown directive: {name}"
-        )
+        raise NotImplementedError(f"Unknown directive: {name}")
 
     return method(parser)

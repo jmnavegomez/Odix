@@ -51,59 +51,35 @@ def parse_inline(
         return None
 
     # Bold (**text**)
-    if (
-        parser._match(TokenType.ASTERISK)
-        and len(parser._current.value) == 2
-    ):
+    if parser._match(TokenType.ASTERISK) and len(parser._current.value) == 2:
         return parse_bold(parser)
 
     # Citation (··key··)
-    if (
-        parser._match(TokenType.MIDDLE_DOT)
-        and len(parser._current.value) == 2
-    ):
+    if parser._match(TokenType.MIDDLE_DOT) and len(parser._current.value) == 2:
         return parse_citation(parser)
 
     # Italic(·text·)
-    if (
-        parser._match(TokenType.MIDDLE_DOT)
-        and len(parser._current.value) == 1
-    ):
+    if parser._match(TokenType.MIDDLE_DOT) and len(parser._current.value) == 1:
         return parse_italic(parser)
 
     # Underline(___text___)
-    if (
-        parser._match(TokenType.UNDERSCORE)
-        and len(parser._current.value) == 3
-    ):
+    if parser._match(TokenType.UNDERSCORE) and len(parser._current.value) == 3:
         return parse_underline(parser)
 
     # Strike(--text--)
-    if (
-        parser._match(TokenType.HYPHEN)
-        and len(parser._current.value) == 2
-    ):
+    if parser._match(TokenType.HYPHEN) and len(parser._current.value) == 2:
         return parse_strike(parser)
 
     # Inline code (`code`)
-    if (
-        parser._match(TokenType.BACKTICK)
-        and len(parser._current.value) == 1
-    ):
+    if parser._match(TokenType.BACKTICK) and len(parser._current.value) == 1:
         return parse_inline_code(parser)
 
     # Inline math ($...$)
-    if (
-        parser._match(TokenType.DOLLAR)
-        and len(parser._current.value) == 2
-    ):
+    if parser._match(TokenType.DOLLAR) and len(parser._current.value) == 2:
         return parse_cross_reference(parser)
-    
+
     # Inline math ($...$)
-    if (
-        parser._match(TokenType.DOLLAR)
-        and len(parser._current.value) == 1
-    ):
+    if parser._match(TokenType.DOLLAR) and len(parser._current.value) == 1:
         return parse_math_inline(parser)
 
     # Plain text
@@ -113,39 +89,28 @@ def parse_inline(
     # Inline asterisk
     if parser._match(TokenType.ASTERISK):
         return parse_asterisk(parser)
-    
+
     # Inline colon
-    if (
-        parser._match(TokenType.COLON)
-    ):
+    if parser._match(TokenType.COLON):
         return parse_colon(parser)
 
     # Inline underscore
-    if (
-        parser._match(TokenType.UNDERSCORE)
-    ):
+    if parser._match(TokenType.UNDERSCORE):
         return parse_underscore(parser)
 
     # Inline underscore
-    if (
-        parser._match(TokenType.HYPHEN)
-    ):
+    if parser._match(TokenType.HYPHEN):
         return parse_hyphen(parser)
-    
+
     # Inline plus
-    if (
-        parser._match(TokenType.PLUS)
-    ):
+    if parser._match(TokenType.PLUS):
         return parse_plus(parser)
 
     # Inline module
-    if (
-        parser._match(TokenType.MODULE)
-    ):  
+    if parser._match(TokenType.MODULE):
         value = parse_module(parser)
         return value
-    
+
     raise NotImplementedError(
-        f"Unsupported inline token "
-        f"{parser._current.type.name}."
+        f"Unsupported inline token " f"{parser._current.type.name}."
     )

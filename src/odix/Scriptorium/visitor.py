@@ -19,9 +19,7 @@ class Visitor:
             Generated output.
         """
 
-        method_name = (
-            f"visit_{node.__class__.__name__.lower()}"
-        )
+        method_name = f"visit_{node.__class__.__name__.lower()}"
 
         visitor = getattr(
             self,
@@ -59,7 +57,4 @@ class Visitor:
             Concatenated output of all children.
         """
 
-        return "".join(
-            self.visit(child)
-            for child in node.children
-        )
+        return "".join(self.visit(child) for child in node.children)

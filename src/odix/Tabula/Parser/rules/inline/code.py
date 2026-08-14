@@ -41,9 +41,7 @@ def parse_code_literal_until(
         code += parser._advance().value
 
     if parser._match(TokenType.EOF):
-        raise ParserError(
-            "Unterminated code block."
-        )
+        raise ParserError("Unterminated code block.")
 
     parser._expect(TokenType.BACKTICK)
 

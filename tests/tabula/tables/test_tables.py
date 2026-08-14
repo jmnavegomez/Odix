@@ -4,10 +4,7 @@ from odix.tabula.lexer import Lexer, TokenType
 def test_table_tokens() -> None:
     lexer = Lexer()
 
-    markdown = (
-        "| Nombre | Edad |\n"
-        "| Jose | 30 |\n"
-    )
+    markdown = "| Nombre | Edad |\n" "| Jose | 30 |\n"
 
     tokens = lexer.tokenize(markdown)
 
@@ -18,14 +15,12 @@ def test_table_tokens() -> None:
         (TokenType.TEXT, " Edad "),
         (TokenType.PIPE, "|"),
         (TokenType.NEWLINE, "\n"),
-
         (TokenType.PIPE, "|"),
         (TokenType.TEXT, " Jose "),
         (TokenType.PIPE, "|"),
         (TokenType.TEXT, " 30 "),
         (TokenType.PIPE, "|"),
         (TokenType.NEWLINE, "\n"),
-
         (TokenType.EOF, ""),
     ]
 

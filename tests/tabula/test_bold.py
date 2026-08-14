@@ -39,6 +39,7 @@ def test_parse_bold() -> None:
 
     assert text.text == "Hello"
 
+
 def test_parse_bold_inside_paragraph() -> None:
     lexer = Lexer()
     parser = Parser()

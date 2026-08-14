@@ -24,5 +24,5 @@ def parse_row(parser: Parser) -> Row:
 
     if parser._match(TokenType.NEWLINE):
         parser._advance()
-        
+
     return row

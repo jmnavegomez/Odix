@@ -13,7 +13,11 @@ class Section(Block):
     and hierarchical level.
     """
 
-    def __init__(self, level: int, title: Paragraph | None = None,) -> None:
+    def __init__(
+        self,
+        level: int,
+        title: Paragraph | None = None,
+    ) -> None:
         """Initializes a section node.
 
         Args:

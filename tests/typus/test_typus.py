@@ -21,22 +21,22 @@ def test_typus():
         line_spacing=1.0,
         twoside=True,
         chapters_start_on_odd_page=True,
-        table_of_contents= True,
+        table_of_contents=True,
         page_numbering=True,
         page_numbering_position="top",
-        language= "spanish",
+        language="spanish",
         packages=[
-                "inputenc",
-                "fontenc",
-                "graphicx",
-                "amsmath",
-                "xcolor",
-                "setspace",
-                "titlesec",
-                "tcolorbox",
-                "colortbl",
-            ],
-        )
+            "inputenc",
+            "fontenc",
+            "graphicx",
+            "amsmath",
+            "xcolor",
+            "setspace",
+            "titlesec",
+            "tcolorbox",
+            "colortbl",
+        ],
+    )
 
     typus = Typus(document=document)
 
@@ -49,12 +49,7 @@ from odix.typus.loader import Loader
 def test_load_default_typus():
     root = Path(__file__).parents[3]
 
-    volume = (
-        root
-        / "Odix"
-        / "examples"
-        / "Volumen_01"
-    )
+    volume = root / "Odix" / "examples" / "Volumen_01"
 
     typus_file = volume / "typus.yml"
 
@@ -91,19 +86,15 @@ def test_load_default_typus():
         "colortbl",
     ]
 
+
 from pathlib import Path
 
 
 def test_typus_from_file():
     root = Path(__file__).parents[3]
 
-    volume = (
-        root
-        / "Odix"
-        / "examples"
-        / "Volumen_01"
-    )
-    
+    volume = root / "Odix" / "examples" / "Volumen_01"
+
     typus_file = volume / "typus.yml"
 
     typus = Typus.from_file(typus_file)

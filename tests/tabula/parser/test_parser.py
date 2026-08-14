@@ -146,6 +146,7 @@ def test_expect_wrong_token() -> None:
     with pytest.raises(NotImplementedError):
         parser._expect(TokenType.HASH)
 
+
 from odix.tabula.nodes.text import Text
 from odix.tabula.parser.rules.inline.text import parse_text
 
@@ -153,9 +154,13 @@ from odix.tabula.parser.rules.inline.text import parse_text
 def test_parse_text():
     parser = Parser()
 
-    parser._reset([
-        Token(TokenType.TEXT, "Hello", 1, 1),
-        Token(TokenType.EOF, "", 1, 6),], None)
+    parser._reset(
+        [
+            Token(TokenType.TEXT, "Hello", 1, 1),
+            Token(TokenType.EOF, "", 1, 6),
+        ],
+        None,
+    )
 
     node = parse_text(parser)
 

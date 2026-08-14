@@ -34,8 +34,6 @@ def parse_inline_code(parser: Parser) -> InlineCode:
 
     inline_code = InlineCode()
 
-    inline_code.add_child(
-        Text(code)
-    )
+    inline_code.add_child(Text(code))
 
     return inline_code

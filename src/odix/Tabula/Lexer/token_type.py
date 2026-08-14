@@ -11,7 +11,7 @@ class TokenType(Enum):
 
     HASH = auto()
     ASTERISK = auto()
-    MIDDLE_DOT = auto()      # ·Nuevo·
+    MIDDLE_DOT = auto()  # ·Nuevo·
     UNDERSCORE = auto()
     BACKTICK = auto()
     DOLLAR = auto()
@@ -23,10 +23,10 @@ class TokenType(Enum):
     HYPHEN = auto()
     PLUS = auto()
     PIPE = auto()
-    MODULE = auto()      # %Nuevo%
-    AMPERSAND = auto()   # &Nuevo&
-    CARET = auto()   # ^Nuevo^
-    TILDE = auto()   # ~Nuevo~
+    MODULE = auto()  # %Nuevo%
+    AMPERSAND = auto()  # &Nuevo&
+    CARET = auto()  # ^Nuevo^
+    TILDE = auto()  # ~Nuevo~
 
     LBRACKET = auto()
     RBRACKET = auto()

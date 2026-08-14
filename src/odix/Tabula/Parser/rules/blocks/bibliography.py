@@ -32,11 +32,10 @@ def parse_bibliography(parser: Parser) -> Bibliography:
 
     bibliography = Bibliography()
 
-    while not (
-        parser._match(TokenType.COLON)
-        and len(parser._current.value) == 2
-    ):
-        bibliography.add_child(Reference(parse_literal_until(parser,TokenType.NEWLINE,1)))
+    while not (parser._match(TokenType.COLON) and len(parser._current.value) == 2):
+        bibliography.add_child(
+            Reference(parse_literal_until(parser, TokenType.NEWLINE, 1))
+        )
 
     parser._expect(TokenType.COLON)
 

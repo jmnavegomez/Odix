@@ -13,14 +13,9 @@ def test_multiple_inline_styles() -> None:
     lexer = Lexer()
     parser = Parser()
 
-    markdown = (
-        "Hello **bold** ·italic· "
-        "___underline___ --strike--."
-    )
+    markdown = "Hello **bold** ·italic· " "___underline___ --strike--."
 
-    document = parser.parse(
-        lexer.tokenize(markdown)
-    )
+    document = parser.parse(lexer.tokenize(markdown))
 
     paragraph = document.children[0]
 
@@ -44,6 +39,7 @@ def test_multiple_inline_styles() -> None:
     assert isinstance(paragraph.children[7], Strike)
     assert isinstance(paragraph.children[8], Text)
     assert paragraph.children[8].text == "."
+
 
 if __name__ == "__main__":
     test_multiple_inline_styles()

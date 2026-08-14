@@ -33,10 +33,7 @@ def _is_table_metadata(parser: Parser) -> bool:
 
     token = parser._peek()
 
-    return (
-        token.type is TokenType.COLON
-        and len(token.value) == 2
-    )
+    return token.type is TokenType.COLON and len(token.value) == 2
 
 
 def _parse_table_metadata(
@@ -68,18 +65,15 @@ def _parse_table_metadata(
 
     elif name == "label":
         value = parse_literal_until(
-            parser= parser,
-            closing_type= TokenType.PIPE,
+            parser=parser,
+            closing_type=TokenType.PIPE,
             closing_length=1,
         ).strip()
-        
+
         table.add_child(Label.from_content(value))
 
     else:
-        raise NotImplementedError(
-            f"Unknown table metadata: {name}"
-        )
+        raise NotImplementedError(f"Unknown table metadata: {name}")
 
     if parser._match(TokenType.NEWLINE):
         parser._advance()
-

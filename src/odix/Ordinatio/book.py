@@ -47,6 +47,7 @@ class Metadata:
         """Returns the book edition."""
         return self._edition
 
+
 class Bibliography:
     """Bibliography configuration of an Odix publication."""
 

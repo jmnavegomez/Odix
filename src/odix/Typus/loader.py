@@ -16,69 +16,38 @@ class Loader:
         """Loads a Typus configuration from a YAML file."""
         path = Path(path)
 
-        data = yaml.safe_load(
-            path.read_text(encoding="utf-8")
-        )
+        data = yaml.safe_load(path.read_text(encoding="utf-8"))
 
         if data is None:
-            raise ValueError(
-                "The YAML file is empty."
-            )
+            raise ValueError("The YAML file is empty.")
 
         if "document" not in data:
-            raise ValueError(
-                "The Typus configuration is missing "
-                "'document'."
-            )
+            raise ValueError("The Typus configuration is missing " "'document'.")
 
         document_data = data["document"]
         if "class" not in document_data:
-            raise ValueError(
-                "The document class is missing "
-                "'document class'."
-            )
-        
+            raise ValueError("The document class is missing " "'document class'.")
+
         if "page" not in document_data:
-            raise ValueError(
-                "The document configuration is missing "
-                "'page'."
-            )
+            raise ValueError("The document configuration is missing " "'page'.")
 
         if "margins" not in document_data:
-            raise ValueError(
-                "The document configuration is missing "
-                "'margins'."
-            )
+            raise ValueError("The document configuration is missing " "'margins'.")
 
         if "typography" not in document_data:
-            raise ValueError(
-                "The document configuration is missing "
-                "'typography'."
-            )
+            raise ValueError("The document configuration is missing " "'typography'.")
 
         if "layout" not in document_data:
-            raise ValueError(
-                "The document configuration is missing "
-                "'layout'."
-            )
+            raise ValueError("The document configuration is missing " "'layout'.")
 
         if "numbering" not in document_data:
-            raise ValueError(
-                "The document configuration is missing "
-                "'numbering'."
-            )
+            raise ValueError("The document configuration is missing " "'numbering'.")
 
         if "language" not in document_data:
-            raise ValueError(
-                "The document language is missing "
-                "'document language'."
-            )
+            raise ValueError("The document language is missing " "'document language'.")
 
         if "packages" not in document_data:
-            raise ValueError(
-                "The document configuration is missing "
-                "'packages'."
-            )
+            raise ValueError("The document configuration is missing " "'packages'.")
 
         document_class = document_data["class"]
         page = document_data["page"]
@@ -96,7 +65,7 @@ class Loader:
         )
 
         document = DocumentStyle(
-            document_class= document_class,
+            document_class=document_class,
             page_size=page["size"],
             orientation=page["orientation"],
             margins=margins,
@@ -104,17 +73,11 @@ class Loader:
             line_spacing=typography["line_spacing"],
             font=typography["font"],
             twoside=layout["twoside"],
-            chapters_start_on_odd_page=(
-                layout["chapters_start_on_odd_page"]
-            ),
-            table_of_contents=(
-                layout["table_of_contents"]
-            ),
+            chapters_start_on_odd_page=(layout["chapters_start_on_odd_page"]),
+            table_of_contents=(layout["table_of_contents"]),
             page_numbering=numbering["pages"],
-            page_numbering_position=(
-                numbering["position"]
-            ),
-            language = language,
+            page_numbering_position=(numbering["position"]),
+            language=language,
             packages=list(document_data["packages"]),
         )
 

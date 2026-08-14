@@ -18,9 +18,7 @@ def parse_underline(parser: Parser) -> Underline:
     token = parser._expect(TokenType.UNDERSCORE)
 
     if len(token.value) != 3:
-        raise ParserError(
-            "Underline must start with '___'."
-        )
+        raise ParserError("Underline must start with '___'.")
 
     underline = Underline()
 

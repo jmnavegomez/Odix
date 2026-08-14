@@ -23,7 +23,7 @@ class Serializer(Visitor):
         Returns:
             Dictionary representing the node.
         """
-        
+
         return {
             "type": node.__class__.__name__,
             "content": node.content(),
@@ -35,63 +35,43 @@ class Serializer(Visitor):
             "type": "Section",
             "content": {
                 "level": node.level,
-                "title": (
-                    self.visit(node.title)
-                    if node.title is not None
-                    else None
-                ),
+                "title": (self.visit(node.title) if node.title is not None else None),
             },
-            "children": [
-                self.visit(child)
-                for child in node.children
-            ],
+            "children": [self.visit(child) for child in node.children],
         }
 
     def visit_image(self, node: Image):
-            return {
-                "type": "Image",
-                "content": {
-                    "source": node.source,
-                },
-                "children": [
-                    self.visit(child)
-                    for child in node.children
-                ],
-            }
+        return {
+            "type": "Image",
+            "content": {
+                "source": node.source,
+            },
+            "children": [self.visit(child) for child in node.children],
+        }
 
     def visit_mathblock(self, node: MathBlock):
-                return {
-                    "type": "MathBlock",
-                    "content": {
-                        "expression": node.expression,
-                    },
-                    "children": [
-                        self.visit(child)
-                        for child in node.children
-                    ],
-                }
+        return {
+            "type": "MathBlock",
+            "content": {
+                "expression": node.expression,
+            },
+            "children": [self.visit(child) for child in node.children],
+        }
 
     def visit_mathinline(self, node: MathInline):
-                    return {
-                        "type": "MathInline",
-                        "content": {
-                            "expression": node.expression,
-                        },
-                        "children": [
-                            self.visit(child)
-                            for child in node.children
-                        ],
-                    }
-
+        return {
+            "type": "MathInline",
+            "content": {
+                "expression": node.expression,
+            },
+            "children": [self.visit(child) for child in node.children],
+        }
 
     def visit_reference(self, node: Reference):
-                    return {
-                        "type": "Reference",
-                        "content": {
-                            "key": node.key,
-                        },
-                        "children": [
-                            self.visit(child)
-                            for child in node.children
-                        ],
-                    }
+        return {
+            "type": "Reference",
+            "content": {
+                "key": node.key,
+            },
+            "children": [self.visit(child) for child in node.children],
+        }

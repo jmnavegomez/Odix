@@ -34,24 +34,15 @@ def parse_block(parser: Parser) -> Block:
         return parse_section(parser)
 
     # Directives
-    if (
-        parser._match(TokenType.COLON)
-        and parser._current.value == "::"
-    ):
+    if parser._match(TokenType.COLON) and parser._current.value == "::":
         return parse_directive(parser)
 
     # Math blocks
-    if (
-        parser._match(TokenType.DOLLAR)
-        and len(parser._current.value) >= 2
-    ):
+    if parser._match(TokenType.DOLLAR) and len(parser._current.value) >= 2:
         raise NotImplementedError
-    
+
     # Code blocks
-    if (
-        parser._match(TokenType.BACKTICK)
-        and len(parser._current.value) >= 3
-    ):
+    if parser._match(TokenType.BACKTICK) and len(parser._current.value) >= 3:
         return parse_code_block(parser)
 
     # Quotes
@@ -72,10 +63,7 @@ def parse_block(parser: Parser) -> Block:
         return parse_list(parser)
 
     # Horizontal rules
-    if (
-        parser._match(TokenType.HYPHEN)
-        and len(parser._current.value) >= 3
-    ):
+    if parser._match(TokenType.HYPHEN) and len(parser._current.value) >= 3:
         raise NotImplementedError
 
     # Tables

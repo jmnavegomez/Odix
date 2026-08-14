@@ -17,31 +17,21 @@ class Loader:
         """Loads a book from a YAML file."""
         path = Path(path)
 
-        data = yaml.safe_load(
-            path.read_text(encoding="utf-8")
-        )
+        data = yaml.safe_load(path.read_text(encoding="utf-8"))
 
         if data is None:
-            raise ValueError(
-                "The YAML file is empty."
-            )
+            raise ValueError("The YAML file is empty.")
 
         if "metadata" not in data:
-            raise ValueError(
-                "The book configuration is missing 'metadata'."
-            )
+            raise ValueError("The book configuration is missing 'metadata'.")
 
         metadata_data = data["metadata"]
 
         if "title" not in metadata_data:
-            raise ValueError(
-                "The metadata configuration is missing 'title'."
-            )
+            raise ValueError("The metadata configuration is missing 'title'.")
 
         if "chapters" not in data:
-            raise ValueError(
-                "The book configuration is missing 'chapters'."
-            )
+            raise ValueError("The book configuration is missing 'chapters'.")
 
         metadata = Metadata(
             title=metadata_data["title"],
@@ -57,9 +47,7 @@ class Loader:
             bibliography_data = data["bibliography"]
 
             if "file" not in bibliography_data:
-                raise ValueError(
-                    "The bibliography configuration is missing 'file'."
-                )
+                raise ValueError("The bibliography configuration is missing 'file'.")
 
             bibliography = Bibliography(
                 file=bibliography_data["file"],
@@ -70,15 +58,10 @@ class Loader:
 
         for chapter_data in data["chapters"]:
             if "title" not in chapter_data:
-                raise ValueError(
-                    "The chapter configuration is missing 'title'."
-                )
+                raise ValueError("The chapter configuration is missing 'title'.")
 
             if "principia" not in chapter_data:
-                raise ValueError(
-                    "The chapter configuration is missing "
-                    "'principia'."
-                )
+                raise ValueError("The chapter configuration is missing " "'principia'.")
 
             principia = []
 
@@ -88,9 +71,7 @@ class Loader:
                 if not source.exists():
                     raise FileNotFoundError(source)
 
-                principia.append(
-                    Principium(source)
-                )
+                principia.append(Principium(source))
 
             chapters.append(
                 Chapter(

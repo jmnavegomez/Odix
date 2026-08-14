@@ -52,6 +52,7 @@ def parse_caption(parser: Parser) -> Caption:
 
     return caption
 
+
 def parse_inline_caption(parser: Parser) -> Caption:
     """Parses a figure caption.
 
@@ -68,7 +69,7 @@ def parse_inline_caption(parser: Parser) -> Caption:
 
     if parser._match(TokenType.NEWLINE):
         parser._advance()
-        
+
     paragraph = parse_inline_content(
         parser,
         TokenType.NEWLINE,

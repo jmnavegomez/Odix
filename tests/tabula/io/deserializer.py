@@ -47,6 +47,7 @@ Texto
     paragraph = section.children[0]
     assert isinstance(paragraph, Paragraph)
 
+
 def test_deserialize_unknown_node_type() -> None:
     """Unknown node types raise a ValueError."""
 
@@ -61,6 +62,4 @@ def test_deserialize_unknown_node_type() -> None:
     with pytest.raises(ValueError) as exc_info:
         deserializer.deserialize(data)
 
-    assert str(exc_info.value) == (
-        "Unknown node type 'UnknownNode'."
-    )
+    assert str(exc_info.value) == ("Unknown node type 'UnknownNode'.")

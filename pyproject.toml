@@ -61,3 +61,6 @@ Issues = "https://github.com/jmnavegomez/Odix/issues"
 
 [project.scripts]
 odix = "odix.cli:main"
+
+[tool.ruff.lint]
+ignore = ["FLY002"]

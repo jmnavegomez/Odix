@@ -20,7 +20,7 @@ def parse_list_item(parser: Parser) -> ListItem:
         Parsed list item.
     """
 
-    parser._advance()      # Consume '-' or '+'
+    parser._advance()  # Consume '-' or '+'
 
     item = ListItem()
 

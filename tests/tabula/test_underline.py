@@ -10,9 +10,7 @@ def test_parse_underline() -> None:
     lexer = Lexer()
     parser = Parser()
 
-    document = parser.parse(
-        lexer.tokenize("___underline___")
-    )
+    document = parser.parse(lexer.tokenize("___underline___"))
 
     paragraph = document.children[0]
 

@@ -12,13 +12,9 @@ def test_parse_multiple_emphasis() -> None:
     lexer = Lexer()
     parser = Parser()
 
-    markdown = (
-        "**bold** /n ·italic· /n ___underline___ /n --strike--"
-    )
+    markdown = "**bold** /n ·italic· /n ___underline___ /n --strike--"
 
-    document = parser.parse(
-        lexer.tokenize(markdown)
-    )
+    document = parser.parse(lexer.tokenize(markdown))
 
     paragraph = document.children[0]
 

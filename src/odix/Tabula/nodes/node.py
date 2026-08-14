@@ -51,22 +51,13 @@ class Node(ABC):
             return value.content_hash
 
         if isinstance(value, tuple):
-            return tuple(
-                self._normalize_for_hash(item)
-                for item in value
-            )
+            return tuple(self._normalize_for_hash(item) for item in value)
 
         if isinstance(value, list):
-            return [
-                self._normalize_for_hash(item)
-                for item in value
-            ]
+            return [self._normalize_for_hash(item) for item in value]
 
         if isinstance(value, dict):
-            return {
-                key: self._normalize_for_hash(item)
-                for key, item in value.items()
-            }
+            return {key: self._normalize_for_hash(item) for key, item in value.items()}
 
         return value
 
@@ -74,9 +65,7 @@ class Node(ABC):
     def content_hash(self) -> str:
         """Returns the hash of the node semantic content."""
 
-        normalized = self._normalize_for_hash(
-            self.content()
-        )
+        normalized = self._normalize_for_hash(self.content())
 
         serialized = repr(normalized).encode("utf-8")
 
@@ -170,7 +159,6 @@ class Node(ABC):
             return NotImplemented
 
         return hash(self) == hash(other)
-
 
     def __hash__(self) -> int:
         """Returns the hash of the subtree."""

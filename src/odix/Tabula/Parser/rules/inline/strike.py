@@ -18,9 +18,7 @@ def parse_strike(parser: Parser) -> Strike:
     token = parser._expect(TokenType.HYPHEN)
 
     if len(token.value) != 2:
-        raise ParserError(
-            "Strikethrough must start with '--'."
-        )
+        raise ParserError("Strikethrough must start with '--'.")
 
     strike = Strike()
 

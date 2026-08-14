@@ -37,16 +37,11 @@ def test_heading_document() -> None:
     assert len(section.children) == 0
 
 
-
-
 def test_parse_heading_and_paragraph() -> None:
     lexer = Lexer()
     parser = Parser()
 
-    markdown = (
-        "# Frase latina\n"
-        "Lorem ipsum dolor sit amet."
-    )
+    markdown = "# Frase latina\n" "Lorem ipsum dolor sit amet."
 
     tokens = lexer.tokenize(markdown)
     document = parser.parse(tokens)

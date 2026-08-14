@@ -15,9 +15,7 @@ def test_inline_code() -> None:
 
     markdown = "`print(x)`"
 
-    document = parser.parse(
-        lexer.tokenize(markdown)
-    )
+    document = parser.parse(lexer.tokenize(markdown))
 
     paragraph = document.children[0]
 
@@ -35,16 +33,13 @@ def test_inline_code() -> None:
     assert text.text == "print(x)"
 
 
-
 def test_inline_code_inside_paragraph() -> None:
     lexer = Lexer()
     parser = Parser()
 
     markdown = "Call `print(x)` now."
 
-    document = parser.parse(
-        lexer.tokenize(markdown)
-    )
+    document = parser.parse(lexer.tokenize(markdown))
 
     paragraph = document.children[0]
 
@@ -67,16 +62,13 @@ def test_inline_code_inside_paragraph() -> None:
     assert paragraph.children[2].text == " now."
 
 
-
 def test_inline_code_is_literal() -> None:
     lexer = Lexer()
     parser = Parser()
 
     markdown = "`**bold**`"
 
-    document = parser.parse(
-        lexer.tokenize(markdown)
-    )
+    document = parser.parse(lexer.tokenize(markdown))
 
     paragraph = document.children[0]
 
@@ -97,10 +89,7 @@ def test_unterminated_inline_code() -> None:
     parser = Parser()
 
     with pytest.raises(ParserError):
-        parser.parse(
-            lexer.tokenize("`print(x)")
-        )
-
+        parser.parse(lexer.tokenize("`print(x)"))
 
 
 def test_inline_code_with_markdown_symbols() -> None:
@@ -109,9 +98,7 @@ def test_inline_code_with_markdown_symbols() -> None:
 
     markdown = "`2 * radio`"
 
-    document = parser.parse(
-        lexer.tokenize(markdown)
-    )
+    document = parser.parse(lexer.tokenize(markdown))
 
     paragraph = document.children[0]
 

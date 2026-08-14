@@ -28,7 +28,6 @@ SYNTAX: dict[str, dict[Language, Syntax]] = {
             "**",
         ),
     },
-
     "Italic": {
         Language.LATEX: Syntax(
             r"\textit{",
@@ -43,7 +42,6 @@ SYNTAX: dict[str, dict[Language, Syntax]] = {
             "*",
         ),
     },
-
     "InlineCode": {
         Language.LATEX: Syntax(
             r"{\scriptsize \texttt{",
@@ -58,7 +56,6 @@ SYNTAX: dict[str, dict[Language, Syntax]] = {
             "`",
         ),
     },
-
     "Paragraph": {
         Language.LATEX: Syntax(
             "",
@@ -73,7 +70,6 @@ SYNTAX: dict[str, dict[Language, Syntax]] = {
             "\n",
         ),
     },
-
     "Section1": {
         Language.LATEX: Syntax(
             r"\section{",
@@ -88,7 +84,6 @@ SYNTAX: dict[str, dict[Language, Syntax]] = {
             "\n",
         ),
     },
-
     "Section2": {
         Language.LATEX: Syntax(
             r"\subsection{",
@@ -103,7 +98,6 @@ SYNTAX: dict[str, dict[Language, Syntax]] = {
             "\n",
         ),
     },
-
     "Section3": {
         Language.LATEX: Syntax(
             r"\subsubsection{",
@@ -118,7 +112,6 @@ SYNTAX: dict[str, dict[Language, Syntax]] = {
             "\n",
         ),
     },
-
     "Section4": {
         Language.LATEX: Syntax(
             r"\paragraph{",
@@ -133,7 +126,6 @@ SYNTAX: dict[str, dict[Language, Syntax]] = {
             "\n",
         ),
     },
-
     "Section5": {
         Language.LATEX: Syntax(
             r"\subparagraph{",
@@ -160,7 +152,7 @@ SYNTAX: dict[str, dict[Language, Syntax]] = {
         Language.MARKDOWN: Syntax(
             "###### ",
             "\n",
-        ),  
+        ),
     },
     "MathInline": {
         Language.LATEX: Syntax(
@@ -190,7 +182,6 @@ SYNTAX: dict[str, dict[Language, Syntax]] = {
             "</u>",
         ),
     },
-
     "Strike": {
         Language.LATEX: Syntax(
             r"\sout{",
@@ -205,13 +196,10 @@ SYNTAX: dict[str, dict[Language, Syntax]] = {
             "~~",
         ),
     },
-
     "MathBlock": {
         Language.LATEX: Syntax(
-            "\n" r"\begin{equation}""\n",
-            "\n"
-            "{label}" 
-            r"\end{equation}""\n",
+            "\n" r"\begin{equation}" "\n",
+            "\n" "{label}" r"\end{equation}" "\n",
         ),
         Language.HTML: Syntax(
             r"\[",
@@ -222,10 +210,16 @@ SYNTAX: dict[str, dict[Language, Syntax]] = {
             "\n$$",
         ),
     },
-
     "CodeBlock": {
         Language.LATEX: Syntax(
-            "\n" "\n" r"\begin{tcolorbox}" "\n" r"\scriptsize" "\n" r" \begin{verbatim}" "\n",
+            "\n"
+            "\n"
+            r"\begin{tcolorbox}"
+            "\n"
+            r"\scriptsize"
+            "\n"
+            r" \begin{verbatim}"
+            "\n",
             r"\end{verbatim}" "\n" r"\end{tcolorbox}" "\n",
         ),
         Language.HTML: Syntax(
@@ -237,7 +231,6 @@ SYNTAX: dict[str, dict[Language, Syntax]] = {
             "\n```",
         ),
     },
-
     "Quote": {
         Language.LATEX: Syntax(
             "\n" r"\begin{quote}" "\n",
@@ -252,7 +245,6 @@ SYNTAX: dict[str, dict[Language, Syntax]] = {
             "",
         ),
     },
-
     "List": {
         Language.LATEX: Syntax(
             "\n" r"\begin{itemize}" "\n",
@@ -262,9 +254,8 @@ SYNTAX: dict[str, dict[Language, Syntax]] = {
             "<ul>",
             "</ul>",
         ),
-        Language.MARKDOWN: Syntax("",""),
+        Language.MARKDOWN: Syntax("", ""),
     },
-
     "ListItem": {
         Language.LATEX: Syntax(
             r"\item ",
@@ -279,14 +270,10 @@ SYNTAX: dict[str, dict[Language, Syntax]] = {
             "",
         ),
     },
-
     "Table": {
         Language.LATEX: Syntax(
             "\n" r"\begin{tcolorbox}" "\n" r"\begin{tabular}{{{structure}}}" "\n",
-            "\n" r"\end{tabular}""\n"
-            "{caption}"
-            "{label}" 
-            r"\end{tcolorbox}" "\n",
+            "\n" r"\end{tabular}" "\n" "{caption}" "{label}" r"\end{tcolorbox}" "\n",
         ),
         Language.HTML: Syntax(
             "<table>",
@@ -297,7 +284,6 @@ SYNTAX: dict[str, dict[Language, Syntax]] = {
             "",
         ),
     },
-
     "Label": {
         Language.LATEX: Syntax(
             r"\label{",
@@ -306,7 +292,6 @@ SYNTAX: dict[str, dict[Language, Syntax]] = {
         Language.HTML: Syntax("", ""),
         Language.MARKDOWN: Syntax("", ""),
     },
-
     "CrossReference": {
         Language.LATEX: Syntax(
             r"\ref{",
@@ -318,7 +303,6 @@ SYNTAX: dict[str, dict[Language, Syntax]] = {
             "$$",
         ),
     },
-
     "Row": {
         Language.LATEX: Syntax(
             "",
@@ -328,9 +312,8 @@ SYNTAX: dict[str, dict[Language, Syntax]] = {
             "<tr>",
             "</tr>",
         ),
-        Language.MARKDOWN: Syntax("","|"),
+        Language.MARKDOWN: Syntax("", "|"),
     },
-
     "Cell": {
         Language.LATEX: Syntax(
             " & ",
@@ -345,34 +328,32 @@ SYNTAX: dict[str, dict[Language, Syntax]] = {
             "",
         ),
     },
-
     "Figure": {
         Language.LATEX: Syntax(
             "\n" "\\begin{figure}\n",
-            "\n" "\\end{figure}" "\n" ,
+            "\n" "\\end{figure}" "\n",
         ),
         Language.HTML: Syntax(
             "<figure>",
             "</figure>",
         ),
-        Language.MARKDOWN: Syntax("",""),
+        Language.MARKDOWN: Syntax("", ""),
     },
-
     "Caption": {
         Language.LATEX: Syntax(
-            "\n"r"\caption{",
+            "\n" r"\caption{",
             r"}" "\n",
         ),
         Language.HTML: Syntax(
             "<figcaption>",
             "</figcaption>",
         ),
-        Language.MARKDOWN: Syntax("",""),
+        Language.MARKDOWN: Syntax("", ""),
     },
-
     "Image": {
         Language.LATEX: Syntax(
-             "\n" r"\includegraphics["
+            "\n"
+            r"\includegraphics["
             r"width=\textwidth,"
             r"height=\textheight,"
             r"keepaspectratio"
@@ -380,30 +361,28 @@ SYNTAX: dict[str, dict[Language, Syntax]] = {
             r"}" "\n",
         ),
         Language.HTML: Syntax(
-            "<img src=\"",
-            "\">",
+            '<img src="',
+            '">',
         ),
         Language.MARKDOWN: Syntax(
             "![](",
             ")",
         ),
     },
-
     "Link": {
         Language.LATEX: Syntax(
             "\n" r"\url{",
             "}",
         ),
         Language.HTML: Syntax(
-            "<a href=\"",
-            "\"></a>",
+            '<a href="',
+            '"></a>',
         ),
         Language.MARKDOWN: Syntax(
             "<",
             ">",
         ),
     },
-
     "Citation": {
         Language.LATEX: Syntax(
             r"\cite{",
@@ -418,31 +397,28 @@ SYNTAX: dict[str, dict[Language, Syntax]] = {
             "]",
         ),
     },
-
     "Reference": {
         Language.LATEX: Syntax(
             "\n" r"\bibitem{",
             "}",
         ),
         Language.HTML: Syntax(
-            "<li id=\"",
-            "\">",
+            '<li id="',
+            '">',
         ),
-        Language.MARKDOWN: Syntax("",""),
+        Language.MARKDOWN: Syntax("", ""),
     },
-
     "Bibliography": {
         Language.LATEX: Syntax(
             "\n" "\\begin{thebibliography}{}",
             "\n" "\\end{thebibliography}" "\n",
         ),
         Language.HTML: Syntax(
-            "<section class=\"bibliography\">",
+            '<section class="bibliography">',
             "</section>",
         ),
-        Language.MARKDOWN: Syntax("",""),
+        Language.MARKDOWN: Syntax("", ""),
     },
-
     "Footnote": {
         Language.LATEX: Syntax(
             r"\footnote{",
@@ -457,13 +433,12 @@ SYNTAX: dict[str, dict[Language, Syntax]] = {
             "]",
         ),
     },
-
     "PageBreak": {
         Language.LATEX: Syntax(
             "\n" r"\newpage" "\n",
         ),
         Language.HTML: Syntax(
-            "<hr class=\"page-break\">",
+            '<hr class="page-break">',
         ),
         Language.MARKDOWN: Syntax(
             "\\newpage",

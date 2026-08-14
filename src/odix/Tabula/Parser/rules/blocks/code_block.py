@@ -18,9 +18,7 @@ def parse_code_block(parser: Parser) -> CodeBlock:
     opening = parser._expect(TokenType.BACKTICK)
 
     if len(opening.value) < 3:
-        raise ParserError(
-            "A fenced code block requires at least three backticks."
-        )
+        raise ParserError("A fenced code block requires at least three backticks.")
 
     language = None
 
@@ -36,8 +34,6 @@ def parse_code_block(parser: Parser) -> CodeBlock:
 
     block = CodeBlock(language)
 
-    block.add_child(
-        Text(code)
-    )
+    block.add_child(Text(code))
 
     return block

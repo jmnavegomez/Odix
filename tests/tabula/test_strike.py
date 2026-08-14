@@ -10,9 +10,7 @@ def test_parse_strike() -> None:
     lexer = Lexer()
     parser = Parser()
 
-    document = parser.parse(
-        lexer.tokenize("--strike--")
-    )
+    document = parser.parse(lexer.tokenize("--strike--"))
 
     paragraph = document.children[0]
 

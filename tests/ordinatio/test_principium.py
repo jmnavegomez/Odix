@@ -28,6 +28,7 @@ def test_principium_returns_tabula_document(tmp_path: Path):
 
     assert isinstance(principium.document, Document)
 
+
 def test_principium_document_matches_tabula(tmp_path: Path):
     source = tmp_path / "pill.md"
     source.write_text(

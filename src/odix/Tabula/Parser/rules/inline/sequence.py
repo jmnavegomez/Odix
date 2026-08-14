@@ -69,25 +69,21 @@ def parse_literal_until(
 
     while not parser._match(TokenType.EOF):
 
-        if (
-            parser._match(closing_type)
-            and len(parser._current.value) == closing_length
-        ):
+        if parser._match(closing_type) and len(parser._current.value) == closing_length:
             break
-        
+
         value += parser._advance().value
 
     if parser._match(TokenType.EOF):
-        raise ParserError(
-            "Unterminated literal block."
-        )
-    
+        raise ParserError("Unterminated literal block.")
+
     if len(parser._current.value) != closing_length:
         raise ParserError("Invalid closing delimiter.")
 
     parser._advance()
 
     return value
+
 
 def parse_literal_content(
     parser: Parser,

@@ -23,8 +23,6 @@ class Principium:
         tabula = Tabula(self._source)
 
         if not isinstance(tabula.ast, Document):
-            raise TypeError(
-                "The Principium root must be a Document."
-            )
+            raise TypeError("The Principium root must be a Document.")
 
         return tabula.ast

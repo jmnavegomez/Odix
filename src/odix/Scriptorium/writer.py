@@ -54,11 +54,7 @@ class Writer:
             command = resolver(**kwargs)
 
         try:
-            syntax = SYNTAX[
-                command
-            ][
-                self._language
-            ]
+            syntax = SYNTAX[command][self._language]
 
         except KeyError as error:
             raise ValueError(
@@ -66,11 +62,7 @@ class Writer:
                 f"for language '{self._language.value}'."
             ) from error
 
-        return (
-            syntax.opening
-            + content
-            + syntax.closing
-        )
+        return syntax.opening + content + syntax.closing
 
     @staticmethod
     def _resolve_section(
@@ -90,9 +82,7 @@ class Writer:
         """
 
         if not 1 <= level <= 6:
-            raise ValueError(
-                f"Invalid section level ({level})."
-            )
+            raise ValueError(f"Invalid section level ({level}).")
 
         return f"Section{level}"
 
@@ -111,16 +101,10 @@ class Writer:
         """
 
         try:
-            syntax = SYNTAX[
-                "Table"
-            ][
-                self._language
-            ]
+            syntax = SYNTAX["Table"][self._language]
 
         except KeyError as error:
-            raise ValueError(
-                f"for language '{self._language.value}'."
-            ) from error
+            raise ValueError(f"for language '{self._language.value}'.") from error
 
         opening = syntax.opening
 
@@ -145,11 +129,7 @@ class Writer:
             label,
         )
 
-        return (
-            opening
-            + content
-            + closing
-        )
+        return opening + content + closing
 
     def command_mathblock(
         self,
@@ -166,16 +146,10 @@ class Writer:
         """
 
         try:
-            syntax = SYNTAX[
-                "MathBlock"
-            ][
-                self._language
-            ]
+            syntax = SYNTAX["MathBlock"][self._language]
 
         except KeyError as error:
-            raise ValueError(
-                f"for language '{self._language.value}'."
-            ) from error
+            raise ValueError(f"for language '{self._language.value}'.") from error
 
         opening = syntax.opening
 
@@ -188,41 +162,27 @@ class Writer:
             label,
         )
 
-        return (
-            opening
-            + content
-            + closing
-        )
+        return opening + content + closing
 
     def command_figure(
-            self,
-            content: str = "",
-        ) -> str:
-            """Resolves a figure command.
-    
-            Args:
-                content: content of the figure.
-    
-            Returns:
-                Concrete figure command.
-            """
-    
-            try:
-                syntax = SYNTAX[
-                    "Figure"
-                ][
-                    self._language
-                ]
-    
-            except KeyError as error:
-                raise ValueError(
-                    f"for language '{self._language.value}'."
-                ) from error
-    
-            opening = syntax.opening
-    
-            return (
-                opening
-                + content
-                + syntax.closing
-            )
+        self,
+        content: str = "",
+    ) -> str:
+        """Resolves a figure command.
+
+        Args:
+            content: content of the figure.
+
+        Returns:
+            Concrete figure command.
+        """
+
+        try:
+            syntax = SYNTAX["Figure"][self._language]
+
+        except KeyError as error:
+            raise ValueError(f"for language '{self._language.value}'.") from error
+
+        opening = syntax.opening
+
+        return opening + content + syntax.closing

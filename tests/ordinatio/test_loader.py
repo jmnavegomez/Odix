@@ -62,6 +62,7 @@ chapters:
     assert book.chapters[1].title == "Capítulo 2"
     assert len(book.chapters[1].principia) == 1
 
+
 def test_load_book_resolves_principium_paths(
     tmp_path: Path,
 ) -> None:
@@ -84,10 +85,8 @@ chapters:
 
     book = Loader.load(book_file)
 
-    assert (
-        book.chapters[0].principia[0].source
-        == principium
-    )
+    assert book.chapters[0].principia[0].source == principium
+
 
 import pytest
 
@@ -98,6 +97,7 @@ def test_load_empty_yaml(tmp_path: Path):
 
     with pytest.raises(ValueError, match="empty"):
         Loader.load(book_file)
+
 
 def test_load_missing_metadata_title(tmp_path: Path) -> None:
     book_file = tmp_path / "book.yml"
@@ -114,6 +114,7 @@ chapters: []
     with pytest.raises(ValueError, match="title"):
         Loader.load(book_file)
 
+
 def test_load_missing_metadata(tmp_path: Path) -> None:
     book_file = tmp_path / "book.yml"
     book_file.write_text(
@@ -125,6 +126,7 @@ chapters: []
 
     with pytest.raises(ValueError, match="metadata"):
         Loader.load(book_file)
+
 
 def test_load_missing_chapters(tmp_path: Path) -> None:
     book_file = tmp_path / "book.yml"
@@ -138,6 +140,7 @@ metadata:
 
     with pytest.raises(ValueError, match="chapters"):
         Loader.load(book_file)
+
 
 def test_load_missing_principia(tmp_path: Path) -> None:
     book_file = tmp_path / "book.yml"
@@ -154,6 +157,7 @@ chapters:
 
     with pytest.raises(ValueError, match="principia"):
         Loader.load(book_file)
+
 
 def test_load_missing_principium(tmp_path: Path) -> None:
     book_file = tmp_path / "book.yml"
@@ -176,6 +180,7 @@ chapters:
     ):
         Loader.load(book_file)
 
+
 def test_load_book_without_bibliography(
     tmp_path: Path,
 ) -> None:
@@ -193,6 +198,7 @@ chapters: []
     book = Loader.load(book_file)
 
     assert book.bibliography is None
+
 
 def test_load_bibliography(tmp_path: Path) -> None:
     book_file = tmp_path / "book.yml"
@@ -215,6 +221,7 @@ chapters: []
     assert book.bibliography is not None
     assert book.bibliography.file == "references.bib"
     assert book.bibliography.style == "plain"
+
 
 def test_load_bibliography_default_style(
     tmp_path: Path,
@@ -239,27 +246,21 @@ chapters: []
     assert book.bibliography.file == "references.bib"
     assert book.bibliography.style == "plain"
 
+
 from pathlib import Path
 
 # from odix.ordinatio.loader import Loader
 
+
 def test_load_example_book() -> None:
     root = Path(__file__).parents[3]
-    book_file = (
-        root
-        / "Odix"
-        / "examples"
-        / "Volumen_01"
-        / "book.yml"
-    )
+    book_file = root / "Odix" / "examples" / "Volumen_01" / "book.yml"
 
     book = Loader.load(book_file)
 
     assert book.title == "Desarrollo Real de Python"
 
-    assert book.metadata.subtitle == (
-        "Programación orientada a objetos"
-    )
+    assert book.metadata.subtitle == ("Programación orientada a objetos")
     assert book.metadata.author == "José Manuel Naveiro"
     assert book.metadata.date == "2026"
     assert book.metadata.edition == "1ª edición"

@@ -65,9 +65,7 @@ class Impressio:
         ]
 
         for principium in chapter.principia:
-            parts.append(
-                self._render_principium(principium)
-            )
+            parts.append(self._render_principium(principium))
 
         return "\n".join(parts)
 
@@ -102,9 +100,7 @@ class Impressio:
         )
 
         if metadata.author:
-            parts.append(
-                rf"{{\Large {metadata.author}\par}}"
-            )
+            parts.append(rf"{{\Large {metadata.author}\par}}")
 
         if metadata.edition:
             parts.extend(
@@ -153,10 +149,7 @@ class Impressio:
     def _render_body(self) -> str:
         """Renders the complete body of the book."""
 
-        chapters = [
-            self._render_chapter(chapter)
-            for chapter in self._book.chapters
-        ]
+        chapters = [self._render_chapter(chapter) for chapter in self._book.chapters]
 
         return "\n\n".join(chapters)
 
@@ -179,13 +172,11 @@ class Impressio:
             options.append("twoside")
 
         document_class = (
-            rf"\documentclass[{','.join(options)}]"
-            rf"{{{document.document_class}}}"
+            rf"\documentclass[{','.join(options)}]" rf"{{{document.document_class}}}"
         )
 
         packages = "\n".join(
-            rf"\usepackage{{{package}}}"
-            for package in document.packages
+            rf"\usepackage{{{package}}}" for package in document.packages
         )
 
         font_package = self._FONTS[document.font]
