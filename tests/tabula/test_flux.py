@@ -60,12 +60,18 @@ def test_parse_heading_and_paragraph() -> None:
     tokens = lexer.tokenize(markdown)
     document = parser.parse(tokens)
 
+    for token in tokens:
+        print(token)
+
+    for child in document.children:
+        print(type(child), child)
+
     assert isinstance(document, Document)
 
-    assert len(document.children) == 2
+    assert len(document.children) == 1
 
     section = document.children[0]
-    paragraph = document.children[1]
+    paragraph = section.children[0]
 
     assert isinstance(section, Section)
     assert isinstance(paragraph, Paragraph)

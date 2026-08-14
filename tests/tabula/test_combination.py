@@ -15,8 +15,8 @@ def test_multiple_inline_styles() -> None:
     parser = Parser()
 
     markdown = (
-        "Hello **bold** *italic* "
-        "__underline__ --strike--."
+        "Hello **bold** ·italic· "
+        "___underline___ --strike--."
     )
 
     document = parser.parse(

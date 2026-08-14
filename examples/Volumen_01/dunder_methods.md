@@ -1,0 +1,4 @@
+# Métodos especiales
+
+::pagebreak
+::

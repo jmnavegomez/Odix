@@ -14,7 +14,7 @@ def test_parse_multiple_emphasis() -> None:
     parser = Parser()
 
     markdown = (
-        "**bold** /n *italic* /n __underline__ /n --strike--"
+        "**bold** /n ·italic· /n ___underline___ /n --strike--"
     )
 
     document = parser.parse(

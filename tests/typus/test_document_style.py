@@ -5,42 +5,43 @@ from odix.typus.margins import Margins
 def test_document_style():
     margins = Margins(
         top="2cm",
-        bottom="2cm",
-        left="2cm",
-        right="2cm",
+        bottom="1.5cm",
+        left="1.5cm",
+        right="1.5cm",
     )
 
     style = DocumentStyle(
-        document_class="book",
-        page_size="a5paper",
-        orientation="portrait",
-        margins=margins,
-        font_size="12pt",
-        line_spacing=1.0,
-        twoside=False,
-        chapters_start_on_odd_page=False,
-        page_numbering=True,
-        page_numbering_position="top",
-        language = "spanish",
-        packages=[
-            "inputenc",
-            "fontenc",
-            "babel",
-            "graphicx",
-            "amsmath",
-        ],
-    )
+            document_class="book",
+            page_size="a5paper",
+            orientation="portrait",
+            margins=margins,
+            font="helvet",
+            font_size="11pt",
+            line_spacing=1.0,
+            twoside=True,
+            chapters_start_on_odd_page=True,
+            table_of_contents= True,
+            page_numbering=True,
+            page_numbering_position="top",
+            language= "spanish",
+            packages=[
+                    "inputenc",
+                    "fontenc",
+                    "graphicx",
+                    "amsmath",
+                ],
+            )
 
     assert style.page_size == "a5paper"
     assert style.orientation == "portrait"
 
     assert style.margins is margins
 
-    assert style.font_size == "12pt"
+    assert style.font_size == "11pt"
     assert style.line_spacing == 1.0
 
-    assert style.twoside is False
-    assert style.chapters_start_on_odd_page is False
+    assert style.twoside is True
+    assert style.chapters_start_on_odd_page is True
 
     assert style.page_numbering is True
     assert style.page_numbering_position == "top"
@@ -48,7 +49,6 @@ def test_document_style():
     assert style.packages == [
         "inputenc",
         "fontenc",
-        "babel",
         "graphicx",
         "amsmath",
     ]
@@ -64,19 +64,21 @@ def test_document_style_copies_packages():
     packages = ["graphicx"]
 
     style = DocumentStyle(
-        document_class= "book",
-        page_size="a5paper",
-        orientation="portrait",
-        margins=margins,
-        font_size="12pt",
-        line_spacing=1.0,
-        twoside=False,
-        chapters_start_on_odd_page=False,
-        page_numbering=True,
-        page_numbering_position="top",
-        language = "english",
-        packages=packages,
-    )
+            document_class="book",
+            page_size="a5paper",
+            orientation="portrait",
+            margins=margins,
+            font="helvet",
+            font_size="11pt",
+            line_spacing=1.0,
+            twoside=True,
+            chapters_start_on_odd_page=True,
+            table_of_contents= True,
+            page_numbering=True,
+            page_numbering_position="top",
+            language= "spanish",
+            packages= packages,
+            )
 
     packages.append("amsmath")
 

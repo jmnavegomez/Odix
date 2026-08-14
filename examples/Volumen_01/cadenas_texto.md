@@ -1,0 +1,4 @@
+# Cadenas de texto
+
+::pagebreak
+::

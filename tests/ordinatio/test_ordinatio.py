@@ -14,4 +14,4 @@ def test_ordinatio_loads_book():
 
     book = Ordinatio.from_file(book_file)
 
-    assert book.title == "Volumen 01"
+    assert book.title == "Desarrollo Real de Python"

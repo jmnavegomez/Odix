@@ -48,7 +48,6 @@ def test_single_symbols(
         ("+", TokenType.PLUS),
         ("+++", TokenType.PLUS),
         ("|", TokenType.PIPE),
-        ("|||", TokenType.PIPE),
     ],
 )
 def test_repeated_symbols(

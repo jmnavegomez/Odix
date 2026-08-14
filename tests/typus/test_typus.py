@@ -6,9 +6,9 @@ from odix.typus.margins import Margins
 def test_typus():
     margins = Margins(
         top="2cm",
-        bottom="2cm",
-        left="2cm",
-        right="2cm",
+        bottom="1.5cm",
+        left="1.5cm",
+        right="1.5cm",
     )
 
     document = DocumentStyle(
@@ -16,15 +16,27 @@ def test_typus():
         page_size="a5paper",
         orientation="portrait",
         margins=margins,
-        font_size="12pt",
+        font="helvet",
+        font_size="11pt",
         line_spacing=1.0,
-        twoside=False,
-        chapters_start_on_odd_page=False,
+        twoside=True,
+        chapters_start_on_odd_page=True,
+        table_of_contents= True,
         page_numbering=True,
         page_numbering_position="top",
         language= "spanish",
-        packages=["graphicx"],
-    )
+        packages=[
+                "inputenc",
+                "fontenc",
+                "graphicx",
+                "amsmath",
+                "xcolor",
+                "setspace",
+                "titlesec",
+                "tcolorbox",
+                "colortbl",
+            ],
+        )
 
     typus = Typus(document=document)
 
@@ -39,14 +51,14 @@ from odix.typus.loader import Loader
 def test_load_default_typus():
     root = Path(__file__).parents[3]
 
-    typus_file = (
+    volume = (
         root
         / "Odix"
-        / "src"
-        / "odix"
-        / "typus"
-        / "typus_default.yml"
+        / "examples"
+        / "Volumen_01"
     )
+
+    typus_file = volume / "typus.yml"
 
     document = Loader.load(typus_file)
 
@@ -56,15 +68,15 @@ def test_load_default_typus():
     assert document.orientation == "portrait"
 
     assert document.margins.top == "2cm"
-    assert document.margins.bottom == "2cm"
-    assert document.margins.left == "2cm"
-    assert document.margins.right == "2cm"
+    assert document.margins.bottom == "1.5cm"
+    assert document.margins.left == "1.5cm"
+    assert document.margins.right == "1.5cm"
 
-    assert document.font_size == "12pt"
+    assert document.font_size == "11pt"
     assert document.line_spacing == 1.0
 
-    assert document.twoside is False
-    assert document.chapters_start_on_odd_page is False
+    assert document.twoside is True
+    assert document.chapters_start_on_odd_page is True
 
     assert document.page_numbering is True
     assert document.page_numbering_position == "top"
@@ -74,6 +86,11 @@ def test_load_default_typus():
         "fontenc",
         "graphicx",
         "amsmath",
+        "xcolor",
+        "setspace",
+        "titlesec",
+        "tcolorbox",
+        "colortbl",
     ]
 
 from pathlib import Path
@@ -84,14 +101,14 @@ from odix.typus import Typus
 def test_typus_from_file():
     root = Path(__file__).parents[3]
 
-    typus_file = (
+    volume = (
         root
         / "Odix"
-        / "src"
-        / "odix"
-        / "typus"
-        / "typus_default.yml"
+        / "examples"
+        / "Volumen_01"
     )
+    
+    typus_file = volume / "typus.yml"
 
     typus = Typus.from_file(typus_file)
 

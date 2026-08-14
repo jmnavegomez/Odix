@@ -19,14 +19,16 @@ def test_impressio():
         volume / "book.yml"
     )
 
-    typus = Typus.from_file(
+    volume = (
         root
         / "Odix"
-        / "src"
-        / "odix"
-        / "typus"
-        / "typus_default.yml"
+        / "examples"
+        / "Volumen_01"
     )
+    
+    typus_file = volume / "typus.yml"
+
+    typus = Typus.from_file(typus_file)
 
     impressio = Impressio(
         book=book,
@@ -36,11 +38,10 @@ def test_impressio():
     assert impressio.book is book
     assert impressio.typus is typus
 
-    assert book.title == "Volumen 01"
-    assert len(book.chapters) == 3
-    assert book.title == "Volumen 01"
+    assert book.title == "Desarrollo Real de Python"
+    assert len(book.chapters) == 7
 
     assert sum(
         len(chapter.principia)
         for chapter in book.chapters
-    ) == 7
+    ) == 26

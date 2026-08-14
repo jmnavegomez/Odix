@@ -4,10 +4,10 @@ from odix.ordinatio import Book
 from odix.ordinatio.loader import Loader
 
 
-def test_load_book(tmp_path: Path):
-    principium_01 = tmp_path / "principium_01.md"
-    principium_02 = tmp_path / "principium_02.md"
-    principium_03 = tmp_path / "principium_03.md"
+def test_load_book(tmp_path: Path) -> None:
+    principium_01 = tmp_path / "intro_python.md"
+    principium_02 = tmp_path / "variables.md"
+    principium_03 = tmp_path / "tipos_datos.md"
 
     principium_01.touch()
     principium_02.touch()
@@ -16,17 +16,26 @@ def test_load_book(tmp_path: Path):
     book_file = tmp_path / "book.yml"
     book_file.write_text(
         """
-title: Volumen 01
+metadata:
+  title: Volumen 01
+  subtitle: Introducción a Python
+  author: José Manuel
+  date: "2026"
+  edition: 1ª edición
+
+bibliography:
+  file: references.bib
+  style: plain
 
 chapters:
   - title: Capítulo 1
     principia:
-      - principium_01.md
-      - principium_02.md
+      - intro_python.md
+      - variables.md
 
   - title: Capítulo 2
     principia:
-      - principium_03.md
+      - tipos_datos.md
 """,
         encoding="utf-8",
     )
@@ -34,7 +43,16 @@ chapters:
     book = Loader.load(book_file)
 
     assert isinstance(book, Book)
-    assert book.title == "Volumen 01"
+
+    assert book.metadata.title == "Volumen 01"
+    assert book.metadata.subtitle == "Introducción a Python"
+    assert book.metadata.author == "José Manuel"
+    assert book.metadata.date == "2026"
+    assert book.metadata.edition == "1ª edición"
+
+    assert book.bibliography is not None
+    assert book.bibliography.file == "references.bib"
+    assert book.bibliography.style == "plain"
 
     assert len(book.chapters) == 2
 
@@ -44,14 +62,17 @@ chapters:
     assert book.chapters[1].title == "Capítulo 2"
     assert len(book.chapters[1].principia) == 1
 
-def test_load_book_resolves_principium_paths(tmp_path: Path):
+def test_load_book_resolves_principium_paths(
+    tmp_path: Path,
+) -> None:
     principium = tmp_path / "principium_01.md"
     principium.touch()
 
     book_file = tmp_path / "book.yml"
     book_file.write_text(
         """
-title: Volumen 01
+metadata:
+  title: Volumen 01
 
 chapters:
   - title: Capítulo 1
@@ -77,10 +98,13 @@ def test_load_empty_yaml(tmp_path: Path):
     with pytest.raises(ValueError, match="empty"):
         Loader.load(book_file)
 
-def test_load_missing_title(tmp_path: Path):
+def test_load_missing_metadata_title(tmp_path: Path) -> None:
     book_file = tmp_path / "book.yml"
     book_file.write_text(
         """
+metadata:
+  author: José Manuel
+
 chapters: []
 """,
         encoding="utf-8",
@@ -89,11 +113,24 @@ chapters: []
     with pytest.raises(ValueError, match="title"):
         Loader.load(book_file)
 
-def test_load_missing_chapters(tmp_path: Path):
+def test_load_missing_metadata(tmp_path: Path) -> None:
     book_file = tmp_path / "book.yml"
     book_file.write_text(
         """
-title: Volumen 01
+chapters: []
+""",
+        encoding="utf-8",
+    )
+
+    with pytest.raises(ValueError, match="metadata"):
+        Loader.load(book_file)
+
+def test_load_missing_chapters(tmp_path: Path) -> None:
+    book_file = tmp_path / "book.yml"
+    book_file.write_text(
+        """
+metadata:
+  title: Volumen 01
 """,
         encoding="utf-8",
     )
@@ -101,11 +138,12 @@ title: Volumen 01
     with pytest.raises(ValueError, match="chapters"):
         Loader.load(book_file)
 
-def test_load_missing_principia(tmp_path: Path):
+def test_load_missing_principia(tmp_path: Path) -> None:
     book_file = tmp_path / "book.yml"
     book_file.write_text(
         """
-title: Volumen 01
+metadata:
+  title: Volumen 01
 
 chapters:
   - title: Capítulo 1
@@ -116,11 +154,12 @@ chapters:
     with pytest.raises(ValueError, match="principia"):
         Loader.load(book_file)
 
-def test_load_missing_principium(tmp_path: Path):
+def test_load_missing_principium(tmp_path: Path) -> None:
     book_file = tmp_path / "book.yml"
     book_file.write_text(
         """
-title: Volumen 01
+metadata:
+  title: Volumen 01
 
 chapters:
   - title: Capítulo 1
@@ -130,28 +169,111 @@ chapters:
         encoding="utf-8",
     )
 
-    with pytest.raises(FileNotFoundError, match="principium_01.md"):
+    with pytest.raises(
+        FileNotFoundError,
+        match="principium_01.md",
+    ):
         Loader.load(book_file)
+
+def test_load_book_without_bibliography(
+    tmp_path: Path,
+) -> None:
+    book_file = tmp_path / "book.yml"
+    book_file.write_text(
+        """
+metadata:
+  title: Volumen 01
+
+chapters: []
+""",
+        encoding="utf-8",
+    )
+
+    book = Loader.load(book_file)
+
+    assert book.bibliography is None
+
+def test_load_bibliography(tmp_path: Path) -> None:
+    book_file = tmp_path / "book.yml"
+    book_file.write_text(
+        """
+metadata:
+  title: Volumen 01
+
+bibliography:
+  file: references.bib
+  style: plain
+
+chapters: []
+""",
+        encoding="utf-8",
+    )
+
+    book = Loader.load(book_file)
+
+    assert book.bibliography is not None
+    assert book.bibliography.file == "references.bib"
+    assert book.bibliography.style == "plain"
+
+def test_load_bibliography_default_style(
+    tmp_path: Path,
+) -> None:
+    book_file = tmp_path / "book.yml"
+    book_file.write_text(
+        """
+metadata:
+  title: Volumen 01
+
+bibliography:
+  file: references.bib
+
+chapters: []
+""",
+        encoding="utf-8",
+    )
+
+    book = Loader.load(book_file)
+
+    assert book.bibliography is not None
+    assert book.bibliography.file == "references.bib"
+    assert book.bibliography.style == "plain"
 
 from pathlib import Path
 
 # from odix.ordinatio.loader import Loader
 
-
-def test_load_example_book():
+def test_load_example_book() -> None:
     root = Path(__file__).parents[3]
-    book_file = root / "Odix" / "examples" / "Volumen_01" / "book.yml"
+    book_file = (
+        root
+        / "Odix"
+        / "examples"
+        / "Volumen_01"
+        / "book.yml"
+    )
 
     book = Loader.load(book_file)
 
-    assert book.title == "Volumen 01"
-    assert len(book.chapters) == 3
+    assert book.title == "Desarrollo Real de Python"
 
-    assert book.chapters[0].title == "Capítulo 1"
-    assert len(book.chapters[0].principia) == 2
+    assert book.metadata.subtitle == (
+        "Programación orientada a objetos"
+    )
+    assert book.metadata.author == "José Manuel Naveiro"
+    assert book.metadata.date == "2026"
+    assert book.metadata.edition == "1ª edición"
 
-    assert book.chapters[1].title == "Capítulo 2"
-    assert len(book.chapters[1].principia) == 2
+    assert book.bibliography is not None
+    assert book.bibliography.file == "references.bib"
+    assert book.bibliography.style == "plain"
 
-    assert book.chapters[2].title == "Capítulo 3"
-    assert len(book.chapters[2].principia) == 3
+    assert len(book.chapters) == 7
+
+    assert book.chapters[0].title == "Fundamentos de Python"
+    assert len(book.chapters[0].principia) == 3
+
+    assert book.chapters[1].title == "Tipos de datos"
+    assert len(book.chapters[1].principia) == 7
+
+    assert book.chapters[2].title == "Operadores y conversiones"
+    assert len(book.chapters[2].principia) == 4
