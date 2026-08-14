@@ -2,15 +2,11 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
-from ...exceptions import ParserError
-
 if TYPE_CHECKING:
     from ...parser import Parser
 
 from ....lexer.token_type import TokenType
-
 from ....nodes.italic import Italic
-
 from .emphasis import parse_inline_emphasis
 
 

@@ -1,8 +1,9 @@
 from __future__ import annotations
 
+from typing import Any, Self
+
 from .inline import Inline
 
-from typing import Any, Self
 
 class MathInline(Inline):
     """Represents an inline mathematical expression."""

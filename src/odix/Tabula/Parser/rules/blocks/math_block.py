@@ -6,10 +6,8 @@ if TYPE_CHECKING:
     from ...parser import Parser
 
 from ....lexer.token_type import TokenType
-
-from ....nodes.math_block import MathBlock
 from ....nodes.label import Label
-
+from ....nodes.math_block import MathBlock
 from ..inline.sequence import parse_literal_until
 
 

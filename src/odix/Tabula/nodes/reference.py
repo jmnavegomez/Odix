@@ -1,8 +1,9 @@
 from __future__ import annotations
 
+from typing import Any, Self
+
 from .block import Block
 
-from typing import Any, Self
 
 class Reference(Block):
     """Represents a bibliography entry."""

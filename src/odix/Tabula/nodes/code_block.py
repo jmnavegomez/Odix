@@ -33,7 +33,7 @@ class CodeBlock(Block):
     def from_content(
         cls,
         content: tuple[str | None],
-    ) -> "CodeBlock":
+    ) -> CodeBlock:
         """Creates a code block from serialized content.
 
         Args:

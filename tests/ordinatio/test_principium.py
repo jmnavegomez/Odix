@@ -1,7 +1,7 @@
 from pathlib import Path
 
-from odix.ordinatio import Principium
 from odix import Tabula
+from odix.ordinatio import Principium
 from odix.tabula.nodes import Document
 
 

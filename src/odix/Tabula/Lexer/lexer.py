@@ -1,7 +1,7 @@
 from __future__ import annotations
 
-from .reader_type import ReaderType
 from .reader import Reader
+from .reader_type import ReaderType
 from .token import Token
 from .token_type import TokenType
 

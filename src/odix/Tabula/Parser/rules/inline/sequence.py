@@ -6,9 +6,7 @@ if TYPE_CHECKING:
     from ...parser import Parser
 
 from ....lexer.token_type import TokenType
-
 from ....nodes.paragraph import Paragraph
-
 from ...exceptions import ParserError
 
 

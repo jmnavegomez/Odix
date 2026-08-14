@@ -42,9 +42,7 @@ def test_typus():
 
     assert typus.document is document
 
-    from pathlib import Path
 
-from odix.typus.document_style import DocumentStyle
 from odix.typus.loader import Loader
 
 
@@ -94,8 +92,6 @@ def test_load_default_typus():
     ]
 
 from pathlib import Path
-
-from odix.typus import Typus
 
 
 def test_typus_from_file():

@@ -1,16 +1,16 @@
-import pytest
 
 from odix.tabula.lexer import Lexer
-from odix.tabula.parser import Parser
-
 from odix.tabula.nodes import (
+    Bibliography,
+    Caption,
+    Figure,
+    Image,
     MathBlock,
     PageBreak,
-    Image,
-    Caption,
     Reference,
-    Bibliography,
-    Figure)
+)
+from odix.tabula.parser import Parser
+
 
 def parse(markdown: str):
     lexer = Lexer()

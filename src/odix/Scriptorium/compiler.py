@@ -1,10 +1,9 @@
 from __future__ import annotations
 
 from ..tabula.nodes import Node
-
 from .language import Language
-from .writer import Writer
 from .visitors.markup import MarkupVisitor
+from .writer import Writer
 
 
 class Compiler:

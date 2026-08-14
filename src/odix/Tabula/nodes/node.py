@@ -1,8 +1,9 @@
 from __future__ import annotations
 
 from abc import ABC, abstractmethod
+from collections.abc import Iterator
 from hashlib import sha256
-from typing import Any, Iterator, Self
+from typing import Any, Self
 
 
 class Node(ABC):

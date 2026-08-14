@@ -6,14 +6,11 @@ if TYPE_CHECKING:
     from ...parser import Parser
 
 from ....lexer.token_type import TokenType
-
 from ....nodes.figure import Figure
 from ....nodes.image import Image
 from ....nodes.label import Label
-
-from ..inline.sequence import parse_literal_until
 from ..blocks.caption import parse_inline_caption
-
+from ..inline.sequence import parse_literal_until
 
 
 def parse_figure(parser: Parser) -> Figure:

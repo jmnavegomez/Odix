@@ -6,13 +6,10 @@ if TYPE_CHECKING:
     from ...parser import Parser
 
 from ....lexer.token_type import TokenType
-
 from ....nodes.code_block import CodeBlock
 from ....nodes.text import Text
-
-from ..inline.code import parse_code_literal_until
-
 from ...exceptions import ParserError
+from ..inline.code import parse_code_literal_until
 
 
 def parse_code_block(parser: Parser) -> CodeBlock:

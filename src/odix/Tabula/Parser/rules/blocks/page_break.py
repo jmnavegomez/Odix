@@ -6,7 +6,6 @@ if TYPE_CHECKING:
     from ...parser import Parser
 
 from ....lexer.token_type import TokenType
-
 from ....nodes.page_break import PageBreak
 
 

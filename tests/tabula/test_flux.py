@@ -1,12 +1,11 @@
 from odix.tabula.lexer import Lexer
-from odix.tabula.parser import Parser
-
 from odix.tabula.nodes import (
     Document,
     Paragraph,
     Section,
     Text,
 )
+from odix.tabula.parser import Parser
 
 
 def test_heading_document() -> None:
@@ -37,15 +36,7 @@ def test_heading_document() -> None:
 
     assert len(section.children) == 0
 
-from odix.tabula.lexer import Lexer
-from odix.tabula.parser import Parser
 
-from odix.tabula.nodes import (
-    Document,
-    Paragraph,
-    Section,
-    Text,
-)
 
 
 def test_parse_heading_and_paragraph() -> None:

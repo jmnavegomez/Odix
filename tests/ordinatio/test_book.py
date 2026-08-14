@@ -1,10 +1,10 @@
 from pathlib import Path
 
 from odix.ordinatio import (
-    Book,
-    Metadata,
     Bibliography,
+    Book,
     Chapter,
+    Metadata,
     Principium,
 )
 

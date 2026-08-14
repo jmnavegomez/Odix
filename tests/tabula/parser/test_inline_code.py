@@ -1,13 +1,12 @@
 import pytest
 
 from odix.tabula.lexer import Lexer
-from odix.tabula.parser import Parser
-
 from odix.tabula.nodes import (
-    Paragraph,
     InlineCode,
+    Paragraph,
     Text,
 )
+from odix.tabula.parser import Parser
 
 
 def test_inline_code() -> None:
@@ -35,11 +34,6 @@ def test_inline_code() -> None:
     assert isinstance(text, Text)
     assert text.text == "print(x)"
 
-from odix.tabula.nodes import (
-    Paragraph,
-    Text,
-    InlineCode,
-)
 
 
 def test_inline_code_inside_paragraph() -> None:
@@ -72,10 +66,6 @@ def test_inline_code_inside_paragraph() -> None:
     assert isinstance(paragraph.children[2], Text)
     assert paragraph.children[2].text == " now."
 
-from odix.tabula.nodes import (
-    InlineCode,
-    Text,
-)
 
 
 def test_inline_code_is_literal() -> None:
@@ -98,7 +88,6 @@ def test_inline_code_is_literal() -> None:
     assert isinstance(code.children[0], Text)
     assert code.children[0].text == "**bold**"
 
-import pytest
 
 from odix.tabula.parser.exceptions import ParserError
 
@@ -112,10 +101,6 @@ def test_unterminated_inline_code() -> None:
             lexer.tokenize("`print(x)")
         )
 
-from odix.tabula.nodes import (
-    InlineCode,
-    Text,
-)
 
 
 def test_inline_code_with_markdown_symbols() -> None:

@@ -1,6 +1,4 @@
-from odix.tabula.lexer import Lexer
-from odix.tabula.lexer import Token
-from odix.tabula.lexer import TokenType
+from odix.tabula.lexer import Lexer, Token, TokenType
 
 
 def test_empty_document() -> None:

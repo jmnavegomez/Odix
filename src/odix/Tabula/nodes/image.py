@@ -1,8 +1,8 @@
 from __future__ import annotations
 
-from .block import Block
-
 from typing import Any, Self
+
+from .block import Block
 
 
 class Image(Block):

@@ -1,14 +1,13 @@
+from odix.tabula.lexer import Lexer
 from odix.tabula.nodes import (
-    Paragraph,
     Bold,
     Italic,
-    Underline,
     Strike,
     Text,
+    Underline,
 )
-
-from odix.tabula.lexer import Lexer
 from odix.tabula.parser import Parser
+
 
 def test_multiple_inline_styles() -> None:
     lexer = Lexer()

@@ -1,14 +1,14 @@
 import pytest
 
-from odix.tabula.lexer.lexer import Lexer
-from odix.tabula.parser.parser import Parser
-from odix.tabula.io.serializer import Serializer
 from odix.tabula.io.deserializer import Deserializer
+from odix.tabula.io.serializer import Serializer
+from odix.tabula.lexer.lexer import Lexer
 from odix.tabula.nodes import (
     Document,
-    Section,
     Paragraph,
+    Section,
 )
+from odix.tabula.parser.parser import Parser
 
 
 def test_round_trip() -> None:

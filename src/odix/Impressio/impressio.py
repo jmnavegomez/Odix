@@ -3,8 +3,8 @@ from __future__ import annotations
 from pathlib import Path
 
 from odix.ordinatio import Book, Chapter, Principium
-from ..scriptorium import Compiler
-from ..scriptorium import Language
+
+from ..scriptorium import Compiler, Language
 from ..tabula import Tabula
 from ..typus import Typus
 

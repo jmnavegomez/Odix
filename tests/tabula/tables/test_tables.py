@@ -1,5 +1,4 @@
-from odix.tabula.lexer import Lexer
-from odix.tabula.lexer import TokenType
+from odix.tabula.lexer import Lexer, TokenType
 
 
 def test_table_tokens() -> None:

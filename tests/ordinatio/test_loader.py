@@ -91,6 +91,7 @@ chapters:
 
 import pytest
 
+
 def test_load_empty_yaml(tmp_path: Path):
     book_file = tmp_path / "book.yml"
     book_file.write_text("", encoding="utf-8")

@@ -1,13 +1,13 @@
 from __future__ import annotations
 
-from ..nodes.document import Document
-from ..nodes.metadata import Metadata
 from ..lexer.token import Token
 from ..lexer.token_type import TokenType
-
+from ..nodes.document import Document
+from ..nodes.metadata import Metadata
 from ..nodes.node import Node
 from ..nodes.section import Section
 from .rules.dispatchers.blocks import parse_block
+
 
 class Parser:
     """Syntactic analyzer for Tabula documents."""

@@ -6,9 +6,7 @@ if TYPE_CHECKING:
     from ...parser import Parser
 
 from ....lexer.token_type import TokenType
-
 from ....nodes.reference import Reference
-
 from ..inline.sequence import parse_literal_until
 
 

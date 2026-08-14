@@ -8,9 +8,7 @@ if TYPE_CHECKING:
     from ...parser import Parser
 
 from ....lexer.token_type import TokenType
-
 from ....nodes.underline import Underline
-
 from .emphasis import parse_inline_emphasis
 
 

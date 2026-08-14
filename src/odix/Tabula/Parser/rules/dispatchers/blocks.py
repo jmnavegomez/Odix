@@ -5,17 +5,15 @@ from typing import TYPE_CHECKING
 if TYPE_CHECKING:
     from ...parser import Parser
 
-from ....nodes.block import Block
-
 from ....lexer.token_type import TokenType
-
-from ..blocks.headings import parse_section
-from ..blocks.paragraphs import parse_paragraph
-from ..blocks.quotes import parse_quote
-from ..blocks.lists import parse_list
-from ..blocks.tables import parse_table
+from ....nodes.block import Block
 from ..blocks.code_block import parse_code_block
 from ..blocks.directive import parse_directive
+from ..blocks.headings import parse_section
+from ..blocks.lists import parse_list
+from ..blocks.paragraphs import parse_paragraph
+from ..blocks.quotes import parse_quote
+from ..blocks.tables import parse_table
 
 
 def parse_block(parser: Parser) -> Block:

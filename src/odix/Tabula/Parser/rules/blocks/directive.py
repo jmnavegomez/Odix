@@ -1,22 +1,21 @@
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Callable
+from collections.abc import Callable
+from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
     from ...parser import Parser
 
-from ....nodes.block import Block
 from ....lexer.token_type import TokenType
-
+from ....nodes.block import Block
+from .bibliography import parse_bibliography
+from .caption import parse_caption
+from .figure import parse_figure
+from .footnote import parse_footnote
+from .image import parse_image
 from .math_block import parse_math_block
 from .page_break import parse_page_break
-from .image import parse_image
-from .caption import parse_caption
-from .footnote import parse_footnote
 from .reference import parse_reference
-from .bibliography import parse_bibliography
-from .figure import parse_figure
-
 
 _DIRECTIVE_PARSERS: dict[str, Callable[[Parser], Block]] = {
     "math": parse_math_block,

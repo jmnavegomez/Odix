@@ -1,12 +1,11 @@
 from odix.tabula.lexer import Lexer
-from odix.tabula.parser import Parser
-
 from odix.tabula.nodes import (
+    Bold,
     Document,
     Paragraph,
-    Bold,
     Text,
 )
+from odix.tabula.parser import Parser
 
 
 def test_parse_bold() -> None:

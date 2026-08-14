@@ -1,8 +1,9 @@
 from __future__ import annotations
 
+from typing import Any, Self
+
 from .inline import Inline
 
-from typing import Any, Self
 
 class CrossReference(Inline):
     """Represents a cross-reference to a document element."""

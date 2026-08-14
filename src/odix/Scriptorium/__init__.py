@@ -15,7 +15,6 @@ from .compiler import Compiler
 from .language import Language
 from .syntax import Syntax
 
-
 __all__ = [
     "Compiler",
     "Language",

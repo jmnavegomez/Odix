@@ -6,11 +6,8 @@ if TYPE_CHECKING:
     from ...parser import Parser
 
 from ....lexer.token_type import TokenType
-
 from ....nodes.bold import Bold
-
 from ...exceptions import ParserError
-
 from .emphasis import parse_inline_emphasis
 
 

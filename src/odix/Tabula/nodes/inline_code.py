@@ -1,8 +1,6 @@
 from __future__ import annotations
 
 from .inline import Inline
-from .text import Text
-
 
 
 class InlineCode(Inline):

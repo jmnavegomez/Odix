@@ -1,18 +1,15 @@
 from __future__ import annotations
 
-from ...exceptions import ParserError
-
 from typing import TYPE_CHECKING
+
+from ...exceptions import ParserError
 
 if TYPE_CHECKING:
     from ...parser import Parser
 
 from ....lexer.token_type import TokenType
-
-from ....nodes.text import Text
-
 from ....nodes.section import Section
-
+from ....nodes.text import Text
 from ..inline.sequence import parse_inline_content
 
 

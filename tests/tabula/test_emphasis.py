@@ -1,13 +1,12 @@
+from odix.tabula.lexer import Lexer
 from odix.tabula.nodes import (
-    Paragraph,
     Bold,
     Italic,
-    Underline,
     Strike,
+    Underline,
 )
-
-from odix.tabula.lexer import Lexer
 from odix.tabula.parser import Parser
+
 
 def test_parse_multiple_emphasis() -> None:
     lexer = Lexer()

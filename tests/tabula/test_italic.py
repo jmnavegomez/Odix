@@ -1,11 +1,10 @@
 from odix.tabula.lexer import Lexer
-from odix.tabula.parser import Parser
-
 from odix.tabula.nodes import (
-    Paragraph,
     Italic,
+    Paragraph,
     Text,
 )
+from odix.tabula.parser import Parser
 
 
 def test_parse_italic() -> None:

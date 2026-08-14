@@ -1,7 +1,6 @@
 import pytest
 
-from odix.tabula.lexer import Token
-from odix.tabula.lexer import TokenType
+from odix.tabula.lexer import Token, TokenType
 from odix.tabula.parser import Parser
 
 
@@ -147,8 +146,9 @@ def test_expect_wrong_token() -> None:
     with pytest.raises(NotImplementedError):
         parser._expect(TokenType.HASH)
 
-from odix.tabula.parser.rules.inline.text import parse_text
 from odix.tabula.nodes.text import Text
+from odix.tabula.parser.rules.inline.text import parse_text
+
 
 def test_parse_text():
     parser = Parser()

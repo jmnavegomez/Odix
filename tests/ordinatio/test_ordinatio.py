@@ -1,5 +1,7 @@
-from odix.ordinatio import Ordinatio
 from pathlib import Path
+
+from odix.ordinatio import Ordinatio
+
 
 def test_ordinatio_loads_book():
     root = Path(__file__).parents[3]

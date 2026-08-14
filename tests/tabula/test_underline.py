@@ -1,11 +1,10 @@
-from odix.tabula.nodes import (
-    Paragraph,
-    Underline,
-    Text,
-)
-
 from odix.tabula.lexer import Lexer
+from odix.tabula.nodes import (
+    Text,
+    Underline,
+)
 from odix.tabula.parser import Parser
+
 
 def test_parse_underline() -> None:
     lexer = Lexer()

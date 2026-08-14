@@ -1,10 +1,8 @@
+from odix.tabula.lexer import Lexer
 from odix.tabula.nodes import (
-    Paragraph,
     Strike,
     Text,
 )
-
-from odix.tabula.lexer import Lexer
 from odix.tabula.parser import Parser
 
 

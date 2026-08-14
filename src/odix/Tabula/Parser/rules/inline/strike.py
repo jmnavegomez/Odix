@@ -8,9 +8,7 @@ if TYPE_CHECKING:
     from ...parser import Parser
 
 from ....lexer.token_type import TokenType
-
 from ....nodes.strike import Strike
-
 from .emphasis import parse_inline_emphasis
 
 

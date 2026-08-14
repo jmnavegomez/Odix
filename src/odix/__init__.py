@@ -23,12 +23,12 @@ build
     High-level build function.
 """
 
-from .tabula import Tabula
-from .scriptorium.compiler import Compiler
 from .impressio import Impressio
+from .scriptorium.compiler import Compiler
+from .tabula import Tabula
 
 __all__ = [
-    "Tabula",
     "Compiler",
     "Impressio",
+    "Tabula",
 ]

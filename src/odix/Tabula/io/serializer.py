@@ -2,13 +2,8 @@ from __future__ import annotations
 
 from typing import Any
 
+from ..nodes import Image, MathBlock, MathInline, Node, Reference, Section
 from ..visitor import Visitor
-from ..nodes import Node
-from ..nodes import Section
-from ..nodes import Image
-from ..nodes import MathBlock
-from ..nodes import MathInline
-from ..nodes import Reference
 
 
 class Serializer(Visitor):

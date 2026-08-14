@@ -1,15 +1,13 @@
-from .book import Book
-from .book import Metadata
-from .book import Bibliography
+from .book import Bibliography, Book, Metadata
 from .chapter import Chapter
 from .ordinatio import Ordinatio
 from .principium import Principium
 
 __all__ = [
-    "Book",
-    "Metadata",
     "Bibliography",
+    "Book",
     "Chapter",
+    "Metadata",
     "Ordinatio",
     "Principium",
 ]

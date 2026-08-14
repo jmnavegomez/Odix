@@ -6,10 +6,10 @@ if TYPE_CHECKING:
     from ...parser import Parser
 
 from ....lexer.token_type import TokenType
-from ..inline.sequence import parse_literal_until
-
 from ....nodes.bibliography import Bibliography
 from ....nodes.reference import Reference
+from ..inline.sequence import parse_literal_until
+
 
 def parse_bibliography(parser: Parser) -> Bibliography:
     """Parses a bibliography block.

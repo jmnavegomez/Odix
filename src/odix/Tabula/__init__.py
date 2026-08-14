@@ -11,10 +11,10 @@ Tabula
     Parses a Principia into an abstract syntax tree.
 """
 
-from .tabula import Tabula
 from .io.serializer import Serializer
+from .tabula import Tabula
 
 __all__ = [
-    "Tabula",
     "Serializer",
+    "Tabula",
 ]

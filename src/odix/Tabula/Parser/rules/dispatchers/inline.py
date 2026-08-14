@@ -6,27 +6,22 @@ if TYPE_CHECKING:
     from ...parser import Parser
 
 from ....lexer.token_type import TokenType
-
 from ....nodes.inline import Inline
-from ....nodes.text import Text
-
+from ..inline.asterisk import parse_asterisk
 from ..inline.bold import parse_bold
+from ..inline.citation import parse_citation
+from ..inline.colon import parse_colon
+from ..inline.cross_reference import parse_cross_reference
+from ..inline.hyphen import parse_hyphen
+from ..inline.inline_code import parse_inline_code
 from ..inline.italic import parse_italic
-from ..inline.underline import parse_underline
+from ..inline.math import parse_math_inline
+from ..inline.module import parse_module
+from ..inline.plus import parse_plus
 from ..inline.strike import parse_strike
 from ..inline.text import parse_text
-from ..inline.citation import parse_citation
-from ..inline.cross_reference import parse_cross_reference
-
-from ..inline.asterisk import parse_asterisk
-from ..inline.colon import parse_colon
+from ..inline.underline import parse_underline
 from ..inline.underscore import parse_underscore
-from ..inline.hyphen import parse_hyphen
-from ..inline.plus import parse_plus
-from ..inline.module import parse_module
-
-from ..inline.inline_code import parse_inline_code
-from ..inline.math import parse_math_inline
 
 
 def parse_inline(

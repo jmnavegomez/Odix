@@ -6,8 +6,7 @@ from pathlib import Path
 from .io.deserializer import Deserializer
 from .io.serializer import Serializer
 from .lexer import Lexer
-from .nodes import Document
-from .nodes import Node
+from .nodes import Document, Node
 from .parser import Parser
 
 
@@ -86,7 +85,7 @@ class Tabula:
     def load(
         cls,
         path: str | Path,
-    ) -> "Tabula":
+    ) -> Tabula:
         """Loads a serialized Tabula document."""
 
         path = Path(path)
