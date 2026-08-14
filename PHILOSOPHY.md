@@ -80,7 +80,7 @@ It must remain independent from the build system.
 
 ### Deterministic builds. 
 
-The same Principia should always produce the same Codex.
+The same Principia and configuration should always produce the same publication.
 
 Reproducibility is not a feature.
 

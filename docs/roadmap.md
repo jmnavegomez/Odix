@@ -28,8 +28,8 @@ Establish the philosophical and technical foundations of the project.
 - [x] Project philosophy
 - [x] Repository structure
 - [x] Build pipeline
-- [ ] Development environment
-- [ ] Coding standards (Ruff, formatting, typing)
+- [x] Development environment
+- [x] Coding standards (Ruff, formatting, typing)
 - [ ] Contribution guidelines
 
 
@@ -75,13 +75,13 @@ A stable `Tabula` API independent from any renderer.
 
 Transform a Principia into a validated Tabula.
 
-- [ ] Lexer
-- [ ] Parser
-- [ ] Tabula generation
+- [x] Lexer
+- [x] Parser
+- [x] Tabula generation
 - [ ] Semantic validation
 - [ ] Reference resolution
 - [ ] Diagnostics and error messages
-- [ ] Validation tests
+- [x] Validation tests
 
 ### Deliverable
 
@@ -167,14 +167,14 @@ The first complete book published with Odix.
 
 Prepare the project for external users.
 
-- [ ] Unit tests
+- [x] Unit tests
 - [ ] Integration tests
 - [ ] Golden-file rendering tests
-- [ ] Performance benchmarks
-- [ ] Documentation
+- [x] Performance benchmarks
+- [x] Documentation
 - [ ] Tutorials and examples
 - [ ] CI/CD pipeline
-- [ ] PyPI packaging
+- [x] PyPI packaging
 - [ ] Versioning strategy
 - [ ] Release v0.1.0
 - [ ] Release v1.0.0
