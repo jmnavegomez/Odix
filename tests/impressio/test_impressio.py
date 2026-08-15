@@ -26,7 +26,7 @@ def test_impressio():
     assert impressio.book is book
     assert impressio.typus is typus
 
-    assert book.title == "Desarrollo Real de Python"
-    assert len(book.chapters) == 7
+    assert book.title == "Odix"
+    assert len(book.chapters) == 4
 
-    assert sum(len(chapter.principia) for chapter in book.chapters) == 26
+    assert sum(len(chapter.principia) for chapter in book.chapters) == 9

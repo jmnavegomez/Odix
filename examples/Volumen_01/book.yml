@@ -10,23 +10,23 @@ bibliography:
   style: "plain"
 
 chapters:
-  - title: Primeros pasos
+  - title: First Steps
     principia:
       - 01_introduccion.md
       - 02_build.md
 
-  - title: Configuración del libro
+  - title: Book Configuration
     principia:
       - 03_book_yml.md
       - 04_typus.md
 
-  - title: Escritura
+  - title: Scripture
     principia:
       - 05_principia.md
       - 06_imagenes.md
       - 07_matematicas.md
       - 08_citas_y_bibliografia.md
 
-  - title: Publicación
+  - title: Publication
     principia:
       - 09_emphasis.md

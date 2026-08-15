@@ -258,9 +258,9 @@ def test_load_example_book() -> None:
 
     book = Loader.load(book_file)
 
-    assert book.title == "Desarrollo Real de Python"
+    assert book.title == "Odix"
 
-    assert book.metadata.subtitle == ("Programación orientada a objetos")
+    assert book.metadata.subtitle == ("Guía de usuario")
     assert book.metadata.author == "José Manuel Naveiro"
     assert book.metadata.date == "2026"
     assert book.metadata.edition == "1ª edición"
@@ -269,13 +269,13 @@ def test_load_example_book() -> None:
     assert book.bibliography.file == "references.bib"
     assert book.bibliography.style == "plain"
 
-    assert len(book.chapters) == 7
+    assert len(book.chapters) == 4
 
-    assert book.chapters[0].title == "Fundamentos de Python"
-    assert len(book.chapters[0].principia) == 3
+    assert book.chapters[0].title == "First Steps"
+    assert len(book.chapters[0].principia) == 2
 
-    assert book.chapters[1].title == "Tipos de datos"
-    assert len(book.chapters[1].principia) == 7
+    assert book.chapters[1].title == "Book Configuration"
+    assert len(book.chapters[1].principia) == 2
 
-    assert book.chapters[2].title == "Operadores y conversiones"
+    assert book.chapters[2].title == "Scripture"
     assert len(book.chapters[2].principia) == 4
