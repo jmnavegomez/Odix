@@ -1,4 +1,3 @@
-
 # Odix - Open-source publishing system for technical books
 # Copyright (C) 2026 José Manuel Naveiro
 #

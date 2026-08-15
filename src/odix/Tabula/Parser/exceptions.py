@@ -16,5 +16,6 @@
 # You should have received a copy of the GNU General Public License
 # along with Odix. If not, see <https://www.gnu.org/licenses/>.
 
+
 class ParserError(Exception):
     """Base exception for parser errors."""
