@@ -1,8 +1,3 @@
-¡Claro! Mantendría el tono del README actual —que tiene bastante personalidad— pero lo ajustaría para que describa **exactamente lo que es Odix 0.1.0**, sin atribuirle todavía EPUB, HTML o una API `build()` que no existen.
-
-Te propongo este README completo:
-
-````markdown
 # Odix
 
 > Every idea deserves a worthy Codex.
