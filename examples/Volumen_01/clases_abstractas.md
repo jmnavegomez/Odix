@@ -1,4 +1,0 @@
-# Clases abstractas
-
-::pagebreak
-::

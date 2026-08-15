@@ -1,4 +1,0 @@
-# Operadores lógicos
-
-::pagebreak
-::

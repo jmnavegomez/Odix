@@ -1,4 +1,0 @@
-# Polimorfismo
-
-::pagebreak
-::

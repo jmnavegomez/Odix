@@ -1,4 +1,0 @@
-# Introducción a Python
-
-::pagebreak
-::

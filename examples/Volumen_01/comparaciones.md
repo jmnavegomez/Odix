@@ -1,4 +1,0 @@
-# Operadores de comparación
-
-::pagebreak
-::

@@ -1,4 +1,0 @@
-# Operadores aritméticos
-
-::pagebreak
-::

@@ -1,4 +1,0 @@
-# Diccionarios
-
-::pagebreak
-::

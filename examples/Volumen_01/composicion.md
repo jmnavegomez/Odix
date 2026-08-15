@@ -1,4 +1,0 @@
-# Composición
-
-::pagebreak
-::

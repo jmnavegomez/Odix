@@ -1,4 +1,0 @@
-# Conversión de tipos
-
-::pagebreak
-::

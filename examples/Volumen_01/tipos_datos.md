@@ -1,4 +1,0 @@
-# Tipos de datos
-
-::pagebreak
-::

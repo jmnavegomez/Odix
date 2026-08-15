@@ -1,4 +1,0 @@
-# Números
-
-::pagebreak
-::

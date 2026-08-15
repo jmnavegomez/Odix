@@ -1,6 +1,6 @@
 metadata:
-  title: "Desarrollo Real de Python"
-  subtitle: "Programación orientada a objetos"
+  title: "Odix"
+  subtitle: "Guía de usuario"
   author: "José Manuel Naveiro"
   date: "2026"
   edition: "1ª edición"
@@ -10,49 +10,23 @@ bibliography:
   style: "plain"
 
 chapters:
-  - title: Fundamentos de Python
+  - title: Primeros pasos
     principia:
-      - intro_python.md
-      - variables.md
-      - tipos_datos.md
+      - 01_introduccion.md
+      - 02_build.md
 
-  - title: Tipos de datos
+  - title: Configuración del libro
     principia:
-      - numeros.md
-      - cadenas_texto.md
-      - booleanos.md
-      - listas.md
-      - tuplas.md
-      - conjuntos.md
-      - diccionarios.md
-      
-  - title: Operadores y conversiones
-    principia:
-      - aritmeticos.md
-      - comparaciones.md
-      - logica.md
-      - conversion_tipos.md
+      - 03_book_yml.md
+      - 04_typus.md
 
-  - title: Programación Orientada a Objetos
+  - title: Escritura
     principia:
-      - POO.md
-      - clases.md
-      - atributos.md
-      - metodos.md
+      - 05_principia.md
+      - 06_imagenes.md
+      - 07_matematicas.md
+      - 08_citas_y_bibliografia.md
 
-  - title: Diseño orientado a objetos
+  - title: Publicación
     principia:
-      - abstraccion.md
-      - herencia.md
-      - composicion.md
-      - encapsulacion.md
-      - polimorfismo.md
-
-  - title: Herramientas de Python
-    principia:
-      - clases_abstractas.md
-      - dunder_methods.md
-
-  - title: Anexos
-    principia:
-      - anexos.md
+      - 09_emphasis.md
