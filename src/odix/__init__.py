@@ -41,11 +41,11 @@ build
     High-level build function.
 """
 
-from .impressio import Impressio
-from .ordinatio import Ordinatio
-from .typus import Typus
-from .scriptorium.compiler import Compiler
-from .tabula import Tabula
+from impressio import Impressio
+from ordinatio import Ordinatio
+from typus import Typus
+from scriptorium.compiler import Compiler
+from tabula import Tabula
 
 __all__ = [
     "Impressio",

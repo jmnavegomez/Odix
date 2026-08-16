@@ -21,9 +21,9 @@ from __future__ import annotations
 import argparse
 from pathlib import Path
 
-from odix.impressio import Impressio
-from odix.ordinatio import Ordinatio
-from odix.typus import Typus
+from odix import Impressio
+from odix import Ordinatio
+from odix import Typus
 
 
 def build(
