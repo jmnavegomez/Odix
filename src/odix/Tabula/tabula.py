@@ -33,49 +33,89 @@ class Tabula:
 
     def __init__(
         self,
-        path: str | Path,
+        path: Path | None = None,
         document: Document | None = None,
     ) -> None:
         """Initializes a Tabula document.
 
         Args:
-            path: Markdown source file or serialized Tabula document.
+            path: Source or serialized Tabula file path.
             document: Existing document loaded from disk.
 
         Raises:
             TypeError: If ``document`` is not a Document.
+            ValueError: If neither ``path`` nor ``document`` is provided.
         """
-
-        self._path = Path(path)
+        self._path = path
 
         if document is not None:
+            if not isinstance(document, Document):
+                raise TypeError("The root node must be a Document.")
+
             self._ast = document
             return
+
+        if path is None:
+            raise ValueError(
+                "Either 'path' or 'document' must be provided."
+            )
+
+        self._ast = self._parse(
+            path.read_text(encoding="utf-8"),
+        )
+
+    @classmethod
+    def from_content(cls, content: str) -> Tabula:
+        instance = cls.__new__(cls)
+        instance._path = None
+        instance._ast = cls._parse(content)
+        return instance
+
+    @classmethod
+    def from_file(cls, path: str | Path) -> Tabula:
+        path = Path(path)
+
+        instance = cls.__new__(cls)
+        instance._path = path
+        instance._ast = cls._parse(
+            path.read_text(encoding="utf-8"),
+        )
+
+        return instance
+    
+    @staticmethod
+    def _parse(
+        content: str,
+    ) -> Document:
+        """Parses Markdown content into a Document AST."""
 
         lexer = Lexer()
         parser = Parser()
 
-        markdown = self._path.read_text(
-            encoding="utf-8",
-        )
+        tokens = lexer.tokenize(content)
+        document = parser.parse(tokens)
 
-        tokens = lexer.tokenize(markdown)
-
-        self._ast = parser.parse(tokens)
-
-        if not isinstance(self._ast, Document):
+        if not isinstance(document, Document):
             raise TypeError("The root node must be a Document.")
+
+        return document
+
+    def _set_path(
+        self,
+        path: Path,
+    ) -> Tabula:
+        """Sets the source path and returns this instance."""
+        self._path = path
+        return self
 
     @property
     def ast(self) -> Node:
         """Returns the AST."""
-
         return self._ast
 
     @property
     def path(self) -> Path | None:
         """Returns the source path."""
-
         return self._path
 
     def save(

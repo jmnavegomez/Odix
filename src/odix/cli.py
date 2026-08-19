@@ -20,10 +20,13 @@ from __future__ import annotations
 
 import argparse
 from pathlib import Path
+import json
 
 from odix import Impressio
 from odix import Ordinatio
 from odix import Typus
+from odix import Tabula
+from odix.tabula import Serializer
 
 
 def build(
@@ -53,6 +56,18 @@ def build(
 
     print(f"Book published to: {output}")
 
+def tabula(document_file: Path) -> None:
+    """Displays the Tabula AST of a Markdown document."""
+
+    document = Tabula.from_file(document_file)
+
+    print(
+        json.dumps(
+            Serializer().visit(document.ast),
+            indent=4,
+            ensure_ascii=False,
+        )
+    )
 
 def main() -> None:
     """Runs the Odix command-line interface."""
@@ -85,12 +100,27 @@ def main() -> None:
         help="Path to the Typus configuration file.",
     )
 
+    tabula_parser = subparsers.add_parser(
+        "tabula",
+        help="Display the Tabula AST of a Markdown document.",
+    )
+
+    tabula_parser.add_argument(
+        "document",
+        type=Path,
+        help="Path to the Markdown document.",
+    )
+
     args = parser.parse_args()
 
     if args.command == "build":
         build(
             book_file=args.book,
             typus_file=args.typus,
+        )
+    elif args.command == "tabula":
+        tabula(
+            document_file=args.document,
         )
 
 
