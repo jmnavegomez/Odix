@@ -56,9 +56,7 @@ class Tabula:
             return
 
         if path is None:
-            raise ValueError(
-                "Either 'path' or 'document' must be provided."
-            )
+            raise ValueError("Either 'path' or 'document' must be provided.")
 
         self._ast = self._parse(
             path.read_text(encoding="utf-8"),
@@ -82,7 +80,7 @@ class Tabula:
         )
 
         return instance
-    
+
     @staticmethod
     def _parse(
         content: str,

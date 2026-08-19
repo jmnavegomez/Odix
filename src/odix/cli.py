@@ -19,13 +19,10 @@
 from __future__ import annotations
 
 import argparse
-from pathlib import Path
 import json
+from pathlib import Path
 
-from odix import Impressio
-from odix import Ordinatio
-from odix import Typus
-from odix import Tabula
+from odix import Impressio, Ordinatio, Tabula, Typus
 from odix.tabula import Serializer
 
 
@@ -56,6 +53,7 @@ def build(
 
     print(f"Book published to: {output}")
 
+
 def tabula(document_file: Path) -> None:
     """Displays the Tabula AST of a Markdown document."""
 
@@ -68,6 +66,7 @@ def tabula(document_file: Path) -> None:
             ensure_ascii=False,
         )
     )
+
 
 def main() -> None:
     """Runs the Odix command-line interface."""

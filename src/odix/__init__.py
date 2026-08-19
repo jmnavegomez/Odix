@@ -43,14 +43,14 @@ build
 
 from .impressio import Impressio
 from .ordinatio import Ordinatio
-from .typus import Typus
 from .scriptorium.compiler import Compiler
 from .tabula import Tabula
+from .typus import Typus
 
 __all__ = [
+    "Compiler",
     "Impressio",
     "Ordinatio",
-    "Typus",
-    "Compiler",
     "Tabula",
+    "Typus",
 ]
