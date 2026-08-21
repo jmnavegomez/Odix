@@ -23,12 +23,13 @@ from typing import TYPE_CHECKING
 if TYPE_CHECKING:
     from ...parser import Parser
 
+from ....lexer.token import Token
 from ....lexer.token_type import TokenType
 from ....nodes.caption import Caption
 from ..inline.sequence import parse_inline_content
 
 
-def parse_caption(parser: Parser) -> Caption:
+def parse_caption(parser: Parser, initial_token: Token) -> Caption:
     """Parses a figure caption.
 
     Expected syntax::
@@ -44,8 +45,7 @@ def parse_caption(parser: Parser) -> Caption:
         Parsed caption.
     """
 
-    if parser._match(TokenType.NEWLINE):
-        parser._advance()
+    parser._expect_type(TokenType.NEWLINE)
 
     paragraph = parse_inline_content(
         parser,
@@ -56,7 +56,7 @@ def parse_caption(parser: Parser) -> Caption:
     if parser._match(TokenType.NEWLINE):
         parser._advance()
 
-    parser._expect(TokenType.COLON)
+    parser._expect_token(initial_token)
 
     if parser._match(TokenType.NEWLINE):
         parser._advance()

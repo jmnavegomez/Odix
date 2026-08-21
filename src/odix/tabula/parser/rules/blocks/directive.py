@@ -24,6 +24,7 @@ from typing import TYPE_CHECKING
 if TYPE_CHECKING:
     from ...parser import Parser
 
+from ....lexer.token import Token
 from ....lexer.token_type import TokenType
 from ....nodes.block import Block
 from .bibliography import parse_bibliography
@@ -35,7 +36,7 @@ from .math_block import parse_math_block
 from .page_break import parse_page_break
 from .reference import parse_reference
 
-_DIRECTIVE_PARSERS: dict[str, Callable[[Parser], Block]] = {
+_DIRECTIVE_PARSERS: dict[str, Callable[[Parser, Token], Block]] = {
     "math": parse_math_block,
     "pagebreak": parse_page_break,
     "image": parse_image,
@@ -50,13 +51,13 @@ _DIRECTIVE_PARSERS: dict[str, Callable[[Parser], Block]] = {
 def parse_directive(parser: Parser) -> Block:
     """Parse a directive block."""
 
-    parser._expect(TokenType.COLON)
+    initial_token = parser._expect_type(TokenType.COLON)
 
-    name = parser._expect(TokenType.TEXT).value.strip().lower()
+    name = parser._expect_type(TokenType.TEXT).value.strip().lower()
 
     method = _DIRECTIVE_PARSERS.get(name)
 
     if method is None:
         raise NotImplementedError(f"Unknown directive: {name}")
 
-    return method(parser)
+    return method(parser, initial_token)

@@ -60,14 +60,13 @@ def _parse_table_metadata(
 ) -> None:
     """Parses table caption or label."""
 
-    if parser._match(TokenType.PIPE):
-        parser._advance()
+    initial_token = parser._advance()
 
-    parser._expect(TokenType.COLON)
+    parser._expect_type(TokenType.COLON)
 
-    name = parser._expect(TokenType.TEXT).value
+    name = parser._expect_type(TokenType.TEXT).value
 
-    parser._expect(TokenType.COLON)
+    parser._expect_type(TokenType.COLON)
 
     if name == "caption":
         value = parse_inline_content(
@@ -75,7 +74,7 @@ def _parse_table_metadata(
             TokenType.PIPE,
         )
 
-        parser._expect(TokenType.PIPE)
+        parser._expect_type(TokenType.PIPE)
 
         caption = Caption()
         caption.add_child(value)
@@ -84,7 +83,7 @@ def _parse_table_metadata(
     elif name == "label":
         value = parse_literal_until(
             parser=parser,
-            closing_type=TokenType.PIPE,
+            initial_token=initial_token,
             closing_length=1,
         ).strip()
 

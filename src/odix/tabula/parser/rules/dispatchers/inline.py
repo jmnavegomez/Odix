@@ -23,8 +23,10 @@ from typing import TYPE_CHECKING
 if TYPE_CHECKING:
     from ...parser import Parser
 
+from ....lexer.token import Token
 from ....lexer.token_type import TokenType
 from ....nodes.inline import Inline
+from ...exceptions import ParserError
 from ..inline.asterisk import parse_asterisk
 from ..inline.bold import parse_bold
 from ..inline.citation import parse_citation
@@ -44,6 +46,7 @@ from ..inline.underscore import parse_underscore
 
 def parse_inline(
     parser: Parser,
+    stop_token: Token | None = None,
     stop_type: TokenType | None = None,
     stop_length: int | None = None,
 ) -> Inline | None:
@@ -59,7 +62,7 @@ def parse_inline(
         ``stop_type`` and ``stop_length`` is reached.
 
     Raises:
-        NotImplementedError: If the inline element is not implemented.
+        ParserError: If the inline element is not implemented.
     """
     if (
         stop_type is not None
@@ -129,6 +132,9 @@ def parse_inline(
         value = parse_module(parser)
         return value
 
-    raise NotImplementedError(
-        f"Unsupported inline token " f"{parser._current.type.name}."
+    raise ParserError(
+        message=f"Unsupported inline token " f"{parser.current.type.name}.",
+        token=parser.current,
+        expected_token=stop_token,
+        expected_token_type=stop_type,
     )

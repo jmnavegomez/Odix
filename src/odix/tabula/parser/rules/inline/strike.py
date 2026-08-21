@@ -33,17 +33,21 @@ from .emphasis import parse_inline_emphasis
 def parse_strike(parser: Parser) -> Strike:
     """Parses strikethrough text."""
 
-    token = parser._expect(TokenType.HYPHEN)
+    token = parser._expect_type(TokenType.HYPHEN)
 
     if len(token.value) != 2:
-        raise ParserError("Strikethrough must start with '--'.")
+        raise ParserError(
+            message="Strikethrough must start with '--'.",
+            token=token,
+            expected_token_type=TokenType.HYPHEN,
+        )
 
     strike = Strike()
 
     parse_inline_emphasis(
         parser,
         strike,
-        TokenType.HYPHEN,
+        token,
         2,
     )
 

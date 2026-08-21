@@ -33,7 +33,7 @@ def parse_row(parser: Parser) -> Row:
 
     row = Row()
 
-    parser._expect(TokenType.PIPE)
+    parser._expect_type(TokenType.PIPE)
 
     while not parser._match(TokenType.NEWLINE, TokenType.EOF):
 

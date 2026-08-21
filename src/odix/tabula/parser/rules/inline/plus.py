@@ -37,6 +37,6 @@ def parse_plus(parser: Parser) -> Text:
         Parsed text node.
     """
 
-    token = parser._expect(TokenType.PLUS)
+    token = parser._expect_type(TokenType.PLUS)
 
     return Text(token.value)

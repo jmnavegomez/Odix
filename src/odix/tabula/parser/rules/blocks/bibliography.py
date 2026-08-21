@@ -23,13 +23,14 @@ from typing import TYPE_CHECKING
 if TYPE_CHECKING:
     from ...parser import Parser
 
+from ....lexer.token import Token
 from ....lexer.token_type import TokenType
 from ....nodes.bibliography import Bibliography
 from ....nodes.reference import Reference
 from ..inline.sequence import parse_literal_until
 
 
-def parse_bibliography(parser: Parser) -> Bibliography:
+def parse_bibliography(parser: Parser, initial_token: Token) -> Bibliography:
     """Parses a bibliography block.
 
     Expected syntax::
@@ -45,17 +46,14 @@ def parse_bibliography(parser: Parser) -> Bibliography:
         Parsed bibliography.
     """
 
-    if parser._match(TokenType.NEWLINE):
-        parser._advance()
+    new_line = parser._expect_type(TokenType.NEWLINE)
 
     bibliography = Bibliography()
 
     while not (parser._match(TokenType.COLON) and len(parser._current.value) == 2):
-        bibliography.add_child(
-            Reference(parse_literal_until(parser, TokenType.NEWLINE, 1))
-        )
+        bibliography.add_child(Reference(parse_literal_until(parser, new_line, 1)))
 
-    parser._expect(TokenType.COLON)
+    parser._expect_token(initial_token)
 
     if parser._match(TokenType.NEWLINE):
         parser._advance()

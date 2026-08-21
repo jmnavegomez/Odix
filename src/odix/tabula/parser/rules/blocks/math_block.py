@@ -23,13 +23,14 @@ from typing import TYPE_CHECKING
 if TYPE_CHECKING:
     from ...parser import Parser
 
+from ....lexer.token import Token
 from ....lexer.token_type import TokenType
 from ....nodes.label import Label
 from ....nodes.math_block import MathBlock
 from ..inline.sequence import parse_literal_until
 
 
-def parse_math_block(parser: Parser) -> MathBlock:
+def parse_math_block(parser: Parser, initial_token: Token) -> MathBlock:
     """Parses a math block.
 
     Expected syntax::
@@ -46,26 +47,28 @@ def parse_math_block(parser: Parser) -> MathBlock:
         Parsed math block.
     """
 
-    if parser._match(TokenType.NEWLINE):
-        parser._advance()
+    new_line = parser._expect_type(TokenType.NEWLINE)
 
     expression = parse_literal_until(
         parser,
-        TokenType.NEWLINE,
+        new_line,
         1,
     ).strip()
 
     math_block = MathBlock(expression)
 
-    if not parser._match(TokenType.COLON):
+    if not (
+        parser._match(initial_token.type)
+        and len(initial_token.value) == len(parser.current.value)
+    ):
         label = parse_literal_until(
             parser,
-            TokenType.NEWLINE,
+            new_line,
             1,
         ).strip()
         math_block.add_child(Label(label))
 
-    parser._expect(TokenType.COLON)
+    parser._expect_token(initial_token)
 
     if parser._match(TokenType.NEWLINE):
         parser._advance()

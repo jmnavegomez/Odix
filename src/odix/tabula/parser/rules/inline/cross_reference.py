@@ -42,11 +42,11 @@ def parse_cross_reference(parser: Parser) -> CrossReference:
         Parsed reference.
     """
 
-    parser._expect(TokenType.DOLLAR)
+    initial_token = parser._expect_type(TokenType.DOLLAR)
 
     key = parse_literal_until(
         parser,
-        TokenType.DOLLAR,
+        initial_token,
         2,
     ).strip()
 

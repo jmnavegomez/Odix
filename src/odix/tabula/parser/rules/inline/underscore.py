@@ -37,6 +37,6 @@ def parse_underscore(parser: Parser) -> Text:
         Parsed text node.
     """
 
-    token = parser._expect(TokenType.UNDERSCORE)
+    token = parser._expect_type(TokenType.UNDERSCORE)
 
     return Text(token.value)

@@ -37,21 +37,6 @@ def parse_colon(parser: Parser) -> Text:
         Parsed text node.
     """
 
-    token = parser._expect(TokenType.COLON)
+    token = parser._expect_type(TokenType.COLON)
 
     return Text(token.value)
-
-
-# def parse_double_colon(parser: Parser) -> Text:
-#     """Parses a text node.
-
-#     Args:
-#         parser: Parser instance.
-
-#     Returns:
-#         Parsed text node.
-#     """
-
-#     token = parser._expect(TokenType.COLON)
-
-#     return Text(token.value)

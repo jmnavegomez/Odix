@@ -21,6 +21,7 @@ from __future__ import annotations
 from pathlib import Path
 
 from odix.ordinatio import Book, Chapter, Principium
+from odix.tabula.parser import ParserError
 
 from ..scriptorium import Compiler, Language
 from ..tabula import Tabula
@@ -60,8 +61,21 @@ class Impressio:
         principium: Principium,
     ) -> str:
         """Renders a principium as LaTeX."""
+        try:
+            tabula = Tabula(principium.source)
+        except ParserError as error:
+            print(f"Error in principium: {principium.source}")
+            print(f"    -Final token line: {error.token.line}")
+            print(f"    -Final token column: {error.token.column}")
+            print(f"    -Gotten token: {error.token.type.name}")
 
-        tabula = Tabula(principium.source)
+            if error.expected_token is not None:
+                print()
+                print(f"    -Initial token line: {error.expected_token.line}")
+                print(f"    -Initial token column: {error.expected_token.column}")
+                print(f"    -Expected token: {error.expected_token.type.name}")
+
+            raise
 
         compiler = Compiler(
             Language.LATEX,

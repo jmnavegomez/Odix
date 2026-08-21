@@ -23,12 +23,13 @@ from typing import TYPE_CHECKING
 if TYPE_CHECKING:
     from ...parser import Parser
 
+from ....lexer.token import Token
 from ....lexer.token_type import TokenType
 from ....nodes.footnote import Footnote
 from ..inline.sequence import parse_literal_until
 
 
-def parse_footnote(parser: Parser) -> Footnote:
+def parse_footnote(parser: Parser, initial_token: Token) -> Footnote:
     """Parses a footnote.
 
     Expected syntax::
@@ -49,7 +50,7 @@ def parse_footnote(parser: Parser) -> Footnote:
 
     key = parse_literal_until(
         parser,
-        TokenType.COLON,
+        initial_token,
         2,
     ).strip()
 

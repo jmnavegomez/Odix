@@ -24,6 +24,7 @@ from ..nodes.document import Document
 from ..nodes.metadata import Metadata
 from ..nodes.node import Node
 from ..nodes.section import Section
+from .exceptions import ParserError
 from .rules.dispatchers.blocks import parse_block
 
 
@@ -103,7 +104,26 @@ class Parser:
         """
         return self._current.type in types
 
-    def _expect(self, token_type: TokenType) -> Token:
+    def _expect_token(self, token: Token) -> Token:
+        """Consumes the current token if it matches the expected token.
+
+        Args:
+            token_type: Expected token.
+
+        Returns:
+            Consumed token.
+
+        Raises:
+            UnexpectedTokenError: If the current token does not match.
+        """
+        if not self._current.value == token.value:
+            raise ParserError(
+                message="Unexpected token", token=self._current, expected_token=token
+            )
+
+        return self._advance()
+
+    def _expect_type(self, token_type: TokenType) -> Token:
         """Consumes the current token if it matches the expected type.
 
         Args:
@@ -116,7 +136,11 @@ class Parser:
             UnexpectedTokenError: If the current token does not match.
         """
         if not self._match(token_type):
-            raise NotImplementedError("Parser exceptions not implemented yet.")
+            raise ParserError(
+                message=f"Current token type different from {token_type}",
+                token=self._current,
+                expected_token_type=token_type,
+            )
 
         return self._advance()
 
@@ -161,6 +185,11 @@ class Parser:
         )
 
         method(node)
+
+    @property
+    def current(self) -> Token:
+        """Returns the current token"""
+        return self._current
 
     def parse(
         self,

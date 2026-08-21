@@ -16,30 +16,6 @@
 # You should have received a copy of the GNU General Public License
 # along with Odix. If not, see <https://www.gnu.org/licenses/>.
 
-from __future__ import annotations
 
-from typing import TYPE_CHECKING
-
-if TYPE_CHECKING:
-    from ...parser import Parser
-
-from ....lexer.token_type import TokenType
-from ....nodes.italic import Italic
-from .emphasis import parse_inline_emphasis
-
-
-def parse_italic(parser: Parser) -> Italic:
-    """Parses italic text."""
-
-    initial_token = parser._expect_type(TokenType.MIDDLE_DOT)
-
-    italic = Italic()
-
-    parse_inline_emphasis(
-        parser,
-        italic,
-        initial_token,
-        1,
-    )
-
-    return italic
+class OdixError(Exception):
+    """Base exception for Odix."""

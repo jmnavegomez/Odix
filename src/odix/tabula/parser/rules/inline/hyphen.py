@@ -37,6 +37,6 @@ def parse_hyphen(parser: Parser) -> Text:
         Parsed text node.
     """
 
-    token = parser._expect(TokenType.HYPHEN)
+    token = parser._expect_type(TokenType.HYPHEN)
 
     return Text(token.value)

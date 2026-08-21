@@ -23,12 +23,13 @@ from typing import TYPE_CHECKING
 if TYPE_CHECKING:
     from ...parser import Parser
 
+from ....lexer.token import Token
 from ....lexer.token_type import TokenType
 from ....nodes.reference import Reference
 from ..inline.sequence import parse_literal_until
 
 
-def parse_reference(parser: Parser) -> Reference:
+def parse_reference(parser: Parser, initial_token: Token) -> Reference:
     """Parses a bibliography reference.
 
     Expected syntax::
@@ -49,7 +50,7 @@ def parse_reference(parser: Parser) -> Reference:
 
     key = parse_literal_until(
         parser,
-        TokenType.COLON,
+        initial_token,
         2,
     ).strip()
 

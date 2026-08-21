@@ -23,6 +23,7 @@ import json
 from pathlib import Path
 
 from odix import Impressio, Ordinatio, Tabula, Typus
+from odix.exceptions import OdixError
 from odix.tabula import Serializer
 
 
@@ -112,15 +113,20 @@ def main() -> None:
 
     args = parser.parse_args()
 
-    if args.command == "build":
-        build(
-            book_file=args.book,
-            typus_file=args.typus,
-        )
-    elif args.command == "tabula":
-        tabula(
-            document_file=args.document,
-        )
+    try:
+        if args.command == "build":
+            build(
+                book_file=args.book,
+                typus_file=args.typus,
+            )
+        elif args.command == "tabula":
+            tabula(
+                document_file=args.document,
+            )
+    except OdixError as error:
+        print()
+        print(f"Error: {error}")
+        print()
 
 
 if __name__ == "__main__":

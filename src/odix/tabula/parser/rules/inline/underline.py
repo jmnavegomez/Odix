@@ -33,17 +33,21 @@ from .emphasis import parse_inline_emphasis
 def parse_underline(parser: Parser) -> Underline:
     """Parses underlined text."""
 
-    token = parser._expect(TokenType.UNDERSCORE)
+    token = parser._expect_type(TokenType.UNDERSCORE)
 
     if len(token.value) != 3:
-        raise ParserError("Underline must start with '___'.")
+        raise ParserError(
+            message="Underline must start with '___'.",
+            token=token,
+            expected_token_type=TokenType.UNDERSCORE,
+        )
 
     underline = Underline()
 
     parse_inline_emphasis(
         parser,
         underline,
-        TokenType.UNDERSCORE,
+        token,
         3,
     )
 

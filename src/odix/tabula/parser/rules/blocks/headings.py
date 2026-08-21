@@ -44,14 +44,15 @@ def parse_section(parser: Parser) -> Section:
         ParserError: If the heading level is invalid.
     """
 
-    token = parser._expect(TokenType.HASH)
+    token = parser._expect_type(TokenType.HASH)
 
     level = len(token.value)
 
     if not 1 <= level <= 6:
         raise ParserError(
-            f"Invalid heading level ({level}). "
-            "Markdown headings must have between 1 and 6 '#'."
+            message=f"Invalid heading level ({level}). Markdown headings must have between 1 and 6 '#'.",
+            token=parser.current,
+            expected_token_type=TokenType.HASH,
         )
 
     title = parse_inline_content(

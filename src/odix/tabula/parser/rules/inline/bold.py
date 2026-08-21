@@ -41,17 +41,21 @@ def parse_bold(parser: Parser) -> Bold:
     Raises:
         ParserError: If the opening delimiter is invalid.
     """
-    delimiter = parser._expect(TokenType.ASTERISK)
+    initial_token = parser._expect_type(TokenType.ASTERISK)
 
-    if len(delimiter.value) != 2:
-        raise ParserError("Bold text must start with '**'.")
+    if len(initial_token.value) != 2:
+        raise ParserError(
+            message="Bold text must start with '**'.",
+            token=initial_token,
+            expected_token=initial_token,
+        )
 
     bold = Bold()
 
     parse_inline_emphasis(
         parser,
         bold,
-        TokenType.ASTERISK,
+        initial_token,
         2,
     )
 

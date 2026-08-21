@@ -48,6 +48,8 @@ def parse_code_literal_until(
     """
     code = ""
 
+    initial_token = parser.current
+
     while not parser._match(TokenType.EOF):
 
         if (
@@ -59,9 +61,13 @@ def parse_code_literal_until(
         code += parser._advance().value
 
     if parser._match(TokenType.EOF):
-        raise ParserError("Unterminated code block.")
+        raise ParserError(
+            message="Unterminated code block.",
+            token=parser.current,
+            expected_token=initial_token,
+        )
 
-    parser._expect(TokenType.BACKTICK)
+    parser._expect_type(TokenType.BACKTICK)
 
     if parser._match(TokenType.NEWLINE):
         parser._advance()

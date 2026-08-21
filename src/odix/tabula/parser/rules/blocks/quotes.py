@@ -31,7 +31,7 @@ from ..inline.sequence import parse_inline_content
 def parse_quote(parser: Parser) -> Quote:
     """Parses a block quote."""
 
-    parser._expect(TokenType.GREATER_THAN)
+    parser._expect_type(TokenType.GREATER_THAN)
 
     quote = Quote()
 

@@ -37,6 +37,6 @@ def parse_text(parser: Parser) -> Text:
         Parsed text node.
     """
 
-    token = parser._expect(TokenType.TEXT)
+    token = parser._expect_type(TokenType.TEXT)
 
     return Text(token.value)

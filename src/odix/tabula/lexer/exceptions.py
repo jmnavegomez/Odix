@@ -16,6 +16,8 @@
 # You should have received a copy of the GNU General Public License
 # along with Odix. If not, see <https://www.gnu.org/licenses/>.
 
+from odix.exceptions import OdixError
 
-class LexerError(Exception):
+
+class LexerError(OdixError):
     """Base exception for lexer errors."""

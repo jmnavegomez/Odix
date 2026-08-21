@@ -37,6 +37,6 @@ def parse_module(parser: Parser) -> Text:
         Parsed text node.
     """
 
-    token = parser._expect(TokenType.MODULE)
+    token = parser._expect_type(TokenType.MODULE)
 
     return Text(token.value)

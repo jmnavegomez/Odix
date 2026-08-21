@@ -37,6 +37,6 @@ def parse_asterisk(parser: Parser) -> Text:
         Parsed text node.
     """
 
-    token = parser._expect(TokenType.ASTERISK)
+    token = parser._expect_type(TokenType.ASTERISK)
 
     return Text(token.value)

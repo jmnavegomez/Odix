@@ -29,6 +29,7 @@ from ..inline.sequence import parse_inline_content
 
 
 def parse_cell(parser: Parser) -> Cell:
+    """Parses table cell"""
 
     cell = Cell()
 

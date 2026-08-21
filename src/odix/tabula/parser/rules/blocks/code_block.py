@@ -33,17 +33,21 @@ from ..inline.code import parse_code_literal_until
 def parse_code_block(parser: Parser) -> CodeBlock:
     """Parses a fenced code block."""
 
-    opening = parser._expect(TokenType.BACKTICK)
+    opening = parser._expect_type(TokenType.BACKTICK)
 
     if len(opening.value) < 3:
-        raise ParserError("A fenced code block requires at least three backticks.")
+        raise ParserError(
+            message="A fenced code block requires at least three backticks.",
+            token=parser.current,
+            expected_token_type=TokenType.BACKTICK,
+        )
 
     language = None
 
     if parser._match(TokenType.TEXT):
         language = parser._advance().value.strip()
 
-    parser._expect(TokenType.NEWLINE)
+    parser._expect_type(TokenType.NEWLINE)
 
     code = parse_code_literal_until(
         parser,

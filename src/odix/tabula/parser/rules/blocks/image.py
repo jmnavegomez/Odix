@@ -23,12 +23,13 @@ from typing import TYPE_CHECKING
 if TYPE_CHECKING:
     from ...parser import Parser
 
+from ....lexer.token import Token
 from ....lexer.token_type import TokenType
 from ....nodes.image import Image
 from ..inline.sequence import parse_literal_until
 
 
-def parse_image(parser: Parser) -> Image:
+def parse_image(parser: Parser, initial_token: Token) -> Image:
     """Parses an image block.
 
     Expected syntax::
@@ -44,12 +45,11 @@ def parse_image(parser: Parser) -> Image:
         Parsed image.
     """
 
-    if parser._match(TokenType.NEWLINE):
-        parser._advance()
+    parser._expect_type(TokenType.NEWLINE)
 
     source = parse_literal_until(
         parser,
-        TokenType.COLON,
+        initial_token,
         2,
     ).strip()
 

@@ -42,11 +42,11 @@ def parse_math_inline(parser: Parser) -> MathInline:
         Parsed inline mathematical expression.
     """
 
-    parser._expect(TokenType.DOLLAR)
+    initial_token = parser._expect_type(TokenType.DOLLAR)
 
     expression = parse_literal_until(
         parser,
-        TokenType.DOLLAR,
+        initial_token,
         1,
     ).strip()
 

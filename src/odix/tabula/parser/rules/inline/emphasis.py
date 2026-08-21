@@ -23,6 +23,7 @@ from typing import TYPE_CHECKING
 if TYPE_CHECKING:
     from ...parser import Parser
 
+from ....lexer.token import Token
 from ....lexer.token_type import TokenType
 from ....nodes.inline import Inline
 from ...exceptions import ParserError
@@ -31,7 +32,7 @@ from ...exceptions import ParserError
 def parse_inline_emphasis(
     parser: Parser,
     node: Inline,
-    closing_type: TokenType,
+    initial_token: Token,
     closing_length: int,
 ) -> None:
     """Parses inline content until a closing delimiter is found.
@@ -52,12 +53,16 @@ def parse_inline_emphasis(
 
     # Parse nested inline elements until the closing delimiter
     # of the current emphasis node is reached.
+
+    closing_type = initial_token.type
+
     while not parser._match(TokenType.EOF):
 
         inline = parse_inline(
             parser,
-            closing_type,
-            closing_length,
+            stop_token=initial_token,
+            stop_type=closing_type,
+            stop_length=closing_length,
         )
 
         # The closing delimiter belongs to this node.
@@ -68,7 +73,11 @@ def parse_inline_emphasis(
 
     # Reaching EOF means that the emphasis was never closed.
     if parser._match(TokenType.EOF):
-        raise ParserError("Unterminated inline element.")
+        raise ParserError(
+            message="Unterminated inline element.",
+            token=parser.current,
+            expected_token=initial_token,
+        )
 
     # Consume the closing delimiter.
-    parser._expect(closing_type)
+    parser._expect_type(closing_type)

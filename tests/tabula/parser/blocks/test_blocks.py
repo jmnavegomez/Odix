@@ -4,6 +4,7 @@ from odix.tabula.nodes import (
     Caption,
     Figure,
     Image,
+    Label,
     MathBlock,
     PageBreak,
     Reference,
@@ -32,6 +33,27 @@ x^2 + y^2 = z^2
 
     assert isinstance(node, MathBlock)
     assert node.expression == "x^2 + y^2 = z^2"
+
+
+def test_math_block_label() -> None:
+
+    document = parse("""::math
+x^2 + y^2 = z^2
+label:hyperboloid
+::""")
+
+    assert len(document.children) == 1
+
+    node = document.children[0]
+
+    assert isinstance(node, MathBlock)
+    assert node.expression == "x^2 + y^2 = z^2"
+
+    assert len(node.children) == 1
+    label = node.children[0]
+
+    assert isinstance(label, Label)
+    assert label.key == "label:hyperboloid"
 
 
 def test_page_break() -> None:
@@ -145,3 +167,42 @@ Example figure
     )
 
     assert figure.children[0].source == "figure.png"
+
+
+def test_label_figure() -> None:
+
+    document = parse("""::figure
+figure.png
+Example figure
+label:figure
+::""")
+
+    assert len(document.children) == 1
+
+    figure = document.children[0]
+
+    assert isinstance(
+        figure,
+        Figure,
+    )
+
+    assert len(figure.children) == 3
+
+    assert isinstance(
+        figure.children[0],
+        Image,
+    )
+
+    assert isinstance(
+        figure.children[1],
+        Caption,
+    )
+
+    assert isinstance(
+        figure.children[2],
+        Label,
+    )
+
+    assert figure.children[0].source == "figure.png"
+    assert figure.children[1].children[0].text == "Example figure"
+    assert figure.children[2].key == "label:figure"

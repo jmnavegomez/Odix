@@ -23,6 +23,7 @@ from typing import TYPE_CHECKING
 if TYPE_CHECKING:
     from ...parser import Parser
 
+from ....lexer.token import Token
 from ....lexer.token_type import TokenType
 from ....nodes.paragraph import Paragraph
 from ...exceptions import ParserError
@@ -63,7 +64,7 @@ def parse_inline_content(
 
 def parse_literal_until(
     parser: Parser,
-    closing_type: TokenType,
+    initial_token: Token,
     closing_length: int,
 ) -> str:
     """Parses literal text until a closing delimiter is found.
@@ -85,6 +86,8 @@ def parse_literal_until(
     """
     value = ""
 
+    closing_type = initial_token.type
+
     while not parser._match(TokenType.EOF):
 
         if parser._match(closing_type) and len(parser._current.value) == closing_length:
@@ -93,10 +96,18 @@ def parse_literal_until(
         value += parser._advance().value
 
     if parser._match(TokenType.EOF):
-        raise ParserError("Unterminated literal block.")
+        raise ParserError(
+            message="Unterminated literal block.",
+            token=parser.current,
+            expected_token=initial_token,
+        )
 
     if len(parser._current.value) != closing_length:
-        raise ParserError("Invalid closing delimiter.")
+        raise ParserError(
+            message="Invalid closing delimiter.",
+            token=parser.current,
+            expected_token=initial_token,
+        )
 
     parser._advance()
 

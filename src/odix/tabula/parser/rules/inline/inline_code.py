@@ -42,11 +42,11 @@ def parse_inline_code(parser: Parser) -> InlineCode:
         Parsed inline code node.
     """
 
-    parser._expect(TokenType.BACKTICK)
+    initial_token = parser._expect_type(TokenType.BACKTICK)
 
     code = parse_literal_until(
         parser,
-        TokenType.BACKTICK,
+        initial_token,
         1,
     )
 

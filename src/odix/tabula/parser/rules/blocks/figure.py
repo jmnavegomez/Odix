@@ -23,6 +23,7 @@ from typing import TYPE_CHECKING
 if TYPE_CHECKING:
     from ...parser import Parser
 
+from ....lexer.token import Token
 from ....lexer.token_type import TokenType
 from ....nodes.figure import Figure
 from ....nodes.image import Image
@@ -31,7 +32,7 @@ from ..blocks.caption import parse_inline_caption
 from ..inline.sequence import parse_literal_until
 
 
-def parse_figure(parser: Parser) -> Figure:
+def parse_figure(parser: Parser, initial_token: Token) -> Figure:
     """Parses a figure block.
 
     Expected syntax::
@@ -49,18 +50,20 @@ def parse_figure(parser: Parser) -> Figure:
         Parsed figure.
     """
 
-    if parser._match(TokenType.NEWLINE):
-        parser._advance()
+    new_line = parser._expect_type(TokenType.NEWLINE)
 
     figure = Figure()
 
-    figure.add_child(Image(parse_literal_until(parser, TokenType.NEWLINE, 1)))
+    figure.add_child(Image(parse_literal_until(parser, new_line, 1)))
     figure.add_child(parse_inline_caption(parser))
 
-    if not parser._match(TokenType.COLON):
-        figure.add_child(Label(parse_literal_until(parser, TokenType.NEWLINE, 1)))
+    if not (
+        parser._match(initial_token.type)
+        and (len(initial_token.value) == len(parser.current.value))
+    ):
+        figure.add_child(Label(parse_literal_until(parser, new_line, 1)))
 
-    parser._expect(TokenType.COLON)
+    parser._expect_token(initial_token)
 
     if parser._match(TokenType.NEWLINE):
         parser._advance()

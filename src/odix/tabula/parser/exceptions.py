@@ -16,6 +16,25 @@
 # You should have received a copy of the GNU General Public License
 # along with Odix. If not, see <https://www.gnu.org/licenses/>.
 
+from odix.exceptions import OdixError
 
-class ParserError(Exception):
+from ..lexer.token import Token
+from ..lexer.token_type import TokenType
+
+
+class ParserError(OdixError):
     """Base exception for parser errors."""
+
+    def __init__(
+        self,
+        message: str,
+        token: Token,
+        expected_token: Token | None = None,
+        expected_token_type: TokenType | None = None,
+    ) -> None:
+        self.message = message
+        self.token = token
+        self.expected_token = expected_token
+        self.expected_token_type = expected_token_type
+
+        super().__init__(message)

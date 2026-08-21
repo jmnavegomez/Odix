@@ -42,11 +42,11 @@ def parse_citation(parser: Parser) -> Citation:
         Parsed citation.
     """
 
-    parser._expect(TokenType.MIDDLE_DOT)
+    initial_token = parser._expect_type(TokenType.MIDDLE_DOT)
 
     key = parse_literal_until(
         parser,
-        TokenType.MIDDLE_DOT,
+        initial_token,
         2,
     ).strip()
 

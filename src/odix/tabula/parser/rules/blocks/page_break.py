@@ -23,11 +23,12 @@ from typing import TYPE_CHECKING
 if TYPE_CHECKING:
     from ...parser import Parser
 
+from ....lexer.token import Token
 from ....lexer.token_type import TokenType
 from ....nodes.page_break import PageBreak
 
 
-def parse_page_break(parser: Parser) -> PageBreak:
+def parse_page_break(parser: Parser, initial_token: Token) -> PageBreak:
     """Parses a page break.
 
     Expected syntax::
@@ -45,7 +46,7 @@ def parse_page_break(parser: Parser) -> PageBreak:
     if parser._match(TokenType.NEWLINE):
         parser._advance()
 
-    parser._expect(TokenType.COLON)
+    parser._expect_token(initial_token)
 
     if parser._match(TokenType.NEWLINE):
         parser._advance()
