@@ -1,7 +1,8 @@
 import pytest
 
-from odix.tabula.lexer import Token, TokenType
+from odix.tabula.lexer import Token, TokenType, Lexer
 from odix.tabula.parser import Parser
+from odix.tabula.parser.exceptions import ParserError
 
 
 def test_reset() -> None:
@@ -143,7 +144,7 @@ def test_expect_wrong_token() -> None:
         None,
     )
 
-    with pytest.raises(NotImplementedError):
+    with pytest.raises(ParserError):
         parser._expect(TokenType.HASH)
 
 
@@ -168,3 +169,20 @@ def test_parse_text():
     assert node.content() == ("Hello",)
 
     assert parser._current.type is TokenType.EOF
+
+
+def test_invalid_document_raises_parser_error():
+    lexer = Lexer()
+    parser = Parser()
+
+    tokens = lexer.tokenize("Este es un `ejemplo de código")
+
+    with pytest.raises(ParserError) as exc_info:
+        parser.parse(tokens)
+
+    error = exc_info.value
+
+    assert error.token.value == ""
+    assert error.token.type == TokenType.EOF
+    assert error.token.line == 1
+    assert error.token.column == 30
