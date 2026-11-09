@@ -77,7 +77,7 @@ SYNTAX: dict[str, dict[Language, Syntax]] = {
     "Paragraph": {
         Language.LATEX: Syntax(
             "",
-            "\n",
+            "\n\n",
         ),
         Language.HTML: Syntax(
             "<p>",

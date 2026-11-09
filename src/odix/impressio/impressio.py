@@ -203,6 +203,9 @@ class Impressio:
         if document.twoside:
             options.append("twoside")
 
+        if document.chapters_start_on_odd_page:
+            options.append("openleft")
+
         document_class = (
             rf"\documentclass[{','.join(options)}]" rf"{{{document.document_class}}}"
         )
