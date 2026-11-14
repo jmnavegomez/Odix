@@ -230,6 +230,30 @@ class Impressio:
 
         babel = rf"\usepackage[{language}]{{babel}}"
 
+        numbering = ""
+
+        if document.page_numbering:
+            if document.page_numbering_position == "top":
+                numbering = "\n".join(
+                    [
+                        r"\usepackage{fancyhdr}",
+                        r"\pagestyle{fancy}",
+                        r"",
+                        r"\fancyhf{} % Limpia encabezados y pies",
+                        r"\fancyhead[R]{\thepage}",
+                    ]
+                )
+            else:
+                numbering = "\n".join(
+                    [
+                        r"\usepackage{fancyhdr}",
+                        r"\pagestyle{fancy}",
+                        r"",
+                        r"\fancyhf{} % Limpia encabezados y pies",
+                        r"\fancyfoot[C]{\thepage}",
+                    ]
+                )
+
         style = "\n".join(
             [
                 r"\setcounter{secnumdepth}{1}",
@@ -256,6 +280,7 @@ class Impressio:
                 geometry,
                 babel,
                 "",
+                numbering,
                 style,
             ]
         )

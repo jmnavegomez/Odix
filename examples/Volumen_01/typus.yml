@@ -23,7 +23,7 @@ document:
 
   numbering:
     pages: true
-    position: top
+    position: bottom
 
   language: spanish
 
