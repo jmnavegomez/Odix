@@ -51,10 +51,10 @@ For example, a project can contain:
 
 ```text
 my-book/
-├── book.yml
-├── typus.yml
-├── references.bib
-└── ...
+|-- book.yml
+|-- typus.yml
+|-- references.bib
+·-- ...
 ```
 
 References can then be cited from the Principia using the corresponding citation syntax.

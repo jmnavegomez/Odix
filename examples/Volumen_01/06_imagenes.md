@@ -16,12 +16,12 @@ For example, a project can be organised as follows:
 
 ```
 my-book/
-├── book.yml
-├── typus.yml
-├── introduction.md
-├── figures.md
-└── img/
-└── python.png
+|-- book.yml
+|-- typus.yml
+|-- introduction.md
+|-- figures.md
+·-- img/
+·-- python.png
 
 ```
 
@@ -91,13 +91,13 @@ For example:
 
 ```text
 my-book/
-├── book.yml
-├── typus.yml
-├── chapter.md
-├── another_chapter.md
-└── img/
-    ├── python.png
-    └── architecture.png
+|-- book.yml
+|-- typus.yml
+|-- chapter.md
+|-- another_chapter.md
+·-- img/
+    |-- python.png
+    ·-- architecture.png
 ```
 
 Each Principium can reference the figures it needs.

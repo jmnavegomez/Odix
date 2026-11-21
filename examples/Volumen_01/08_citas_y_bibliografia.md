@@ -22,11 +22,11 @@ For example, a project can contain:
 
 ```text
 my-book/
-├── book.yml
-├── typus.yml
-├── references.bib
-├── introduction.md
-└── ...
+|-- book.yml
+|-- typus.yml
+|-- references.bib
+|-- introduction.md
+·-- ...
 ```
 
 ## BibTeX references

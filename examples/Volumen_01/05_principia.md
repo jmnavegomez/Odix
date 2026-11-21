@@ -8,12 +8,12 @@ For example:
 
 ```text
 my-book/
-├── book.yml
-├── typus.yml
-├── introduction.md
-├── variables.md
-├── functions.md
-└── ...
+|-- book.yml
+|-- typus.yml
+|-- introduction.md
+|-- variables.md
+|-- functions.md
+·-- ...
 ```
 
 The files containing the content of the book are Principia.

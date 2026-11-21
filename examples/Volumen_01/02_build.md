@@ -45,10 +45,10 @@ A minimal Odix project can be organised as follows:
 
 ```
 my-book/
-├── book.yml
-├── typus.yml
-├── introduction.md
-└── ...
+|-- book.yml
+|-- typus.yml
+|-- introduction.md
+·-- ...
 ```
 
 From the `my-book` directory, the book can be built with:
