@@ -22,6 +22,9 @@ from dataclasses import dataclass
 
 from .language import Language
 
+# EPUB mappings use XHTML-compatible markup. The EPUB renderer is responsible
+# for packaging the content, adding metadata/navigation, and applying CSS.
+
 
 @dataclass(frozen=True)
 class Syntax:
@@ -41,6 +44,11 @@ SYNTAX: dict[str, dict[Language, Syntax]] = {
             "<b>",
             "</b>",
         ),
+        Language.EPUB: Syntax(
+
+            "<b>",
+            "</b>",
+        ),
         Language.MARKDOWN: Syntax(
             "**",
             "**",
@@ -52,6 +60,11 @@ SYNTAX: dict[str, dict[Language, Syntax]] = {
             "}",
         ),
         Language.HTML: Syntax(
+            "<i>",
+            "</i>",
+        ),
+        Language.EPUB: Syntax(
+
             "<i>",
             "</i>",
         ),
@@ -69,6 +82,11 @@ SYNTAX: dict[str, dict[Language, Syntax]] = {
             "<code>",
             "</code>",
         ),
+        Language.EPUB: Syntax(
+
+            "<code>",
+            "</code>",
+        ),
         Language.MARKDOWN: Syntax(
             "`",
             "`",
@@ -80,6 +98,11 @@ SYNTAX: dict[str, dict[Language, Syntax]] = {
             "\n\n",
         ),
         Language.HTML: Syntax(
+            "<p>",
+            "</p>\n",
+        ),
+        Language.EPUB: Syntax(
+
             "<p>",
             "</p>\n",
         ),
@@ -97,6 +120,11 @@ SYNTAX: dict[str, dict[Language, Syntax]] = {
             "<h1>",
             "</h1>\n",
         ),
+        Language.EPUB: Syntax(
+
+            "<h1>",
+            "</h1>\n",
+        ),
         Language.MARKDOWN: Syntax(
             "# ",
             "\n",
@@ -108,6 +136,11 @@ SYNTAX: dict[str, dict[Language, Syntax]] = {
             "}\n",
         ),
         Language.HTML: Syntax(
+            "<h2>",
+            "</h2>\n",
+        ),
+        Language.EPUB: Syntax(
+
             "<h2>",
             "</h2>\n",
         ),
@@ -125,6 +158,11 @@ SYNTAX: dict[str, dict[Language, Syntax]] = {
             "<h3>",
             "</h3>\n",
         ),
+        Language.EPUB: Syntax(
+
+            "<h3>",
+            "</h3>\n",
+        ),
         Language.MARKDOWN: Syntax(
             "### ",
             "\n",
@@ -136,6 +174,11 @@ SYNTAX: dict[str, dict[Language, Syntax]] = {
             "}\n",
         ),
         Language.HTML: Syntax(
+            "<h4>",
+            "</h4>\n",
+        ),
+        Language.EPUB: Syntax(
+
             "<h4>",
             "</h4>\n",
         ),
@@ -153,6 +196,11 @@ SYNTAX: dict[str, dict[Language, Syntax]] = {
             "<h5>",
             "</h5>\n",
         ),
+        Language.EPUB: Syntax(
+
+            "<h5>",
+            "</h5>\n",
+        ),
         Language.MARKDOWN: Syntax(
             "##### ",
             "\n",
@@ -164,6 +212,11 @@ SYNTAX: dict[str, dict[Language, Syntax]] = {
             "}\n",
         ),
         Language.HTML: Syntax(
+            "<h6>",
+            "</h6>\n",
+        ),
+        Language.EPUB: Syntax(
+
             "<h6>",
             "</h6>\n",
         ),
@@ -181,6 +234,11 @@ SYNTAX: dict[str, dict[Language, Syntax]] = {
             r"\(",
             r"\)",
         ),
+        Language.EPUB: Syntax(
+
+            r"\(",
+            r"\)",
+        ),
         Language.MARKDOWN: Syntax(
             "$",
             "$",
@@ -192,6 +250,11 @@ SYNTAX: dict[str, dict[Language, Syntax]] = {
             "}",
         ),
         Language.HTML: Syntax(
+            "<u>",
+            "</u>",
+        ),
+        Language.EPUB: Syntax(
+
             "<u>",
             "</u>",
         ),
@@ -209,6 +272,11 @@ SYNTAX: dict[str, dict[Language, Syntax]] = {
             "<del>",
             "</del>",
         ),
+        Language.EPUB: Syntax(
+
+            "<del>",
+            "</del>",
+        ),
         Language.MARKDOWN: Syntax(
             "~~",
             "~~",
@@ -220,6 +288,11 @@ SYNTAX: dict[str, dict[Language, Syntax]] = {
             "\n" "{label}" r"\end{equation}" "\n",
         ),
         Language.HTML: Syntax(
+            r"\[",
+            r"\]",
+        ),
+        Language.EPUB: Syntax(
+
             r"\[",
             r"\]",
         ),
@@ -244,6 +317,11 @@ SYNTAX: dict[str, dict[Language, Syntax]] = {
             "<pre><code>",
             "</code></pre>",
         ),
+        Language.EPUB: Syntax(
+
+            "<pre><code>",
+            "</code></pre>",
+        ),
         Language.MARKDOWN: Syntax(
             "```\n",
             "\n```",
@@ -255,6 +333,11 @@ SYNTAX: dict[str, dict[Language, Syntax]] = {
             r"\end{quote}" "\n",
         ),
         Language.HTML: Syntax(
+            "<blockquote>",
+            "</blockquote>",
+        ),
+        Language.EPUB: Syntax(
+
             "<blockquote>",
             "</blockquote>",
         ),
@@ -272,6 +355,11 @@ SYNTAX: dict[str, dict[Language, Syntax]] = {
             "<ul>",
             "</ul>",
         ),
+        Language.EPUB: Syntax(
+
+            "<ul>",
+            "</ul>",
+        ),
         Language.MARKDOWN: Syntax("", ""),
     },
     "ListItem": {
@@ -280,6 +368,11 @@ SYNTAX: dict[str, dict[Language, Syntax]] = {
             "",
         ),
         Language.HTML: Syntax(
+            "<li>",
+            "</li>",
+        ),
+        Language.EPUB: Syntax(
+
             "<li>",
             "</li>",
         ),
@@ -294,6 +387,11 @@ SYNTAX: dict[str, dict[Language, Syntax]] = {
             "\n" r"\end{tabular}" "\n" "{caption}" "{label}" r"\end{tcolorbox}" "\n",
         ),
         Language.HTML: Syntax(
+            "<table>",
+            "</table>",
+        ),
+        Language.EPUB: Syntax(
+
             "<table>",
             "</table>",
         ),
@@ -330,6 +428,11 @@ SYNTAX: dict[str, dict[Language, Syntax]] = {
             "<tr>",
             "</tr>",
         ),
+        Language.EPUB: Syntax(
+
+            "<tr>",
+            "</tr>",
+        ),
         Language.MARKDOWN: Syntax("", "|"),
     },
     "Cell": {
@@ -341,6 +444,11 @@ SYNTAX: dict[str, dict[Language, Syntax]] = {
             "<td>",
             "</td>",
         ),
+        Language.EPUB: Syntax(
+
+            "<td>",
+            "</td>",
+        ),
         Language.MARKDOWN: Syntax(
             "|",
             "",
@@ -349,9 +457,14 @@ SYNTAX: dict[str, dict[Language, Syntax]] = {
     "Figure": {
         Language.LATEX: Syntax(
             "\n" "\\begin{figure}\n",
-            "\n" "\\end{figure}" "\n",
+            "\n" "\\end{figure}" "\n""\n",
         ),
         Language.HTML: Syntax(
+            "<figure>",
+            "</figure>",
+        ),
+        Language.EPUB: Syntax(
+
             "<figure>",
             "</figure>",
         ),
@@ -363,6 +476,11 @@ SYNTAX: dict[str, dict[Language, Syntax]] = {
             r"}" "\n",
         ),
         Language.HTML: Syntax(
+            "<figcaption>",
+            "</figcaption>",
+        ),
+        Language.EPUB: Syntax(
+
             "<figcaption>",
             "</figcaption>",
         ),
@@ -382,6 +500,11 @@ SYNTAX: dict[str, dict[Language, Syntax]] = {
             '<img src="',
             '">',
         ),
+        Language.EPUB: Syntax(
+
+            '<img src="',
+            '">',
+        ),
         Language.MARKDOWN: Syntax(
             "![](",
             ")",
@@ -393,6 +516,10 @@ SYNTAX: dict[str, dict[Language, Syntax]] = {
             "}",
         ),
         Language.HTML: Syntax(
+            '<a href="',
+            '"></a>',
+        ),
+        Language.EPUB: Syntax(
             '<a href="',
             '"></a>',
         ),
@@ -410,6 +537,11 @@ SYNTAX: dict[str, dict[Language, Syntax]] = {
             "<cite>",
             "</cite>",
         ),
+        Language.EPUB: Syntax(
+
+            "<cite>",
+            "</cite>",
+        ),
         Language.MARKDOWN: Syntax(
             "[@",
             "]",
@@ -424,6 +556,11 @@ SYNTAX: dict[str, dict[Language, Syntax]] = {
             '<li id="',
             '">',
         ),
+        Language.EPUB: Syntax(
+
+            '<li id="',
+            '">',
+        ),
         Language.MARKDOWN: Syntax("", ""),
     },
     "Bibliography": {
@@ -432,6 +569,11 @@ SYNTAX: dict[str, dict[Language, Syntax]] = {
             "\n" "\\end{thebibliography}" "\n",
         ),
         Language.HTML: Syntax(
+            '<section class="bibliography">',
+            "</section>",
+        ),
+        Language.EPUB: Syntax(
+
             '<section class="bibliography">',
             "</section>",
         ),
@@ -446,6 +588,11 @@ SYNTAX: dict[str, dict[Language, Syntax]] = {
             "<aside>",
             "</aside>",
         ),
+        Language.EPUB: Syntax(
+
+            "<aside>",
+            "</aside>",
+        ),
         Language.MARKDOWN: Syntax(
             "[^",
             "]",
@@ -456,6 +603,10 @@ SYNTAX: dict[str, dict[Language, Syntax]] = {
             "\n" r"\newpage" "\n",
         ),
         Language.HTML: Syntax(
+            '<hr class="page-break">',
+        ),
+        Language.EPUB: Syntax(
+
             '<hr class="page-break">',
         ),
         Language.MARKDOWN: Syntax(

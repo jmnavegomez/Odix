@@ -27,3 +27,4 @@ class Language(Enum):
     LATEX = "latex"
     HTML = "html"
     MARKDOWN = "markdown"
+    EPUB = "epub"
