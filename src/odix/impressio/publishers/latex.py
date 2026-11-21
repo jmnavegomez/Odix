@@ -1,0 +1,320 @@
+
+# Odix - Open-source publishing system for technical books
+# Copyright (C) 2026 José Manuel Naveiro
+#
+# This file is part of Odix.
+#
+# Odix is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published
+# by the Free Software Foundation, either version 3 of the License,
+# or (at your option) any later version.
+#
+# Odix is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with Odix. If not, see <https://www.gnu.org/licenses/>.
+
+from __future__ import annotations
+
+from pathlib import Path
+
+from odix.ordinatio import Chapter, Principium
+from odix.scriptorium import Compiler, Language
+
+from .publisher import Publisher
+
+
+class LatexPublisher(Publisher):
+    """Publishes an Odix book as a LaTeX document."""
+
+    _FONTS = {
+        "computer-modern": None,
+        "palatino": "mathpazo",
+        "helvetica": "helvet",
+        "times": "mathptmx",
+    }
+
+    def _render_principium(
+        self,
+        principium: Principium,
+    ) -> str:
+        """Renders a principium as LaTeX."""
+
+        tabula = self._parse_principium(principium)
+
+        compiler = Compiler(
+            Language.LATEX,
+        )
+
+        return compiler.compile(
+            tabula.ast,
+        )
+
+    def _render_chapter(
+        self,
+        chapter: Chapter,
+    ) -> str:
+        """Renders a chapter and its principia as LaTeX."""
+
+        parts = [
+            rf"\chapter{{{chapter.title}}}",
+            "",
+        ]
+
+        for principium in chapter.principia:
+            parts.append(self._render_principium(principium))
+
+        return "\n".join(parts)
+
+    def _render_titlepage(self) -> str:
+        """Renders the book metadata as a LaTeX title page."""
+
+        metadata = self._book.metadata
+
+        parts = [
+            r"\begin{titlepage}",
+            r"\centering",
+            "",
+            r"\vspace*{3cm}",
+            "",
+            rf"{{\Huge\bfseries {metadata.title}\par}}",
+        ]
+
+        if metadata.subtitle:
+            parts.extend(
+                [
+                    "",
+                    r"\vspace{1cm}",
+                    rf"{{\Large {metadata.subtitle}\par}}",
+                ]
+            )
+
+        parts.extend(
+            [
+                "",
+                r"\vfill",
+            ]
+        )
+
+        if metadata.author:
+            parts.append(rf"{{\Large {metadata.author}\par}}")
+
+        if metadata.edition:
+            parts.extend(
+                [
+                    "",
+                    r"\vspace{0.5cm}",
+                    rf"{{\large {metadata.edition}\par}}",
+                ]
+            )
+
+        if metadata.date:
+            parts.extend(
+                [
+                    "",
+                    r"\vspace{0.5cm}",
+                    rf"{{\large {metadata.date}\par}}",
+                ]
+            )
+
+        parts.extend(
+            [
+                "",
+                r"\end{titlepage}",
+            ]
+        )
+
+        return "\n".join(parts)
+
+    def _render_bibliography(self) -> str:
+        """Renders the bibliography as LaTeX."""
+
+        bibliography = self._book.bibliography
+
+        if bibliography is None:
+            return ""
+
+        file = Path(bibliography.file).stem
+
+        return "\n".join(
+            [
+                rf"\bibliographystyle{{{bibliography.style}}}",
+                rf"\bibliography{{{file}}}",
+            ]
+        )
+
+    def _render_body(self) -> str:
+        """Renders the complete body of the book."""
+
+        chapters = [
+            self._render_chapter(chapter)
+            for chapter in self._book.chapters
+        ]
+
+        return "\n\n".join(chapters)
+
+    def _render_preamble(self) -> str:
+        """Renders the LaTeX preamble from Typus."""
+
+        document = self._typus.document
+        margins = document.margins
+        language = document.language
+
+        options = [
+            document.font_size,
+            document.page_size,
+        ]
+
+        if document.orientation != "portrait":
+            options.append(document.orientation)
+
+        if document.twoside:
+            options.append("twoside")
+
+        if document.chapters_start_on_odd_page:
+            options.append("openleft")
+
+        document_class = (
+            rf"\documentclass[{','.join(options)}]"
+            rf"{{{document.document_class}}}"
+        )
+
+        packages = "\n".join(
+            rf"\usepackage{{{package}}}"
+            for package in document.packages
+        )
+
+        font_package = self._FONTS[document.font]
+
+        if font_package is not None:
+            packages += "\n" + rf"\usepackage{{{font_package}}}"
+
+        geometry = (
+            f"\\usepackage["
+            f"top={margins.top},"
+            f"bottom={margins.bottom},"
+            f"left={margins.left},"
+            f"right={margins.right}"
+            f"]{{geometry}}"
+        )
+
+        babel = rf"\usepackage[{language}]{{babel}}"
+
+        numbering = ""
+
+        if document.page_numbering:
+            if document.page_numbering_position == "top":
+                numbering = "\n".join(
+                    [
+                        r"\usepackage{fancyhdr}",
+                        r"\pagestyle{fancy}",
+                        r"",
+                        r"\fancyhf{} % Limpia encabezados y pies",
+                        r"\fancyhead[R]{\thepage}",
+                    ]
+                )
+            else:
+                numbering = "\n".join(
+                    [
+                        r"\usepackage{fancyhdr}",
+                        r"\pagestyle{fancy}",
+                        r"",
+                        r"\fancyhf{} % Limpia encabezados y pies",
+                        r"\fancyfoot[C]{\thepage}",
+                    ]
+                )
+
+        style = "\n".join(
+            [
+                r"\setcounter{secnumdepth}{1}",
+                r"\setstretch{1.25}",
+                "",
+                r"\definecolor{chaptercolor}{HTML}{24527A}",
+                r"\definecolor{primary}{HTML}{24527A}",
+                r"\definecolor{secondary}{HTML}{4F81A1}",
+                r"\definecolor{codebg}{HTML}{F4F6F8}",
+                "",
+                r"\titleformat{\chapter}",
+                r"  {\Huge\bfseries\color{chaptercolor}}",
+                r"  {\thechapter}",
+                r"  {1em}",
+                r"  {}",
+            ]
+        )
+
+        return "\n".join(
+            [
+                document_class,
+                "",
+                packages,
+                geometry,
+                babel,
+                "",
+                numbering,
+                style,
+            ]
+        )
+
+    def _render_document(self) -> str:
+        """Renders the complete LaTeX document."""
+
+        preamble = self._render_preamble()
+        metadata = self._render_titlepage()
+        body = self._render_body()
+        bibliography = self._render_bibliography()
+
+        document = [
+            preamble,
+            "",
+            r"\begin{document}",
+            "",
+            metadata,
+            "",
+        ]
+
+        if self._typus.document.chapters_table_of_contents:
+            document.extend(
+                [
+                    r"\setcounter{tocdepth}{1}",
+                    r"\tableofcontents",
+                    "",
+                ]
+            )
+
+        document.append(body)
+
+        if bibliography:
+            document.extend(
+                [
+                    "",
+                    bibliography,
+                ]
+            )
+
+        document.extend(
+            [
+                "",
+                r"\end{document}",
+                "",
+            ]
+        )
+
+        return "\n".join(document)
+
+    def publish(
+        self,
+        path: str | Path,
+    ) -> None:
+        """Publishes the book to a LaTeX file."""
+
+        path = Path(path)
+
+        latex = self._render_document()
+
+        path.write_text(
+            latex,
+            encoding="utf-8",
+        )
